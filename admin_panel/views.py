@@ -138,6 +138,64 @@ def student_detail(request, user_id):
     })
 
 
+@staff_required
+def edit_student(request, user_id):
+    """Update a student's profile details."""
+    student = get_object_or_404(User, id=user_id, is_staff=False, is_superuser=False)
+    if request.method == 'POST':
+        username = request.POST.get('username', '').strip()
+        email = request.POST.get('email', '').strip()
+        if username and email:
+            # Check username uniqueness (excluding this user)
+            if User.objects.filter(username=username).exclude(id=user_id).exists():
+                messages.error(request, "That username is already taken.")
+            elif User.objects.filter(email=email).exclude(id=user_id).exists():
+                messages.error(request, "That email is already in use.")
+            else:
+                student.username = username
+                student.email = email
+                student.first_name = request.POST.get('first_name', '').strip()
+                student.last_name = request.POST.get('last_name', '').strip()
+                student.skill_level = request.POST.get('skill_level', student.skill_level)
+                student.is_active = request.POST.get('is_active') == 'on'
+                student.save()
+                messages.success(request, f"Student '{student.username}' updated successfully.")
+        else:
+            messages.error(request, "Username and email are required.")
+    return redirect('admin_panel:student_detail', user_id=user_id)
+
+
+@staff_required
+@require_POST
+def delete_student(request, user_id):
+    """Permanently delete a student account."""
+    student = get_object_or_404(User, id=user_id, is_staff=False, is_superuser=False)
+    username = student.username
+    student.delete()
+    messages.success(request, f"Student '{username}' has been deleted.")
+    return redirect('admin_panel:students')
+
+
+@staff_required
+def change_student_password(request, user_id):
+    """Admin reset of a student's password."""
+    student = get_object_or_404(User, id=user_id, is_staff=False, is_superuser=False)
+    if request.method == 'POST':
+        password = request.POST.get('new_password', '').strip()
+        confirm = request.POST.get('confirm_password', '').strip()
+        if not password:
+            messages.error(request, "Password cannot be empty.")
+        elif len(password) < 6:
+            messages.error(request, "Password must be at least 6 characters.")
+        elif password != confirm:
+            messages.error(request, "Passwords do not match.")
+        else:
+            student.set_password(password)
+            student.save()
+            messages.success(request, f"Password for '{student.username}' changed successfully.")
+    return redirect('admin_panel:student_detail', user_id=user_id)
+
+
 # ─── Content Management ───────────────────────────────────────────────────────
 
 @staff_required

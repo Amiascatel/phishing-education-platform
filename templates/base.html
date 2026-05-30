@@ -73,9 +73,30 @@
 
         /* ── Mobile ── */
         @media (max-width: 767.98px) {
-            .sidebar { transform: translateX(-230px); }
-            .sidebar.open { transform: translateX(0); box-shadow: 4px 0 20px rgba(0,0,0,0.3); }
+            .sidebar {
+                transform: translateX(-230px);
+                top: 0;
+                height: 100vh;
+                z-index: 1040;
+                width: 270px;
+            }
+            .sidebar.open { transform: translateX(0); box-shadow: 6px 0 24px rgba(0,0,0,0.35); }
+            .sidebar-overlay { z-index: 1035; }
             .main-content { margin-left: 0; }
+            /* hide desktop-only toggle area that gets pushed */
+            .sidebar .desktop-only { display: none; }
+        }
+        /* Mobile sidebar header (close button row) */
+        .sidebar-mobile-header {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px 10px;
+            border-bottom: 1px solid #334155;
+            flex-shrink: 0;
+        }
+        @media (max-width: 767.98px) {
+            .sidebar-mobile-header { display: flex; }
         }
         .card {
             border: none;
@@ -219,6 +240,16 @@
 
     <!-- Fixed Sidebar -->
     <nav class="sidebar" id="mainSidebar">
+        <!-- Mobile-only header with close button -->
+        <div class="sidebar-mobile-header">
+            <span class="text-white fw-bold" style="font-size:1rem;">
+                <i class="bi bi-shield-check text-primary me-1"></i> PhishGuard
+            </span>
+            <button id="sidebarClose" class="btn btn-sm btn-outline-secondary text-white border-secondary"
+                    style="width:30px;height:30px;padding:0;" aria-label="Close menu">
+                <i class="bi bi-x-lg" style="font-size:0.85rem;"></i>
+            </button>
+        </div>
         <div class="pt-3 pb-4">
             <ul class="nav flex-column">
                 <li class="nav-item">
@@ -464,6 +495,10 @@
         });
 
         overlay.addEventListener('click', closeMobile);
+
+        // Close button inside sidebar (mobile)
+        var closeBtn = document.getElementById('sidebarClose');
+        if (closeBtn) closeBtn.addEventListener('click', closeMobile);
 
         // Auto-close sidebar on nav-link tap (mobile)
         sidebar.querySelectorAll('.nav-link').forEach(function (link) {
