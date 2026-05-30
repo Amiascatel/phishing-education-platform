@@ -17,6 +17,12 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 _extra_hosts = [h for h in os.environ.get('ALLOWED_HOSTS', '').split(',') if h]
 ALLOWED_HOSTS = ['localhost', '127.0.0.1'] + _extra_hosts
 
+CSRF_TRUSTED_ORIGINS = (
+    ['http://localhost', 'http://127.0.0.1'] +
+    [f'https://{h}' for h in _extra_hosts if h] +
+    [f'http://{h}' for h in _extra_hosts if h]
+)
+
 
 INSTALLED_APPS = [
     'django.contrib.auth',
