@@ -533,6 +533,196 @@ def delete_indicator(request, indicator_id):
     return redirect(reverse('admin_panel:content') + '?tab=indicators')
 
 
+# ─── Content Edit Views ───────────────────────────────────────────────────────
+
+@staff_required
+@require_POST
+def edit_module(request, module_id):
+    from django.urls import reverse
+    m = get_object_or_404(Module, id=module_id)
+    m.title = request.POST.get('title', m.title).strip() or m.title
+    m.description = request.POST.get('description', m.description).strip()
+    cat_slug = request.POST.get('category_slug', '')
+    if cat_slug:
+        cat = Category.objects.filter(slug=cat_slug).first()
+        if cat:
+            m.category = cat
+    m.module_type = request.POST.get('module_type', m.module_type)
+    m.difficulty = request.POST.get('difficulty', m.difficulty)
+    m.duration_minutes = int(request.POST.get('duration_minutes', m.duration_minutes) or m.duration_minutes)
+    m.points = int(request.POST.get('points', m.points) or m.points)
+    m.order = int(request.POST.get('order', m.order) or 0)
+    m.is_active = request.POST.get('is_active') == 'on'
+    m.video_url = request.POST.get('video_url', '').strip() or None
+    m.content = request.POST.get('content', m.content)
+    m.save()
+    messages.success(request, f'Module "{m.title}" updated.')
+    return redirect(reverse('admin_panel:content') + '?tab=modules')
+
+
+@staff_required
+def edit_question(request, question_id):
+    """AJAX: edit an existing question."""
+    if request.method != 'POST':
+        return JsonResponse({'error': 'POST required'}, status=405)
+    try:
+        data = json.loads(request.body)
+        q = get_object_or_404(AdaptiveQuestion, id=question_id)
+        cat = get_object_or_404(Category, slug=data['category_slug'])
+        q.question = data['question']
+        q.category = cat
+        q.difficulty = data['difficulty']
+        q.options = [data['opt_a'], data['opt_b'], data['opt_c'], data['opt_d']]
+        q.correct_answer = int(data['correct_answer'])
+        q.difficulty_parameter = float(data.get('difficulty_parameter', 0.5))
+        q.explanation = data.get('explanation', '')
+        q.save()
+        return JsonResponse({'status': 'updated', 'id': q.id})
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+
+@staff_required
+@require_POST
+def edit_video(request, video_id):
+    from django.urls import reverse
+    v = get_object_or_404(Video, id=video_id)
+    cat_slug = request.POST.get('category_slug', '')
+    if cat_slug:
+        cat = Category.objects.filter(slug=cat_slug).first()
+        if cat:
+            v.category = cat
+    v.title = request.POST.get('title', v.title).strip() or v.title
+    v.url = request.POST.get('url', v.url).strip()
+    v.duration = request.POST.get('duration', v.duration)
+    v.description = request.POST.get('description', v.description)
+    v.status = request.POST.get('status', v.status)
+    v.save()
+    messages.success(request, f'Video "{v.title}" updated.')
+    return redirect(reverse('admin_panel:content') + '?tab=videos')
+
+
+@staff_required
+@require_POST
+def edit_indicator(request, indicator_id):
+    from django.urls import reverse
+    ind = get_object_or_404(PhishingIndicator, id=indicator_id)
+    ind.name = request.POST.get('name', ind.name).strip() or ind.name
+    ind.indicator_type = request.POST.get('indicator_type', ind.indicator_type)
+    ind.description = request.POST.get('description', ind.description).strip()
+    ind.example = request.POST.get('example', ind.example).strip()
+    ind.severity = int(request.POST.get('severity', ind.severity) or ind.severity)
+    ind.save()
+    messages.success(request, f'Indicator "{ind.name}" updated.')
+    return redirect(reverse('admin_panel:content') + '?tab=indicators')
+
+
+# ─── Blog Management ──────────────────────────────────────────────────────────
+
+@staff_required
+def blog_management(request):
+    from blog.models import Post, Category as BlogCategory
+    posts = Post.objects.select_related('author', 'category').order_by('-created_at')
+    blog_categories = BlogCategory.objects.all()
+    return render(request, 'admin_panel/blog_management.html', {
+        'posts': posts,
+        'blog_categories': blog_categories,
+    })
+
+
+@staff_required
+@require_POST
+def add_blog_post(request):
+    from blog.models import Post, Category as BlogCategory
+    from django.utils import timezone as tz
+    title = request.POST.get('title', '').strip()
+    if not title:
+        messages.error(request, 'Title is required.')
+        return redirect('admin_panel:blog_management')
+    cat_id = request.POST.get('category_id', '')
+    cat = BlogCategory.objects.filter(id=cat_id).first() if cat_id else None
+    status = request.POST.get('status', 'draft')
+    post = Post(
+        title=title,
+        author=request.user,
+        category=cat,
+        excerpt=request.POST.get('excerpt', '').strip(),
+        content=request.POST.get('content', '').strip(),
+        status=status,
+        featured=request.POST.get('featured') == 'on',
+    )
+    if status == 'published':
+        post.published_at = tz.now()
+    post.save()
+    messages.success(request, f'Post "{title}" created.')
+    return redirect('admin_panel:blog_management')
+
+
+@staff_required
+@require_POST
+def edit_blog_post(request, post_id):
+    from blog.models import Post, Category as BlogCategory
+    from django.utils import timezone as tz
+    post = get_object_or_404(Post, id=post_id)
+    title = request.POST.get('title', '').strip()
+    if not title:
+        messages.error(request, 'Title is required.')
+        return redirect('admin_panel:blog_management')
+    cat_id = request.POST.get('category_id', '')
+    cat = BlogCategory.objects.filter(id=cat_id).first() if cat_id else None
+    old_status = post.status
+    new_status = request.POST.get('status', 'draft')
+    post.title = title
+    post.category = cat
+    post.excerpt = request.POST.get('excerpt', '').strip()
+    post.content = request.POST.get('content', '').strip()
+    post.status = new_status
+    post.featured = request.POST.get('featured') == 'on'
+    if new_status == 'published' and old_status != 'published':
+        post.published_at = tz.now()
+    post.save()
+    messages.success(request, f'Post "{post.title}" updated.')
+    return redirect('admin_panel:blog_management')
+
+
+@staff_required
+@require_POST
+def delete_blog_post(request, post_id):
+    from blog.models import Post
+    post = get_object_or_404(Post, id=post_id)
+    title = post.title
+    post.delete()
+    messages.success(request, f'Post "{title}" deleted.')
+    return redirect('admin_panel:blog_management')
+
+
+@staff_required
+@require_POST
+def add_blog_category(request):
+    from blog.models import Category as BlogCategory
+    name = request.POST.get('name', '').strip()
+    if name:
+        BlogCategory.objects.get_or_create(name=name, defaults={
+            'description': request.POST.get('description', ''),
+            'icon': request.POST.get('icon', 'tag'),
+        })
+        messages.success(request, f'Blog category "{name}" added.')
+    else:
+        messages.error(request, 'Category name is required.')
+    return redirect('admin_panel:blog_management')
+
+
+@staff_required
+@require_POST
+def delete_blog_category(request, cat_id):
+    from blog.models import Category as BlogCategory
+    cat = get_object_or_404(BlogCategory, id=cat_id)
+    name = cat.name
+    cat.delete()
+    messages.success(request, f'Blog category "{name}" deleted.')
+    return redirect('admin_panel:blog_management')
+
+
 @staff_required
 def create_admin_user(request):
     """Admin list; only superusers can create/edit/delete."""

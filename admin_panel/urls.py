@@ -26,6 +26,18 @@ urlpatterns = [
     path('content/module/<int:module_id>/delete/', views.delete_module, name='delete_module'),
     path('content/indicator/add/', views.add_indicator, name='add_indicator'),
     path('content/indicator/<int:indicator_id>/delete/', views.delete_indicator, name='delete_indicator'),
+    # Edit existing content
+    path('content/module/<int:module_id>/edit/', views.edit_module, name='edit_module'),
+    path('content/question/<int:question_id>/edit/', views.edit_question, name='edit_question'),
+    path('content/video/<int:video_id>/edit/', views.edit_video, name='edit_video'),
+    path('content/indicator/<int:indicator_id>/edit/', views.edit_indicator, name='edit_indicator'),
+    # Blog management
+    path('blog/', views.blog_management, name='blog_management'),
+    path('blog/post/add/', views.add_blog_post, name='add_blog_post'),
+    path('blog/post/<int:post_id>/edit/', views.edit_blog_post, name='edit_blog_post'),
+    path('blog/post/<int:post_id>/delete/', views.delete_blog_post, name='delete_blog_post'),
+    path('blog/category/add/', views.add_blog_category, name='add_blog_category'),
+    path('blog/category/<int:cat_id>/delete/', views.delete_blog_category, name='delete_blog_category'),
     path('admins/', views.create_admin_user, name='create_admin'),
     path('admins/<int:user_id>/edit/', views.edit_admin_user, name='edit_admin'),
     path('admins/<int:user_id>/delete/', views.delete_admin_user, name='delete_admin'),

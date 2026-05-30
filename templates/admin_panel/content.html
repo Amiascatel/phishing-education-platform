@@ -107,11 +107,30 @@
             </div>
           </td>
           <td>
-            <form method="post" action="{% url 'admin_panel:delete_module' m.id %}"
-                  onsubmit="return confirm('Delete module \'{{ m.title }}\'?');">
-              {% csrf_token %}
-              <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-            </form>
+            <div class="d-flex gap-1">
+              <button class="btn btn-sm btn-outline-primary" title="Edit"
+                      data-id="{{ m.id }}"
+                      data-title="{{ m.title }}"
+                      data-description="{{ m.description }}"
+                      data-category="{{ m.category.slug }}"
+                      data-module-type="{{ m.module_type }}"
+                      data-difficulty="{{ m.difficulty }}"
+                      data-duration="{{ m.duration_minutes }}"
+                      data-points="{{ m.points }}"
+                      data-order="{{ m.order }}"
+                      data-is-active="{{ m.is_active|yesno:'true,false' }}"
+                      data-video-url="{{ m.video_url|default:'' }}"
+                      onclick="openEditModule(this)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <form method="post" action="{% url 'admin_panel:delete_module' m.id %}"
+                    onsubmit="return confirm('Delete module \'{{ m.title }}\'?');">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+              </form>
+            </div>
+            {# Hidden storage for long HTML content field #}
+            <textarea id="mc-{{ m.id }}" class="d-none">{{ m.content }}</textarea>
           </td>
         </tr>
         {% empty %}
@@ -209,6 +228,81 @@
   </div>
 </div>
 
+<!-- Edit Module Modal -->
+<div class="modal fade" id="editModuleModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <form method="post" id="editModuleForm">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold"><i class="bi bi-pencil me-2"></i>Edit Module</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label fw-semibold">Title <span class="text-danger">*</span></label>
+              <input type="text" name="title" id="em-title" class="form-control" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Category</label>
+              <select name="category_slug" id="em-category" class="form-select">
+                {% for cat in categories %}<option value="{{ cat.slug }}">{{ cat.name }}</option>{% endfor %}
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Module Type</label>
+              <select name="module_type" id="em-type" class="form-select">
+                {% for val, label in module_type_choices %}<option value="{{ val }}">{{ label }}</option>{% endfor %}
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Difficulty</label>
+              <select name="difficulty" id="em-difficulty" class="form-select">
+                {% for val, label in module_difficulty_choices %}<option value="{{ val }}">{{ label }}</option>{% endfor %}
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Duration (min)</label>
+              <input type="number" name="duration_minutes" id="em-duration" class="form-control" min="1">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Points</label>
+              <input type="number" name="points" id="em-points" class="form-control" min="0">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Short Description</label>
+              <textarea name="description" id="em-description" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Full Content <span class="text-danger">*</span></label>
+              <textarea name="content" id="em-content" class="form-control" rows="6"></textarea>
+            </div>
+            <div class="col-md-8">
+              <label class="form-label fw-semibold">Video URL <span class="text-muted fw-normal">(optional)</span></label>
+              <input type="url" name="video_url" id="em-video-url" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Display Order</label>
+              <input type="number" name="order" id="em-order" class="form-control" min="0">
+            </div>
+            <div class="col-12">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" name="is_active" id="em-is-active">
+                <label class="form-check-label" for="em-is-active">Published (visible to students)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Save Changes</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
 {% elif tab == 'questions' %}
 <!-- ══════════════ QUESTIONS TAB ══════════════ -->
 
@@ -291,13 +385,30 @@
             </div>
           </td>
           <td>
-            <form method="post" action="{% url 'admin_panel:delete_question' q.id %}"
-                  onsubmit="return confirm('Delete this question?');">
-              {% csrf_token %}
-              <button class="btn btn-sm btn-outline-danger" title="Delete">
-                <i class="bi bi-trash"></i>
+            <div class="d-flex gap-1">
+              <button class="btn btn-sm btn-outline-primary" title="Edit"
+                      data-id="{{ q.id }}"
+                      data-question="{{ q.question }}"
+                      data-category="{{ q.category.slug }}"
+                      data-difficulty="{{ q.difficulty }}"
+                      data-opt-a="{{ q.options.0 }}"
+                      data-opt-b="{{ q.options.1 }}"
+                      data-opt-c="{{ q.options.2 }}"
+                      data-opt-d="{{ q.options.3 }}"
+                      data-correct="{{ q.correct_answer }}"
+                      data-irt="{{ q.difficulty_parameter }}"
+                      data-explanation="{{ q.explanation }}"
+                      onclick="openEditQuestion(this)">
+                <i class="bi bi-pencil"></i>
               </button>
-            </form>
+              <form method="post" action="{% url 'admin_panel:delete_question' q.id %}"
+                    onsubmit="return confirm('Delete this question?');">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-outline-danger" title="Delete">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </form>
+            </div>
           </td>
         </tr>
         {% empty %}
@@ -380,6 +491,66 @@
   </div>
 </div>
 
+<!-- Edit Question Modal -->
+<div class="modal fade" id="editQuestionModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold"><i class="bi bi-pencil me-2"></i>Edit Question</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="editQAlert"></div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Question Text</label>
+          <textarea id="eq-question" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Category</label>
+            <select id="eq-category" class="form-select">
+              {% for cat in categories %}<option value="{{ cat.slug }}">{{ cat.name }}</option>{% endfor %}
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Difficulty</label>
+            <select id="eq-difficulty" class="form-select">
+              {% for val, label in difficulty_choices %}<option value="{{ val }}">{{ label }}</option>{% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6"><label class="form-label fw-semibold">Option A</label><input type="text" id="eq-optA" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label fw-semibold">Option B</label><input type="text" id="eq-optB" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label fw-semibold">Option C</label><input type="text" id="eq-optC" class="form-control"></div>
+          <div class="col-md-6"><label class="form-label fw-semibold">Option D</label><input type="text" id="eq-optD" class="form-control"></div>
+        </div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Correct Answer</label>
+            <select id="eq-correct" class="form-select">
+              <option value="0">Option A</option><option value="1">Option B</option>
+              <option value="2">Option C</option><option value="3">Option D</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">IRT Difficulty (b)</label>
+            <input type="number" id="eq-irt" class="form-control" min="0" max="1" step="0.05">
+          </div>
+        </div>
+        <div class="mb-2">
+          <label class="form-label fw-semibold">Explanation</label>
+          <textarea id="eq-explanation" class="form-control" rows="2"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" id="saveEditQuestion"><i class="bi bi-check-lg me-1"></i>Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% elif tab == 'videos' %}
 <!-- ══════════════ VIDEOS TAB ══════════════ -->
 
@@ -422,11 +593,24 @@
             </span>
           </td>
           <td>
-            <form method="post" action="{% url 'admin_panel:delete_video' v.id %}"
-                  onsubmit="return confirm('Delete this video?');">
-              {% csrf_token %}
-              <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-            </form>
+            <div class="d-flex gap-1">
+              <button class="btn btn-sm btn-outline-primary" title="Edit"
+                      data-id="{{ v.id }}"
+                      data-title="{{ v.title }}"
+                      data-url="{{ v.url }}"
+                      data-category="{{ v.category.slug }}"
+                      data-duration="{{ v.duration|default:'' }}"
+                      data-description="{{ v.description }}"
+                      data-status="{{ v.status }}"
+                      onclick="openEditVideo(this)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <form method="post" action="{% url 'admin_panel:delete_video' v.id %}"
+                    onsubmit="return confirm('Delete this video?');">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+              </form>
+            </div>
           </td>
         </tr>
         {% empty %}
@@ -478,6 +662,44 @@
         <div class="modal-footer">
           <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
           <button type="submit" class="btn btn-success">Add Video</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Video Modal -->
+<div class="modal fade" id="editVideoModal" tabindex="-1">
+  <div class="modal-dialog">
+    <form method="post" id="editVideoForm">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold"><i class="bi bi-pencil me-2"></i>Edit Video</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3"><label class="form-label fw-semibold">Title</label><input type="text" name="title" id="ev-title" class="form-control" required></div>
+          <div class="mb-3"><label class="form-label fw-semibold">URL</label><input type="url" name="url" id="ev-url" class="form-control" required></div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Category</label>
+            <select name="category_slug" id="ev-category" class="form-select">
+              {% for cat in categories %}<option value="{{ cat.slug }}">{{ cat.name }}</option>{% endfor %}
+            </select>
+          </div>
+          <div class="mb-3"><label class="form-label fw-semibold">Duration</label><input type="text" name="duration" id="ev-duration" class="form-control" placeholder="e.g. 5:32"></div>
+          <div class="mb-3"><label class="form-label fw-semibold">Description</label><textarea name="description" id="ev-description" class="form-control" rows="2"></textarea></div>
+          <div class="mb-2">
+            <label class="form-label fw-semibold">Status</label>
+            <select name="status" id="ev-status" class="form-select">
+              <option value="published">Published</option>
+              <option value="draft">Draft</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Save Changes</button>
         </div>
       </div>
     </form>
@@ -538,13 +760,25 @@
             </span>
           </td>
           <td class="text-end">
-            <form method="post" action="{% url 'admin_panel:delete_indicator' ind.id %}"
-                  onsubmit="return confirm('Delete this indicator?');" class="d-inline">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-sm btn-outline-danger">
-                <i class="bi bi-trash"></i>
+            <div class="d-flex justify-content-end gap-1">
+              <button class="btn btn-sm btn-outline-primary" title="Edit"
+                      data-id="{{ ind.id }}"
+                      data-name="{{ ind.name }}"
+                      data-type="{{ ind.indicator_type }}"
+                      data-description="{{ ind.description }}"
+                      data-example="{{ ind.example }}"
+                      data-severity="{{ ind.severity }}"
+                      onclick="openEditIndicator(this)">
+                <i class="bi bi-pencil"></i>
               </button>
-            </form>
+              <form method="post" action="{% url 'admin_panel:delete_indicator' ind.id %}"
+                    onsubmit="return confirm('Delete this indicator?');" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-danger">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </form>
+            </div>
           </td>
         </tr>
         {% empty %}
@@ -598,6 +832,37 @@
         </div>
       </form>
     </div>
+  </div>
+</div>
+
+<!-- Edit Indicator Modal -->
+<div class="modal fade" id="editIndicatorModal" tabindex="-1">
+  <div class="modal-dialog">
+    <form method="post" id="editIndicatorForm">
+      {% csrf_token %}
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold"><i class="bi bi-pencil me-2"></i>Edit Indicator</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3"><label class="form-label fw-semibold">Name</label><input type="text" name="name" id="ei-name" class="form-control" required></div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Type</label>
+            <select name="indicator_type" id="ei-type" class="form-select">
+              {% for val, label in indicator_type_choices %}<option value="{{ val }}">{{ label }}</option>{% endfor %}
+            </select>
+          </div>
+          <div class="mb-3"><label class="form-label fw-semibold">Description</label><textarea name="description" id="ei-description" class="form-control" rows="3"></textarea></div>
+          <div class="mb-3"><label class="form-label fw-semibold">Example</label><textarea name="example" id="ei-example" class="form-control" rows="2"></textarea></div>
+          <div class="mb-2"><label class="form-label fw-semibold">Severity (1–5)</label><input type="number" name="severity" id="ei-severity" class="form-control" min="1" max="5"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Save Changes</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -688,6 +953,99 @@ if (submitBtn) {
       submitBtn.innerHTML = '<i class="bi bi-plus-lg me-1"></i> Add Question';
     });
   });
+}
+
+// ── Edit Module ───────────────────────────────────────────────────────────────
+function openEditModule(btn) {
+  const d = btn.dataset;
+  document.getElementById('em-title').value        = d.title;
+  document.getElementById('em-description').value  = d.description;
+  document.getElementById('em-category').value     = d.category;
+  document.getElementById('em-type').value         = d.moduleType;
+  document.getElementById('em-difficulty').value   = d.difficulty;
+  document.getElementById('em-duration').value     = d.duration;
+  document.getElementById('em-points').value       = d.points;
+  document.getElementById('em-order').value        = d.order;
+  document.getElementById('em-video-url').value    = d.videoUrl || '';
+  document.getElementById('em-is-active').checked  = d.isActive === 'true';
+  document.getElementById('em-content').value      = document.getElementById('mc-' + d.id)?.value || '';
+  document.getElementById('editModuleForm').action = `/manage/content/module/${d.id}/edit/`;
+  new bootstrap.Modal(document.getElementById('editModuleModal')).show();
+}
+
+// ── Edit Question ─────────────────────────────────────────────────────────────
+let editQuestionId = null;
+function openEditQuestion(btn) {
+  const d = btn.dataset;
+  editQuestionId = d.id;
+  document.getElementById('eq-question').value    = d.question;
+  document.getElementById('eq-category').value    = d.category;
+  document.getElementById('eq-difficulty').value  = d.difficulty;
+  document.getElementById('eq-optA').value        = d.optA;
+  document.getElementById('eq-optB').value        = d.optB;
+  document.getElementById('eq-optC').value        = d.optC;
+  document.getElementById('eq-optD').value        = d.optD;
+  document.getElementById('eq-correct').value     = d.correct;
+  document.getElementById('eq-irt').value         = d.irt;
+  document.getElementById('eq-explanation').value = d.explanation;
+  new bootstrap.Modal(document.getElementById('editQuestionModal')).show();
+}
+
+const saveEditQBtn = document.getElementById('saveEditQuestion');
+if (saveEditQBtn) {
+  saveEditQBtn.addEventListener('click', function () {
+    const alertBox = document.getElementById('editQAlert');
+    const payload = {
+      question:           document.getElementById('eq-question').value.trim(),
+      category_slug:      document.getElementById('eq-category').value,
+      difficulty:         document.getElementById('eq-difficulty').value,
+      opt_a:              document.getElementById('eq-optA').value.trim(),
+      opt_b:              document.getElementById('eq-optB').value.trim(),
+      opt_c:              document.getElementById('eq-optC').value.trim(),
+      opt_d:              document.getElementById('eq-optD').value.trim(),
+      correct_answer:     document.getElementById('eq-correct').value,
+      difficulty_parameter: document.getElementById('eq-irt').value,
+      explanation:        document.getElementById('eq-explanation').value.trim(),
+    };
+    if (!payload.question) { alertBox.innerHTML = '<div class="alert alert-warning py-2">Question text is required.</div>'; return; }
+    saveEditQBtn.disabled = true;
+    fetch(`/manage/content/question/${editQuestionId}/edit/`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrfToken},
+      body: JSON.stringify(payload),
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.error) { alertBox.innerHTML = `<div class="alert alert-danger py-2">${data.error}</div>`; saveEditQBtn.disabled = false; }
+      else { alertBox.innerHTML = '<div class="alert alert-success py-2">Saved! Reloading…</div>'; setTimeout(() => location.reload(), 700); }
+    })
+    .catch(() => { alertBox.innerHTML = '<div class="alert alert-danger py-2">Network error.</div>'; saveEditQBtn.disabled = false; });
+  });
+}
+
+// ── Edit Video ────────────────────────────────────────────────────────────────
+function openEditVideo(btn) {
+  const d = btn.dataset;
+  document.getElementById('ev-title').value       = d.title;
+  document.getElementById('ev-url').value         = d.url;
+  document.getElementById('ev-category').value    = d.category;
+  document.getElementById('ev-duration').value    = d.duration;
+  document.getElementById('ev-description').value = d.description;
+  document.getElementById('ev-status').value      = d.status;
+  document.getElementById('editVideoForm').action = `/manage/content/video/${d.id}/edit/`;
+  new bootstrap.Modal(document.getElementById('editVideoModal')).show();
+}
+
+// ── Edit Indicator ────────────────────────────────────────────────────────────
+function openEditIndicator(btn) {
+  const d = btn.dataset;
+  document.getElementById('ei-name').value        = d.name;
+  document.getElementById('ei-type').value        = d.type;
+  document.getElementById('ei-description').value = d.description;
+  document.getElementById('ei-example').value     = d.example;
+  document.getElementById('ei-severity').value    = d.severity;
+  document.getElementById('editIndicatorForm').action = `/manage/content/indicator/${d.id}/edit/`;
+  new bootstrap.Modal(document.getElementById('editIndicatorModal')).show();
 }
 </script>
 {% endblock %}

@@ -213,6 +213,12 @@
         <i class="bi bi-collection"></i> Questions &amp; Videos
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link {% if request.resolver_match.url_name == 'blog_management' %}active{% endif %}"
+         href="{% url 'admin_panel:blog_management' %}">
+        <i class="bi bi-newspaper"></i> Blog Posts
+      </a>
+    </li>
 
     <li><span class="nav-section">AI / ML</span></li>
     <li class="nav-item">
