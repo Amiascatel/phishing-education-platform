@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Quiz Categories{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">Phishing Quiz Hub</h2>
+      <p class="text-muted mb-0">Test and improve your knowledge across all phishing categories</p>
+    </div>
+    <div>
+      <a href="{% url 'quiz:knowledge_profile' %}" class="btn btn-outline-primary me-2">
+        <i class="bi bi-person-badge me-1"></i> My Profile
+      </a>
+      <a href="{% url 'quiz:quiz_history' %}" class="btn btn-outline-secondary">
+        <i class="bi bi-clock-history me-1"></i> History
+      </a>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    {% for item in category_data %}
+    {% with cat=item.category profile=item.profile %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <div class="d-flex align-items-start mb-3">
+            <div class="rounded-circle p-3 me-3" style="background: var(--bs-{{ cat.color }}-bg, #e9ecef);">
+              <i class="bi bi-shield-check fs-4 text-{{ cat.color }}"></i>
+            </div>
+            <div>
+              <h5 class="card-title mb-1">{{ cat.name }}</h5>
+              <small class="text-muted">{{ item.question_count }} questions</small>
+            </div>
+          </div>
+          <p class="card-text text-muted small">{{ cat.description }}</p>
+
+          {% if profile %}
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+              <small class="fw-semibold">Proficiency</small>
+              <small>
+                <span class="badge bg-{% if profile.estimated_level == 'advanced' %}success{% elif profile.estimated_level == 'intermediate' %}warning{% else %}secondary{% endif %}">
+                  {{ profile.estimated_level|title }}
+                </span>
+              </small>
+            </div>
+            <div class="progress" style="height:6px;">
+              <div class="progress-bar bg-{% if profile.proficiency_score >= 0.7 %}success{% elif profile.proficiency_score >= 0.35 %}warning{% else %}danger{% endif %}"
+                   role="progressbar" style="width: {{ profile.proficiency_score|floatformat:0 }}0%"></div>
+            </div>
+            <small class="text-muted">{{ profile.total_questions_answered }} questions answered · {{ item.attempt_count }} attempts</small>
+          </div>
+          {% else %}
+          <div class="mb-3">
+            <small class="text-muted"><i class="bi bi-info-circle me-1"></i>Not yet assessed</small>
+          </div>
+          {% endif %}
+        </div>
+        <div class="card-footer bg-transparent border-0 pb-3 px-3">
+          <div class="d-grid gap-2">
+            <a href="{% url 'quiz:start_quiz' cat.slug %}?type=adaptive" class="btn btn-primary btn-sm">
+              <i class="bi bi-play-circle me-1"></i> Start Adaptive Quiz
+            </a>
+            <a href="{% url 'quiz:category_detail' cat.slug %}" class="btn btn-outline-secondary btn-sm">
+              View Details
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endwith %}
+    {% empty %}
+    <div class="col-12">
+      <div class="alert alert-info">No quiz categories available yet. Please check back soon.</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Quick Start Row -->
+  <div class="row mt-5">
+    <div class="col-12">
+      <div class="card bg-primary text-white border-0 shadow">
+        <div class="card-body p-4 d-flex justify-content-between align-items-center">
+          <div>
+            <h4 class="fw-bold mb-1">Take a Full Pre-Assessment</h4>
+            <p class="mb-0 opacity-75">A balanced test across all categories to establish your baseline knowledge level.</p>
+          </div>
+          <a href="{% url 'quiz:start_quiz' 'phishing-fundamentals' %}?type=pre_test&num=15" class="btn btn-light text-primary fw-bold">
+            Start Pre-Test
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

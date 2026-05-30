@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Submit Feedback - PhishGuard{% endblock %}
+{% block content %}
+<div class="container py-4" style="max-width:600px;">
+  <h2 class="fw-bold mb-4">Submit Feedback</h2>
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Feedback Type</label>
+          <select name="feedback_type" class="form-select" required>
+            <option value="">Select type…</option>
+            {% for val, label in feedback_types %}
+            <option value="{{ val }}">{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Subject</label>
+          <input type="text" name="subject" class="form-control" required maxlength="200">
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Message</label>
+          <textarea name="message" class="form-control" rows="5" required></textarea>
+        </div>
+        <div class="mb-4">
+          <label class="form-label fw-semibold">Rating (optional)</label>
+          <div class="d-flex gap-2">
+            {% for i in "12345" %}
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="rating" id="r{{ i }}" value="{{ i }}">
+              <label class="form-check-label" for="r{{ i }}">{{ i }}★</label>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary px-4">Submit Feedback</button>
+          <a href="{% url 'analytics:dashboard' %}" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

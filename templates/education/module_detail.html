@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block title %}{{ module.title }} - PhishGuard{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'education:module_list' %}">Modules</a></li>
+        <li class="breadcrumb-item active">{{ module.title }}</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                        <h2>{{ module.title }}</h2>
+                        <span class="badge bg-{% if module.difficulty == 'beginner' %}success{% elif module.difficulty == 'intermediate' %}warning{% else %}danger{% endif %} me-2">
+                            {{ module.get_difficulty_display }}
+                        </span>
+                        <span class="badge bg-primary">{{ module.get_module_type_display }}</span>
+                    </div>
+                    {% if progress.completed %}
+                    <span class="badge bg-success fs-6"><i class="bi bi-check-circle"></i> Completed</span>
+                    {% endif %}
+                </div>
+
+                <p class="lead">{{ module.description }}</p>
+
+                <hr>
+
+                <div class="module-content">
+                    {{ module.content|safe }}
+                </div>
+
+                {% if module.video_url %}
+                <div class="mt-4">
+                    <h5>Video Tutorial</h5>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="{{ module.video_url }}" allowfullscreen></iframe>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Lessons -->
+        {% if lessons %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="bi bi-list-ol"></i> Lessons
+            </div>
+            <div class="list-group list-group-flush">
+                {% for lesson in lessons %}
+                <a href="{% url 'education:lesson' module.slug lesson.id %}" class="list-group-item list-group-item-action">
+                    <div class="d-flex justify-content-between">
+                        <span>{{ forloop.counter }}. {{ lesson.title }}</span>
+                        {% if lesson.has_interactive %}
+                        <span class="badge bg-info"><i class="bi bi-play-circle"></i> Interactive</span>
+                        {% endif %}
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Complete Module Button -->
+        {% if not progress.completed %}
+        <form method="post" action="{% url 'education:complete_module' module.slug %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success btn-lg w-100">
+                <i class="bi bi-check-circle"></i> Mark as Complete (+{{ module.points }} points)
+            </button>
+        </form>
+        {% endif %}
+    </div>
+
+    <div class="col-md-4">
+        <!-- Module Info -->
+        <div class="card mb-4">
+            <div class="card-header">Module Info</div>
+            <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <i class="bi bi-clock text-primary"></i>
+                        <strong>Duration:</strong> {{ module.duration_minutes }} minutes
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-star text-warning"></i>
+                        <strong>Points:</strong> {{ module.points }}
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-folder text-info"></i>
+                        <strong>Category:</strong> {{ module.category.name }}
+                    </li>
+                    <li>
+                        <i class="bi bi-bar-chart text-success"></i>
+                        <strong>Your Attempts:</strong> {{ progress.attempts }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Resources -->
+        {% if resources %}
+        <div class="card">
+            <div class="card-header">
+                <i class="bi bi-folder2-open"></i> Resources
+            </div>
+            <div class="list-group list-group-flush">
+                {% for resource in resources %}
+                <a href="{{ resource.url|default:resource.file.url }}" class="list-group-item list-group-item-action" target="_blank">
+                    <i class="bi bi-{% if resource.resource_type == 'video' %}play-circle{% elif resource.resource_type == 'document' %}file-pdf{% else %}link-45deg{% endif %}"></i>
+                    {{ resource.title }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

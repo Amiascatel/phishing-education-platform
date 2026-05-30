@@ -1,0 +1,216 @@
+{% extends "admin_panel/base_admin.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Platform Dashboard{% endblock %}
+{% block page_subtitle %}Real-time overview of PhishGuard activity{% endblock %}
+
+{% block content %}
+<!-- Stat Cards -->
+<div class="row g-3 mb-4">
+  <div class="col-md-3">
+    <div class="card stat-card shadow-sm">
+      <div class="card-body d-flex align-items-center gap-3">
+        <div class="stat-icon bg-primary bg-opacity-15 text-primary"><i class="bi bi-people-fill"></i></div>
+        <div>
+          <div class="fs-3 fw-bold">{{ total_users }}</div>
+          <div class="text-muted small">Total Students</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card shadow-sm">
+      <div class="card-body d-flex align-items-center gap-3">
+        <div class="stat-icon bg-success bg-opacity-15 text-success"><i class="bi bi-activity"></i></div>
+        <div>
+          <div class="fs-3 fw-bold">{{ active_today }}</div>
+          <div class="text-muted small">Active Today</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card shadow-sm">
+      <div class="card-body d-flex align-items-center gap-3">
+        <div class="stat-icon bg-warning bg-opacity-15 text-warning"><i class="bi bi-question-circle-fill"></i></div>
+        <div>
+          <div class="fs-3 fw-bold">{{ total_questions }}</div>
+          <div class="text-muted small">Active Questions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card shadow-sm">
+      <div class="card-body d-flex align-items-center gap-3">
+        <div class="stat-icon bg-info bg-opacity-15 text-info"><i class="bi bi-graph-up-arrow"></i></div>
+        <div>
+          <div class="fs-3 fw-bold">{{ avg_score }}%</div>
+          <div class="text-muted small">Avg Quiz Score</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <!-- Left: Charts + Level Distribution -->
+  <div class="col-lg-8">
+    <!-- Daily Attempts Chart -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center py-3">
+        <span class="fw-semibold">Quiz Attempts (Last 14 Days)</span>
+        <span class="badge bg-primary">{{ attempts_today }} today</span>
+      </div>
+      <div class="card-body">
+        <canvas id="attemptsChart" height="80"></canvas>
+      </div>
+    </div>
+
+    <!-- Recent Attempts -->
+    <div class="card shadow-sm">
+      <div class="card-header d-flex justify-content-between py-3">
+        <span class="fw-semibold">Recent Quiz Attempts</span>
+        <a href="{% url 'admin_panel:students' %}" class="btn btn-sm btn-outline-primary">View All</a>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover mb-0 small">
+          <thead class="table-light">
+            <tr><th>Student</th><th>Category</th><th>Type</th><th>Score</th><th>Level</th><th>Time</th></tr>
+          </thead>
+          <tbody>
+            {% for attempt in recent_attempts %}
+            <tr>
+              <td class="fw-semibold">{{ attempt.user.username }}</td>
+              <td>{{ attempt.category.name|default:'—' }}</td>
+              <td><span class="badge bg-light text-dark border">{{ attempt.get_quiz_type_display }}</span></td>
+              <td>
+                <span class="fw-bold {% if attempt.score_percentage >= 80 %}text-success{% elif attempt.score_percentage >= 60 %}text-warning{% else %}text-danger{% endif %}">
+                  {{ attempt.score_percentage|floatformat:1 }}%
+                </span>
+              </td>
+              <td>
+                <span class="badge {% if attempt.estimated_level == 'advanced' %}bg-success{% elif attempt.estimated_level == 'intermediate' %}bg-warning text-dark{% else %}bg-secondary{% endif %}">
+                  {{ attempt.estimated_level|default:'—'|title }}
+                </span>
+              </td>
+              <td class="text-muted">{{ attempt.completed_at|timesince }} ago</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6" class="text-center text-muted py-3">No attempts yet</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: ML Status + Top Students + Level Distribution -->
+  <div class="col-lg-4">
+    <!-- ML Status Card -->
+    <div class="card shadow-sm mb-4 border-{% if chatbot_status.trained %}success{% else %}danger{% endif %}">
+      <div class="card-header py-3 fw-semibold">
+        <i class="bi bi-cpu me-2"></i> AI / ML Status
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between mb-2">
+          <span>Chatbot</span>
+          <span class="badge bg-{% if chatbot_status.trained %}success{% else %}danger{% endif %}">
+            {% if chatbot_status.trained %}Trained{% else %}Untrained{% endif %}
+          </span>
+        </div>
+        <div class="d-flex justify-content-between mb-3">
+          <span class="text-muted small">Q&A Pairs Loaded</span>
+          <span class="fw-bold">{{ chatbot_status.qa_count }}</span>
+        </div>
+        <a href="{% url 'admin_panel:ml_management' %}" class="btn btn-sm btn-primary w-100">
+          <i class="bi bi-gear me-1"></i> Manage ML Models
+        </a>
+      </div>
+    </div>
+
+    <!-- Knowledge Level Distribution -->
+    {% if level_dist %}
+    <div class="card shadow-sm mb-4">
+      <div class="card-header py-3 fw-semibold">Knowledge Level Distribution</div>
+      <div class="card-body">
+        <canvas id="levelChart" height="160"></canvas>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Top Students -->
+    <div class="card shadow-sm">
+      <div class="card-header py-3 fw-semibold">Top Students</div>
+      <ul class="list-group list-group-flush">
+        {% for s in top_students %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-semibold small">{{ s.user__username }}</div>
+            <small class="text-muted">{{ s.attempts }} attempt{{ s.attempts|pluralize }}</small>
+          </div>
+          <span class="badge bg-success rounded-pill">{{ s.avg_score|floatformat:1 }}%</span>
+        </li>
+        {% empty %}
+        <li class="list-group-item text-muted text-center small py-3">No data yet</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Daily attempts chart
+fetch("{% url 'admin_panel:api_stats' %}")
+  .then(r => r.json())
+  .then(data => {
+    const daily = data.daily_attempts || [];
+    new Chart(document.getElementById('attemptsChart'), {
+      type: 'bar',
+      data: {
+        labels: daily.map(d => d.day),
+        datasets: [{
+          label: 'Quiz Attempts',
+          data: daily.map(d => d.count),
+          backgroundColor: 'rgba(37,99,235,0.7)',
+          borderRadius: 4,
+        }, {
+          label: 'Avg Score %',
+          data: daily.map(d => d.avg_score ? d.avg_score.toFixed(1) : 0),
+          type: 'line',
+          borderColor: '#16a34a',
+          backgroundColor: 'transparent',
+          yAxisID: 'score',
+          tension: 0.3,
+          pointRadius: 3,
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Attempts' } },
+          score: { position: 'right', min: 0, max: 100, title: { display: true, text: 'Score %' } }
+        },
+        plugins: { legend: { position: 'top' } }
+      }
+    });
+  });
+
+// Level distribution donut
+{% if level_dist %}
+new Chart(document.getElementById('levelChart'), {
+  type: 'doughnut',
+  data: {
+    labels: [{% for l in level_dist %}'{{ l.estimated_level|title }}',{% endfor %}],
+    datasets: [{
+      data: [{% for l in level_dist %}{{ l.count }},{% endfor %}],
+      backgroundColor: ['#6b7280', '#f59e0b', '#16a34a'],
+      borderWidth: 2,
+    }]
+  },
+  options: { plugins: { legend: { position: 'bottom' } }, cutout: '60%' }
+});
+{% endif %}
+</script>
+{% endblock %}

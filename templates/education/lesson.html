@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}{{ lesson.title }} - PhishGuard{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="mb-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'education:module_list' %}">Modules</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'education:module_detail' module.slug %}">{{ module.title }}</a></li>
+      <li class="breadcrumb-item active">{{ lesson.title }}</li>
+    </ol>
+  </nav>
+
+  <!-- Progress bar -->
+  <div class="mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-1">
+      <small class="text-muted">Lesson {{ current_lesson }} of {{ total_lessons }}</small>
+      <small class="text-muted">{{ module.title }}</small>
+    </div>
+    <div class="progress" style="height:6px;">
+      <div class="progress-bar bg-primary" style="width:{% widthratio current_lesson total_lessons 100 %}%"></div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4 p-md-5">
+          <h2 class="fw-bold mb-4">{{ lesson.title }}</h2>
+          <div class="lesson-content">
+            {{ lesson.content|linebreaks }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm mb-3">
+        <div class="card-body">
+          <h6 class="fw-bold mb-3">Navigation</h6>
+          {% if prev_lesson %}
+          <a href="{% url 'education:lesson_view' module.slug prev_lesson.id %}" class="btn btn-outline-secondary w-100 mb-2">
+            <i class="bi bi-arrow-left me-1"></i> {{ prev_lesson.title|truncatechars:30 }}
+          </a>
+          {% endif %}
+          {% if next_lesson %}
+          <a href="{% url 'education:lesson_view' module.slug next_lesson.id %}" class="btn btn-primary w-100">
+            {{ next_lesson.title|truncatechars:30 }} <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+          {% else %}
+          <form method="post" action="{% url 'education:complete_module' module.slug %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success w-100">
+              <i class="bi bi-check-circle me-1"></i> Complete Module (+{{ module.points }} pts)
+            </button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h6 class="fw-bold mb-2">Module</h6>
+          <p class="small text-muted mb-1">{{ module.title }}</p>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-warning text-dark"><i class="bi bi-star me-1"></i>{{ module.points }} pts</span>
+            <span class="badge bg-secondary">{{ total_lessons }} lessons</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

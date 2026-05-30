@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Quiz History{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">Quiz History</h2>
+      <p class="text-muted mb-0">{{ attempts|length }} quiz attempt{{ attempts|length|pluralize }}</p>
+    </div>
+    <a href="{% url 'quiz:category_list' %}" class="btn btn-primary">
+      <i class="bi bi-plus-circle me-1"></i> New Quiz
+    </a>
+  </div>
+
+  {% if attempts %}
+  <div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Score</th>
+            <th>Level</th>
+            <th>Questions</th>
+            <th>Time</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for attempt in attempts %}
+          <tr>
+            <td class="fw-semibold">{{ attempt.category.name|default:'Mixed' }}</td>
+            <td>
+              <span class="badge bg-light text-dark border">{{ attempt.get_quiz_type_display }}</span>
+            </td>
+            <td>
+              {% if attempt.score_percentage is not None %}
+              <span class="fw-bold
+                {% if attempt.score_percentage >= 80 %}text-success
+                {% elif attempt.score_percentage >= 60 %}text-warning
+                {% else %}text-danger{% endif %}">
+                {{ attempt.score_percentage|floatformat:1 }}%
+              </span>
+              {% else %}—{% endif %}
+            </td>
+            <td>
+              {% if attempt.estimated_level %}
+              <span class="badge
+                {% if attempt.estimated_level == 'advanced' %}bg-success
+                {% elif attempt.estimated_level == 'intermediate' %}bg-warning text-dark
+                {% else %}bg-secondary{% endif %}">
+                {{ attempt.estimated_level|title }}
+              </span>
+              {% else %}—{% endif %}
+            </td>
+            <td>{{ attempt.correct_answers }}/{{ attempt.total_questions }}</td>
+            <td>
+              {% if attempt.time_taken_seconds %}{{ attempt.time_taken_seconds }}s{% else %}—{% endif %}
+            </td>
+            <td class="text-muted small">
+              {% if attempt.completed_at %}
+                {{ attempt.completed_at|date:"M d, Y" }}
+              {% else %}
+                In Progress
+              {% endif %}
+            </td>
+            <td>
+              {% if attempt.status == 'completed' %}
+              <a href="{% url 'quiz:quiz_result' attempt.id %}" class="btn btn-sm btn-outline-primary">
+                View
+              </a>
+              {% else %}
+              <span class="badge bg-warning text-dark">{{ attempt.status|title }}</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% else %}
+  <div class="text-center py-5">
+    <div class="display-3 mb-3">📝</div>
+    <h4 class="fw-bold">No quizzes yet</h4>
+    <p class="text-muted">Take your first quiz to start tracking your progress</p>
+    <a href="{% url 'quiz:category_list' %}" class="btn btn-primary mt-2">Browse Quiz Categories</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

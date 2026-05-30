@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}My Knowledge Profile{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">My Knowledge Profile</h2>
+      <p class="text-muted mb-0">Your proficiency levels and achievements</p>
+    </div>
+    <a href="{% url 'quiz:category_list' %}" class="btn btn-primary">
+      <i class="bi bi-play-circle me-1"></i> Start a Quiz
+    </a>
+  </div>
+
+  <!-- Proficiency Scores -->
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white border-0 pt-4 px-4">
+      <h5 class="fw-bold mb-0">Category Proficiency</h5>
+    </div>
+    <div class="card-body px-4">
+      {% if profiles %}
+        {% for profile in profiles %}
+        <div class="mb-4">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fw-semibold">{{ profile.category.name }}</span>
+            <div>
+              <span class="badge me-2
+                {% if profile.estimated_level == 'advanced' %}bg-success
+                {% elif profile.estimated_level == 'intermediate' %}bg-warning text-dark
+                {% else %}bg-secondary{% endif %}">
+                {{ profile.estimated_level|title }}
+              </span>
+              <span class="text-muted small">{{ profile.proficiency_score|floatformat:0 }}0% proficiency</span>
+            </div>
+          </div>
+          <div class="progress" style="height: 12px; border-radius: 6px;">
+            <div class="progress-bar
+              {% if profile.proficiency_score >= 0.7 %}bg-success
+              {% elif profile.proficiency_score >= 0.35 %}bg-warning
+              {% else %}bg-danger{% endif %}"
+              role="progressbar"
+              style="width: {{ profile.proficiency_score|floatformat:2 }}00%"
+              aria-valuenow="{{ profile.proficiency_score }}"
+              aria-valuemin="0" aria-valuemax="1">
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mt-1">
+            <small class="text-muted">{{ profile.total_questions_answered }} questions answered</small>
+            <small class="text-muted">Confidence: {{ profile.confidence|floatformat:0 }}0%</small>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="text-center py-4">
+          <p class="text-muted">No quiz attempts yet. Take a quiz to see your proficiency profile.</p>
+          <a href="{% url 'quiz:category_list' %}" class="btn btn-primary">Start a Quiz</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Badges -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-header bg-white border-0 pt-4 px-4">
+      <h5 class="fw-bold mb-0">Achievements & Badges</h5>
+    </div>
+    <div class="card-body px-4">
+      <div class="row g-3">
+        {% for item in badges_data %}
+        <div class="col-md-4 col-lg-3">
+          <div class="card h-100 border {% if item.earned %}border-warning{% else %}border-light{% endif %}
+            {% if not item.earned %}opacity-50{% endif %}">
+            <div class="card-body text-center p-3">
+              <div class="fs-1 mb-2">
+                {% if item.earned %}🏅{% else %}🔒{% endif %}
+              </div>
+              <h6 class="fw-bold mb-1">{{ item.badge.name }}</h6>
+              <p class="small text-muted mb-2">{{ item.badge.description }}</p>
+              <small class="{% if item.earned %}text-success fw-semibold{% else %}text-muted{% endif %}">
+                {% if item.earned %}Earned!{% else %}{{ item.badge.requirement }}{% endif %}
+              </small>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+          <p class="text-muted text-center py-3">No badges defined yet.</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

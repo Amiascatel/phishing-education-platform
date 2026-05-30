@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Admin{% endblock %} — PhishGuard Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    /* ── Reset / base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: #f1f5f9;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════════════
+       SIDEBAR  — fixed, never scrolls
+    ══════════════════════════════════════ */
+    .admin-sidebar {
+      width: 240px;
+      background: #0f172a;
+      position: fixed;          /* stays in place always */
+      top: 0; left: 0;
+      height: 100vh;            /* full viewport height */
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;         /* sidebar itself scrolls if nav overflows */
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* Collapsed on desktop: slide out to the left */
+    body.sidebar-collapsed .admin-sidebar { transform: translateX(-240px); }
+
+    .admin-sidebar .brand {
+      padding: 20px 16px 14px;
+      color: #f8fafc;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #1e293b;
+      flex-shrink: 0;
+    }
+    .admin-sidebar .nav-link {
+      color: #94a3b8;
+      padding: 10px 20px;
+      border-radius: 6px;
+      margin: 2px 8px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .admin-sidebar .nav-link:hover,
+    .admin-sidebar .nav-link.active {
+      background: #1e293b;
+      color: #f8fafc;
+    }
+    .admin-sidebar .nav-section {
+      color: #475569;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 16px 20px 4px;
+      font-weight: 600;
+    }
+
+    /* ══════════════════════════════════════
+       MAIN AREA
+    ══════════════════════════════════════ */
+    /* Main area sits to the right of the fixed sidebar */
+    .admin-main {
+      margin-left: 240px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: margin-left 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* When sidebar collapses, main expands */
+    body.sidebar-collapsed .admin-main { margin-left: 0; }
+
+    /* ══════════════════════════════════════
+       STICKY TOPBAR
+    ══════════════════════════════════════ */
+    .admin-topbar {
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-shrink: 0;
+    }
+
+    .admin-content { padding: 20px; flex: 1; }
+
+    /* ── Cards ── */
+    .stat-card { border-radius: 12px; border: none; }
+    .stat-card .stat-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    /* ── Toast alerts ── */
+    .alert-container {
+      position: fixed; top: 70px; right: 20px;
+      z-index: 9999; max-width: 380px;
+    }
+
+    /* ══════════════════════════════════════
+       OVERLAY (mobile only)
+    ══════════════════════════════════════ */
+    .sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1040;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .sidebar-overlay.show { opacity: 1; display: block; }
+
+    /* ══════════════════════════════════════
+       MOBILE  (< 992 px)
+    ══════════════════════════════════════ */
+    @media (max-width: 991.98px) {
+      /* Sidebar hidden off-screen by default on mobile */
+      .admin-sidebar {
+        transform: translateX(-240px);
+        box-shadow: 4px 0 24px rgba(0,0,0,0.3);
+      }
+      .admin-sidebar.open { transform: translateX(0); }
+
+      /* Main fills full width on mobile (no sidebar margin) */
+      .admin-main,
+      body.sidebar-collapsed .admin-main { margin-left: 0; }
+
+      /* Sidebar collapse toggle has no effect on mobile */
+      body.sidebar-collapsed .admin-sidebar { transform: translateX(-240px); }
+      body.sidebar-collapsed .admin-sidebar.open { transform: translateX(0); }
+
+      .admin-content { padding: 14px; }
+    }
+
+    /* ── Hamburger btn ── */
+    #sidebarToggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      padding: 0;
+      flex-shrink: 0;
+      border-radius: 6px;
+    }
+  </style>
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- Dark overlay for mobile -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ══ SIDEBAR ══ -->
+<nav class="admin-sidebar" id="adminSidebar">
+  <div class="brand">
+    <div>
+      <i class="bi bi-shield-fill-check text-primary me-2"></i> PhishGuard
+      <div style="font-size:0.7rem;color:#64748b;font-weight:400;">Admin Panel</div>
+    </div>
+  </div>
+
+  <ul class="nav flex-column mt-2 pb-5">
+    <li><span class="nav-section">Overview</span></li>
+    <li class="nav-item">
+      <a class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}"
+         href="{% url 'admin_panel:dashboard' %}">
+        <i class="bi bi-grid-1x2"></i> Dashboard
+      </a>
+    </li>
+
+    <li><span class="nav-section">People</span></li>
+    <li class="nav-item">
+      <a class="nav-link {% if 'student' in request.resolver_match.url_name %}active{% endif %}"
+         href="{% url 'admin_panel:students' %}">
+        <i class="bi bi-people"></i> Students
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {% if 'admin' in request.resolver_match.url_name %}active{% endif %}"
+         href="{% url 'admin_panel:create_admin' %}">
+        <i class="bi bi-person-badge"></i> Admin Users
+      </a>
+    </li>
+
+    <li><span class="nav-section">Content</span></li>
+    <li class="nav-item">
+      <a class="nav-link {% if request.resolver_match.url_name == 'content' %}active{% endif %}"
+         href="{% url 'admin_panel:content' %}">
+        <i class="bi bi-collection"></i> Questions &amp; Videos
+      </a>
+    </li>
+
+    <li><span class="nav-section">AI / ML</span></li>
+    <li class="nav-item">
+      <a class="nav-link {% if request.resolver_match.url_name == 'ml_management' %}active{% endif %}"
+         href="{% url 'admin_panel:ml_management' %}">
+        <i class="bi bi-cpu"></i> ML Models
+      </a>
+    </li>
+
+    <li><span class="nav-section">Platform</span></li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'quiz:category_list' %}">
+        <i class="bi bi-eye"></i> View Site
+      </a>
+    </li>
+    <li class="nav-item mt-2">
+      <a class="nav-link text-danger" href="{% url 'accounts:logout' %}">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ══ MAIN ══ -->
+<div class="admin-main" id="adminMain">
+
+  <!-- Sticky topbar -->
+  <div class="admin-topbar">
+    <div class="d-flex align-items-center gap-2">
+      <!-- Hamburger: always visible -->
+      <button id="sidebarToggle" class="btn btn-sm btn-outline-secondary" aria-label="Toggle sidebar">
+        <i class="bi bi-list fs-5"></i>
+      </button>
+      <div>
+        <div class="fw-bold lh-sm">{% block page_title %}Admin{% endblock %}</div>
+        <div class="text-muted" style="font-size:0.78rem;">{% block page_subtitle %}{% endblock %}</div>
+      </div>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <span class="badge bg-danger d-none d-sm-inline">Admin</span>
+      <!-- Avatar dropdown -->
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center gap-2 text-decoration-none"
+           id="adminAvatarDrop" data-bs-toggle="dropdown" aria-expanded="false">
+          {% if request.user.profile_picture %}
+            <img src="{{ request.user.profile_picture.url }}"
+                 class="rounded-circle object-fit-cover border border-2 border-light"
+                 style="width:36px;height:36px;" alt="avatar">
+          {% else %}
+            <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center text-white fw-bold"
+                 style="width:36px;height:36px;font-size:0.85rem;flex-shrink:0;">
+              {{ request.user.username|first|upper }}
+            </div>
+          {% endif %}
+          <div class="d-none d-sm-block lh-sm">
+            <div class="fw-semibold small" style="font-size:0.82rem;">{{ request.user.get_full_name|default:request.user.username }}</div>
+            <div class="text-muted" style="font-size:0.72rem;">{{ request.user.email }}</div>
+          </div>
+          <i class="bi bi-chevron-down text-muted small"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end shadow border-0" style="min-width:200px;">
+          <li>
+            <div class="px-3 py-2 border-bottom">
+              <div class="fw-semibold small">{{ request.user.username }}</div>
+              <div class="text-muted" style="font-size:0.75rem;">{{ request.user.email }}</div>
+            </div>
+          </li>
+          <li><a class="dropdown-item py-2" href="{% url 'admin_panel:admin_profile' %}">
+            <i class="bi bi-person-circle me-2 text-primary"></i>My Profile
+          </a></li>
+          <li><hr class="dropdown-divider my-1"></li>
+          <li><a class="dropdown-item py-2 text-danger" href="{% url 'accounts:logout' %}">
+            <i class="bi bi-box-arrow-right me-2"></i>Logout
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flash messages -->
+  <div class="alert-container">
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <!-- Page content -->
+  <div class="admin-content">
+    {% block content %}{% endblock %}
+  </div>
+</div><!-- /admin-main -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+(function () {
+  var MOBILE_BP = 992;
+  var sidebar  = document.getElementById('adminSidebar');
+  var overlay  = document.getElementById('sidebarOverlay');
+  var toggle   = document.getElementById('sidebarToggle');
+  var body     = document.body;
+
+  function isMobile() { return window.innerWidth < MOBILE_BP; }
+
+  /* ── Mobile helpers ── */
+  function openMobile() {
+    sidebar.classList.add('open');
+    overlay.classList.add('show');
+    body.style.overflow = 'hidden';
+  }
+  function closeMobile() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+    body.style.overflow = '';
+  }
+
+  /* ── Desktop helpers ── */
+  function collapseDesktop() { body.classList.add('sidebar-collapsed'); }
+  function expandDesktop()   { body.classList.remove('sidebar-collapsed'); }
+
+  /* ── Toggle ── */
+  toggle.addEventListener('click', function () {
+    if (isMobile()) {
+      sidebar.classList.contains('open') ? closeMobile() : openMobile();
+    } else {
+      body.classList.contains('sidebar-collapsed') ? expandDesktop() : collapseDesktop();
+    }
+  });
+
+  /* ── Overlay tap closes mobile sidebar ── */
+  overlay.addEventListener('click', closeMobile);
+
+  /* ── Auto-close sidebar on nav-link tap (mobile) ── */
+  sidebar.querySelectorAll('.nav-link').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (isMobile()) closeMobile();
+    });
+  });
+
+  /* ── On resize: clean up state ── */
+  window.addEventListener('resize', function () {
+    if (!isMobile()) {
+      closeMobile();          // remove mobile classes if present
+    }
+  });
+})();
+</script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

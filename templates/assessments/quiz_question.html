@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %}Quiz - {{ attempt.quiz.title }}{% endblock %}
+{% block content %}
+<div class="container py-4" style="max-width:720px;">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h5 class="fw-bold mb-0">{{ attempt.quiz.title }}</h5>
+      <small class="text-muted">Question {{ current }} of {{ total }}</small>
+    </div>
+    {% if time_limit %}
+    <div class="badge bg-warning text-dark fs-6" id="timer">{{ time_limit }}:00</div>
+    {% endif %}
+  </div>
+
+  <!-- Progress -->
+  <div class="progress mb-4" style="height:6px;">
+    <div class="progress-bar" style="width:{% widthratio current total 100 %}%"></div>
+  </div>
+
+  <!-- Question card -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-4 p-md-5">
+      <p class="fs-5 fw-semibold mb-4">{{ question.text }}</p>
+
+      <form id="answerForm">
+        {% csrf_token %}
+        <input type="hidden" name="question_id" value="{{ question.id }}">
+        <div class="d-grid gap-2">
+          {% for answer in answers %}
+          <label class="answer-option border rounded p-3 cursor-pointer {% if existing_response and existing_response.selected_answer_id == answer.id %}border-primary bg-primary bg-opacity-10{% endif %}"
+                 style="cursor:pointer;">
+            <input type="radio" name="answer_id" value="{{ answer.id }}" class="d-none"
+                   {% if existing_response and existing_response.selected_answer_id == answer.id %}checked{% endif %}>
+            <span>{{ answer.text }}</span>
+          </label>
+          {% endfor %}
+        </div>
+        <div class="mt-4 text-end">
+          <button type="submit" class="btn btn-primary px-4" id="submitBtn">
+            {% if current == total %}Finish Quiz{% else %}Next Question{% endif %}
+            <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+// Highlight selected answer
+document.querySelectorAll('.answer-option').forEach(function(label) {
+  label.addEventListener('click', function() {
+    document.querySelectorAll('.answer-option').forEach(function(l) {
+      l.classList.remove('border-primary', 'bg-primary', 'bg-opacity-10');
+    });
+    this.classList.add('border-primary', 'bg-primary', 'bg-opacity-10');
+    this.querySelector('input[type=radio]').checked = true;
+  });
+});
+
+document.getElementById('answerForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(this);
+  const answerId = formData.get('answer_id');
+  if (!answerId) { alert('Please select an answer.'); return; }
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Saving…';
+  fetch('/assessments/quiz/{{ attempt.id }}/submit/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'X-CSRFToken': formData.get('csrfmiddlewaretoken')},
+    body: JSON.stringify({question_id: formData.get('question_id'), answer_id: answerId})
+  })
+  .then(r => r.json())
+  .then(data => { if (data.next_url) window.location.href = data.next_url; })
+  .catch(() => { btn.disabled = false; btn.innerHTML = 'Next Question'; });
+});
+
+{% if time_limit %}
+// Countdown timer
+var totalSeconds = {{ time_limit }} * 60;
+var timerEl = document.getElementById('timer');
+var interval = setInterval(function() {
+  totalSeconds--;
+  if (totalSeconds <= 0) {
+    clearInterval(interval);
+    window.location.href = '/assessments/quiz/{{ attempt.id }}/complete/';
+    return;
+  }
+  var m = Math.floor(totalSeconds / 60);
+  var s = totalSeconds % 60;
+  timerEl.textContent = m + ':' + (s < 10 ? '0' : '') + s;
+  if (totalSeconds < 60) timerEl.classList.replace('bg-warning', 'bg-danger');
+}, 1000);
+{% endif %}
+</script>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}Phishing Simulations - PhishGuard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="h3 mb-0">Phishing Simulations</h1>
+        <p class="text-muted mb-0">Practice identifying real-world phishing attempts</p>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5><i class="bi bi-envelope"></i> Email Phishing</h5>
+                <p>Practice identifying fraudulent emails that attempt to steal your information.</p>
+                <a href="?type=email" class="btn btn-light">View Email Simulations</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5><i class="bi bi-chat-dots"></i> SMS Phishing (Smishing)</h5>
+                <p>Learn to spot malicious text messages designed to deceive you.</p>
+                <a href="?type=sms" class="btn btn-light">View SMS Simulations</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span><i class="bi bi-lightning"></i> Available Simulations</span>
+        <select class="form-select form-select-sm w-auto" onchange="window.location='?difficulty='+this.value">
+            <option value="">All Difficulties</option>
+            {% for value, label in difficulties %}
+            <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {% for template in templates %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 module-card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="badge bg-{% if template.template_type == 'email' %}primary{% else %}success{% endif %}">
+                                <i class="bi bi-{% if template.template_type == 'email' %}envelope{% else %}chat-dots{% endif %}"></i>
+                                {{ template.get_template_type_display }}
+                            </span>
+                            <span class="badge bg-{% if template.difficulty == 'easy' %}success{% elif template.difficulty == 'medium' %}warning{% else %}danger{% endif %}">
+                                {{ template.get_difficulty_display }}
+                            </span>
+                        </div>
+                        <h5 class="card-title">{{ template.name }}</h5>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="bi bi-tag"></i> {{ template.get_scenario_display }}
+                            </small>
+                        </p>
+                        {% if template.id in user_simulations %}
+                        <span class="badge bg-info mb-2"><i class="bi bi-check"></i> Attempted</span>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="{% url 'simulations:start_simulation' template.id %}" class="btn btn-outline-primary btn-sm w-100">
+                            Start Simulation
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle"></i> No simulations available yet. Check back soon!
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

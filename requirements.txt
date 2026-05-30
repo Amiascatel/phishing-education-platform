@@ -1,0 +1,23 @@
+# Core Framework
+Django>=4.2,<5.0
+
+# Database
+psycopg2-binary>=2.9    # PostgreSQL driver
+
+# Server
+gunicorn>=21.2
+whitenoise>=6.6         # Static file serving in production
+
+# Image handling
+Pillow>=10.0
+
+# ML / Data Science
+scikit-learn>=1.3
+numpy>=1.24
+joblib>=1.3
+scipy>=1.11
+
+# Django internals (auto-installed with Django, listed for clarity)
+asgiref>=3.7
+sqlparse>=0.4
+tzdata>=2024.1          # Required on Windows for timezone support

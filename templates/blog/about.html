@@ -1,0 +1,45 @@
+{% extends 'blog/base_public.html' %}
+{% block title %}About Us - PhishGuard{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="mb-4">About PhishGuard</h1>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4>Our Mission</h4>
+                    <p class="lead">To empower Zambians with the knowledge and skills to identify and defend against phishing attacks through interactive, AI-powered education.</p>
+                </div>
+            </div>
+
+            <h4>The Problem</h4>
+            <p>According to recent reports, <strong>79% of Zambians</strong> have been targeted by phishing, smishing, vishing, and social engineering scams, with <strong>9% falling victim</strong> to these attacks. The ZICTA National Cyber Risk Assessment Report identified phishing as one of the greatest perceived threat vectors in Zambia.</p>
+
+            <h4>Our Solution</h4>
+            <p>PhishGuard provides an interactive, AI-powered learning platform that includes:</p>
+            <ul>
+                <li><strong>Educational Modules</strong> - Comprehensive lessons on email phishing, SMS phishing (smishing), and social engineering</li>
+                <li><strong>Realistic Simulations</strong> - Practice identifying phishing attempts in a safe environment</li>
+                <li><strong>Pre/Post Assessments</strong> - Measure your improvement with before and after testing</li>
+                <li><strong>Adaptive Learning</strong> - AI-powered recommendations based on your performance</li>
+                <li><strong>Progress Tracking</strong> - Monitor your learning journey with detailed analytics</li>
+            </ul>
+
+            <h4>Why Phishing Education Matters</h4>
+            <p>Phishing attacks are 100% preventable with proper education. By learning to recognize the warning signs, you can protect yourself, your family, and your organization from:</p>
+            <ul>
+                <li>Financial losses</li>
+                <li>Identity theft</li>
+                <li>Data breaches</li>
+                <li>Malware infections</li>
+            </ul>
+
+            <div class="text-center mt-5">
+                <a href="{% url 'accounts:register' %}" class="btn btn-primary btn-lg">Start Learning Today</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

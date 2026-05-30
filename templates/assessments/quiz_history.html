@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Quiz History - PhishGuard{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h2 class="fw-bold mb-4">Quiz History</h2>
+  <div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Quiz</th>
+            <th>Score</th>
+            <th>Result</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for attempt in attempts %}
+          <tr>
+            <td class="fw-semibold">{{ attempt.quiz.title }}</td>
+            <td>
+              {% if attempt.percentage is not None %}
+              <span class="fw-bold {% if attempt.percentage >= 80 %}text-success{% elif attempt.percentage >= 60 %}text-warning{% else %}text-danger{% endif %}">
+                {{ attempt.percentage|floatformat:0 }}%
+              </span>
+              {% else %}<span class="text-muted">—</span>{% endif %}
+            </td>
+            <td>
+              {% if attempt.completed_at %}
+                {% if attempt.passed %}
+                <span class="badge bg-success">Passed</span>
+                {% else %}
+                <span class="badge bg-danger">Failed</span>
+                {% endif %}
+              {% else %}
+              <span class="badge bg-secondary">In Progress</span>
+              {% endif %}
+            </td>
+            <td class="text-muted small">{{ attempt.started_at|date:"M d, Y H:i" }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4" class="text-center text-muted py-5">No quiz attempts yet.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Skill Breakdown - PhishGuard{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h2 class="fw-bold mb-4">Skill Breakdown</h2>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-0 pt-3">
+          <h6 class="fw-bold mb-0"><i class="bi bi-shield-check me-2 text-primary"></i>Simulation Performance</h6>
+        </div>
+        <div class="card-body">
+          {% if simulation_stats %}
+          {% for stat in simulation_stats %}
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+              <small class="fw-semibold">{{ stat.template__scenario|default:"General"|title }}</small>
+              <small class="text-muted">{{ stat.count }} sim{{ stat.count|pluralize }}</small>
+            </div>
+            <div class="progress" style="height:8px;">
+              <div class="progress-bar {% if stat.avg_score >= 70 %}bg-success{% elif stat.avg_score >= 40 %}bg-warning{% else %}bg-danger{% endif %}"
+                   style="width:{{ stat.avg_score|floatformat:0 }}%"></div>
+            </div>
+            <div class="text-end"><small class="text-muted">{{ stat.avg_score|floatformat:0 }}% avg</small></div>
+          </div>
+          {% endfor %}
+          {% else %}
+          <p class="text-muted text-center py-3">No simulation data yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-0 pt-3">
+          <h6 class="fw-bold mb-0"><i class="bi bi-patch-question me-2 text-warning"></i>Quiz Performance by Module Type</h6>
+        </div>
+        <div class="card-body">
+          {% if quiz_stats %}
+          {% for stat in quiz_stats %}
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+              <small class="fw-semibold">{{ stat.quiz__module__module_type|default:"General"|title }}</small>
+              <small class="text-muted">{{ stat.count }} quiz{{ stat.count|pluralize:"zes" }}</small>
+            </div>
+            <div class="progress" style="height:8px;">
+              <div class="progress-bar {% if stat.avg_score >= 80 %}bg-success{% elif stat.avg_score >= 60 %}bg-warning{% else %}bg-danger{% endif %}"
+                   style="width:{{ stat.avg_score|floatformat:0 }}%"></div>
+            </div>
+            <div class="text-end"><small class="text-muted">{{ stat.avg_score|floatformat:0 }}% avg</small></div>
+          </div>
+          {% endfor %}
+          {% else %}
+          <p class="text-muted text-center py-3">No quiz data yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Score summary -->
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h6 class="fw-bold mb-3">Overall Skill Scores</h6>
+          <div class="row g-3">
+            <div class="col-6 col-md-3 text-center">
+              <div class="fw-bold fs-3 text-primary">{{ user.email_phishing_score|floatformat:0 }}%</div>
+              <small class="text-muted">Email Phishing</small>
+            </div>
+            <div class="col-6 col-md-3 text-center">
+              <div class="fw-bold fs-3 text-info">{{ user.sms_phishing_score|floatformat:0 }}%</div>
+              <small class="text-muted">SMS Phishing</small>
+            </div>
+            <div class="col-6 col-md-3 text-center">
+              <div class="fw-bold fs-3 text-warning">{{ user.total_points }}</div>
+              <small class="text-muted">Total Points</small>
+            </div>
+            <div class="col-6 col-md-3 text-center">
+              <div class="fw-bold fs-3 text-success">{{ user.skill_level|title }}</div>
+              <small class="text-muted">Skill Level</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

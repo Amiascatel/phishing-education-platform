@@ -1,0 +1,4627 @@
+[
+{
+  "model": "sessions.session",
+  "pk": "nqpu8mipnjsrw58kayqknyaul9ocxuj1",
+  "fields": {
+    "session_data": ".eJxlzsluhDAMgOF3ydlCcVbCsfd5ggqhbBTaKmhYLq367g2IyRT1avv75W_S2W0dum2JczcG0hBG4O_MWf8R074I7za9TZWf0jqPrtpPqnO7VLcpxM-X8_YSGOwyZN1LQ63hjtVBa-EFCioEKqp7pmJPo3GcW885auk8670JNRfSRNmbGIJ0OXrfxq-Od_ctLus4pYU0rxoE1MBBAVJggCDBtOXSb_Mc00oaeo7EBWeiQGfCcgWPTsHiifGh5VXXgAgoATPWgBwYBTSA-RfWFvLvB3Wt5ER9mCzZkdCPKG8LKRVxjvS1wo6K3L_IobOijgq2hTx_-fkFdVCZLw:1vzGcT:ZbSDZi_R3tM-R_tXXnE_uwDUsdT1a9RhBnvR2t6s_VY",
+    "expire_date": "2026-03-22T16:04:41.294Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "rr919p7gulavc07ocub9fcbu56osep4o",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGllO_FtT0nMGa71r4wBypDipEHeHSCmgfTPzXiLitta49bzEicVZaHH63RLSI7cd8B3bbZY0t3WZktwVedAurzPn5-Vw_w4q9vqtQWWdhjAWiw58ScEkN2pWhmwpDNaD1cYmj45D4DAoXQCtA0IiXwKK9wfaCTf3:1vzG9e:YT-6xSBmgaPSLUxHVZtfNX4jNoQRiRMFzQeXV1T57Ws",
+    "expire_date": "2026-03-22T15:34:54.680Z"
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$mIGJJI2Ajz1YSWSnJZRFje$tR5IwBk+QvEbKaqVPiXQakATnrBnePpNg++ccBJWiTk=",
+    "last_login": "2026-03-08T14:07:59.629Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-03-05T06:13:02.049Z",
+    "email": "admin@phishguard.zm",
+    "phone_number": null,
+    "profile_picture": "",
+    "skill_level": "beginner",
+    "total_points": 0,
+    "completed_modules": 0,
+    "created_at": "2026-03-05T06:13:04.029Z",
+    "updated_at": "2026-03-05T06:13:04.029Z",
+    "email_phishing_score": 0.0,
+    "sms_phishing_score": 0.0,
+    "social_engineering_score": 0.0,
+    "pre_assessment_completed": false,
+    "pre_assessment_score": null,
+    "post_assessment_completed": false,
+    "post_assessment_score": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$m2WyoDv2QyadkutFg0wnsQ$8csG6aDUtAM6FlR2cJR0/vuOZB+XPpJkZrBy2YCq0GU=",
+    "last_login": "2026-03-08T14:42:07.026Z",
+    "is_superuser": false,
+    "username": "hosea",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-05T08:19:48.757Z",
+    "email": "amiascatel@gmail.com",
+    "phone_number": null,
+    "profile_picture": "profile_pics/amias_PZwOPx1.jpg",
+    "skill_level": "intermediate",
+    "total_points": 43,
+    "completed_modules": 1,
+    "created_at": "2026-03-05T08:19:50.305Z",
+    "updated_at": "2026-03-08T16:07:08.036Z",
+    "email_phishing_score": 90.0,
+    "sms_phishing_score": 100.0,
+    "social_engineering_score": 0.0,
+    "pre_assessment_completed": true,
+    "pre_assessment_score": 40.0,
+    "post_assessment_completed": false,
+    "post_assessment_score": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$F2mC9pJV6Y6boL0jAT9IS7$32b4+1RpyRqWHo70ObhygrSNxIXN0kZ5zFhKj7hB/eU=",
+    "last_login": "2026-03-08T15:34:54.671Z",
+    "is_superuser": false,
+    "username": "catel",
+    "first_name": "Hosea",
+    "last_name": "Musyani",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-03-08T14:09:35.241Z",
+    "email": "musyanhosea@gmail.com",
+    "phone_number": "",
+    "profile_picture": "profile_pics/amias.jpg",
+    "skill_level": "beginner",
+    "total_points": 0,
+    "completed_modules": 0,
+    "created_at": "2026-03-08T14:09:35.922Z",
+    "updated_at": "2026-03-08T14:39:53.819Z",
+    "email_phishing_score": 0.0,
+    "sms_phishing_score": 0.0,
+    "social_engineering_score": 0.0,
+    "pre_assessment_completed": false,
+    "pre_assessment_score": null,
+    "post_assessment_completed": false,
+    "post_assessment_score": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.userprogress",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "module": 5,
+    "completed": true,
+    "completion_date": "2026-03-08T16:03:41.790Z",
+    "time_spent": null,
+    "score": null,
+    "attempts": 0
+  }
+},
+{
+  "model": "accounts.userprogress",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "module": 1,
+    "completed": false,
+    "completion_date": null,
+    "time_spent": null,
+    "score": null,
+    "attempts": 0
+  }
+},
+{
+  "model": "accounts.contentprogress",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "trackable_type": "video",
+    "trackable_id": 2,
+    "completed": true,
+    "completed_at": "2026-03-05T10:56:06.661Z",
+    "time_spent_seconds": 0
+  }
+},
+{
+  "model": "accounts.contentprogress",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "trackable_type": "video",
+    "trackable_id": 1,
+    "completed": true,
+    "completed_at": "2026-03-08T14:05:49.395Z",
+    "time_spent_seconds": 0
+  }
+},
+{
+  "model": "accounts.contentprogress",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "trackable_type": "video",
+    "trackable_id": 2,
+    "completed": true,
+    "completed_at": "2026-03-08T14:05:55.127Z",
+    "time_spent_seconds": 0
+  }
+},
+{
+  "model": "accounts.contentprogress",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "trackable_type": "video",
+    "trackable_id": 3,
+    "completed": true,
+    "completed_at": "2026-03-08T14:06:06.526Z",
+    "time_spent_seconds": 0
+  }
+},
+{
+  "model": "accounts.contentprogress",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "trackable_type": "video",
+    "trackable_id": 7,
+    "completed": true,
+    "completed_at": "2026-03-08T16:08:11.482Z",
+    "time_spent_seconds": 0
+  }
+},
+{
+  "model": "accounts.contentprogress",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "trackable_type": "video",
+    "trackable_id": 6,
+    "completed": true,
+    "completed_at": "2026-03-08T16:08:19.515Z",
+    "time_spent_seconds": 0
+  }
+},
+{
+  "model": "accounts.contentprogress",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "trackable_type": "video",
+    "trackable_id": 5,
+    "completed": true,
+    "completed_at": "2026-03-08T16:08:29.911Z",
+    "time_spent_seconds": 0
+  }
+},
+{
+  "model": "education.category",
+  "pk": 1,
+  "fields": {
+    "name": "Phishing Fundamentals",
+    "slug": "phishing-fundamentals",
+    "description": "Learn the basics of phishing attacks, their history, and how they work.",
+    "icon": "BookOpenIcon",
+    "color": "blue",
+    "sort_order": 1
+  }
+},
+{
+  "model": "education.category",
+  "pk": 2,
+  "fields": {
+    "name": "Email Phishing Detection",
+    "slug": "email-phishing",
+    "description": "Identify phishing emails and understand attacker techniques.",
+    "icon": "EnvelopeIcon",
+    "color": "red",
+    "sort_order": 2
+  }
+},
+{
+  "model": "education.category",
+  "pk": 3,
+  "fields": {
+    "name": "SMS & Mobile Phishing",
+    "slug": "sms-mobile-phishing",
+    "description": "Protect yourself from smishing and mobile-based phishing attacks.",
+    "icon": "DevicePhoneMobileIcon",
+    "color": "green",
+    "sort_order": 3
+  }
+},
+{
+  "model": "education.category",
+  "pk": 4,
+  "fields": {
+    "name": "Social Engineering Defense",
+    "slug": "social-engineering",
+    "description": "Understand psychological manipulation tactics used in phishing.",
+    "icon": "ShieldExclamationIcon",
+    "color": "orange",
+    "sort_order": 4
+  }
+},
+{
+  "model": "education.category",
+  "pk": 5,
+  "fields": {
+    "name": "Information Protection",
+    "slug": "information-protection",
+    "description": "Learn how to safeguard your personal and financial information.",
+    "icon": "LockClosedIcon",
+    "color": "purple",
+    "sort_order": 5
+  }
+},
+{
+  "model": "education.category",
+  "pk": 6,
+  "fields": {
+    "name": "Incident Reporting",
+    "slug": "incident-reporting",
+    "description": "Know what to do and who to contact when you encounter phishing.",
+    "icon": "FlagIcon",
+    "color": "teal",
+    "sort_order": 6
+  }
+},
+{
+  "model": "education.module",
+  "pk": 1,
+  "fields": {
+    "title": "Introduction to Phishing",
+    "slug": "introduction-to-phishing",
+    "description": "Understand what phishing is, how it started, and why it remains one of the most dangerous cyber threats today.",
+    "category": 1,
+    "module_type": "general",
+    "difficulty": "beginner",
+    "content": "<h4>What is Phishing?</h4>\n<p>Phishing is a type of cyber attack where criminals impersonate legitimate organisations or people to trick victims into revealing sensitive information such as passwords, credit card numbers, or personal data.</p>\n<h4>A Brief History</h4>\n<p>Phishing started in the mid-1990s when hackers targeted AOL users by pretending to be AOL staff to steal passwords. The term \"phishing\" comes from \"fishing\" — casting a wide net hoping someone takes the bait.</p>\n<h4>Why Is It So Common?</h4>\n<ul>\n<li>It exploits human psychology, not technical vulnerabilities</li>\n<li>It is cheap and easy to launch at scale</li>\n<li>It has a high success rate even against security-aware users</li>\n<li>It does not require advanced hacking skills</li>\n</ul>\n<h4>Key Statistics</h4>\n<p>Over 90% of successful cyber attacks begin with a phishing email. Billions of phishing emails are sent every day worldwide.</p>\n<h4>What Attackers Want</h4>\n<ul>\n<li>Login credentials (username and password)</li>\n<li>Banking and credit card details</li>\n<li>Personal identification information</li>\n<li>Access to corporate systems</li>\n</ul>",
+    "video_url": null,
+    "duration_minutes": 10,
+    "points": 10,
+    "order": 1,
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.033Z",
+    "updated_at": "2026-03-08T14:01:16.033Z",
+    "prerequisites": []
+  }
+},
+{
+  "model": "education.module",
+  "pk": 2,
+  "fields": {
+    "title": "Recognising Phishing Emails",
+    "slug": "recognising-phishing-emails",
+    "description": "Learn the key red flags that identify a phishing email and how to verify suspicious messages.",
+    "category": 2,
+    "module_type": "email_phishing",
+    "difficulty": "beginner",
+    "content": "<h4>Red Flags in Phishing Emails</h4>\n<p>Phishing emails have tell-tale signs if you know what to look for:</p>\n<h5>1. Suspicious Sender Address</h5>\n<p>The display name may look legitimate (e.g. \"PayPal Support\") but the actual email address is different (e.g. support@paypa1-secure.com). Always check the full email address, not just the display name.</p>\n<h5>2. Urgency and Threats</h5>\n<p>Phrases like \"Your account will be suspended in 24 hours\", \"Immediate action required\", or \"Verify now or lose access\" are designed to panic you into acting without thinking.</p>\n<h5>3. Suspicious Links</h5>\n<p>Hover over any link before clicking. The URL shown in the bottom bar should match the expected domain. Watch out for:</p>\n<ul>\n<li>Misspelled domains: paypa1.com, g00gle.com</li>\n<li>Extra subdomains: paypal.com.verify-account.net</li>\n<li>URL shorteners hiding the real destination</li>\n</ul>\n<h5>4. Poor Grammar and Spelling</h5>\n<p>Many phishing emails contain obvious spelling mistakes, awkward phrasing, or poor formatting.</p>\n<h5>5. Generic Greetings</h5>\n<p>\"Dear Customer\" or \"Dear User\" instead of your actual name can indicate a mass phishing campaign.</p>\n<h5>6. Unexpected Attachments</h5>\n<p>Never open unexpected attachments, especially .exe, .zip, .docm files. Even Word documents can contain macros that install malware.</p>\n<h4>What To Do When You Receive a Suspicious Email</h4>\n<ol>\n<li>Do not click any links or download attachments</li>\n<li>Do not reply to the email</li>\n<li>Report it to your IT team or email provider</li>\n<li>If it claims to be from a known company, contact them directly using their official website</li>\n<li>Delete the email</li>\n</ol>",
+    "video_url": null,
+    "duration_minutes": 15,
+    "points": 15,
+    "order": 1,
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.039Z",
+    "updated_at": "2026-03-08T14:01:16.039Z",
+    "prerequisites": []
+  }
+},
+{
+  "model": "education.module",
+  "pk": 3,
+  "fields": {
+    "title": "SMS Phishing (Smishing)",
+    "slug": "sms-phishing-smishing",
+    "description": "Learn how criminals use SMS text messages to steal your information and how to protect yourself.",
+    "category": 3,
+    "module_type": "sms_phishing",
+    "difficulty": "beginner",
+    "content": "<h4>What is Smishing?</h4>\n<p>Smishing (SMS + phishing) is phishing carried out through text messages. Attackers send fake SMS messages pretending to be banks, delivery services, or government agencies.</p>\n<h4>Common Smishing Scenarios</h4>\n<ul>\n<li><strong>Fake delivery notification:</strong> \"Your parcel could not be delivered. Click here to reschedule: [link]\"</li>\n<li><strong>Bank alert:</strong> \"URGENT: Your account has been compromised. Verify your identity now: [link]\"</li>\n<li><strong>Prize scam:</strong> \"You have won £500! Claim your prize here: [link]\"</li>\n<li><strong>Government impersonation:</strong> \"HMRC: You are owed a tax refund. Claim at: [link]\"</li>\n</ul>\n<h4>Warning Signs of Smishing</h4>\n<ul>\n<li>Unexpected messages from unknown numbers</li>\n<li>Shortened URLs (bit.ly, tinyurl) hiding the real destination</li>\n<li>Requests for personal or financial information</li>\n<li>Urgent language pressuring immediate action</li>\n<li>Messages containing prizes or threats</li>\n</ul>\n<h4>How to Stay Safe</h4>\n<ul>\n<li>Never click links in unexpected SMS messages</li>\n<li>Go directly to the official website if you want to check</li>\n<li>Do not call phone numbers provided in suspicious texts</li>\n<li>Report smishing attempts to your mobile provider (forward to 7726)</li>\n<li>Enable spam filtering on your phone</li>\n</ul>",
+    "video_url": null,
+    "duration_minutes": 12,
+    "points": 12,
+    "order": 1,
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.046Z",
+    "updated_at": "2026-03-08T14:01:16.046Z",
+    "prerequisites": []
+  }
+},
+{
+  "model": "education.module",
+  "pk": 4,
+  "fields": {
+    "title": "Social Engineering Tactics",
+    "slug": "social-engineering-tactics",
+    "description": "Understand the psychological manipulation techniques attackers use to bypass your defences.",
+    "category": 4,
+    "module_type": "social_engineering",
+    "difficulty": "intermediate",
+    "content": "<h4>What is Social Engineering?</h4>\n<p>Social engineering is the art of manipulating people into revealing confidential information or taking actions that compromise security. It exploits human psychology rather than technical vulnerabilities.</p>\n<h4>Core Psychological Triggers</h4>\n<h5>1. Authority</h5>\n<p>People tend to comply with requests from authority figures. Attackers impersonate CEOs, IT departments, police, or government agencies to gain trust and compliance.</p>\n<h5>2. Urgency and Scarcity</h5>\n<p>Creating time pressure removes the opportunity to think critically. \"Act in the next 10 minutes or your account will be deleted\" is designed to bypass rational decision-making.</p>\n<h5>3. Fear</h5>\n<p>Threats of consequences (account suspension, legal action, fines) trigger emotional responses that override logical thinking.</p>\n<h5>4. Social Proof</h5>\n<p>\"Your colleagues have already verified their accounts\" exploits the human tendency to follow what others are doing.</p>\n<h5>5. Reciprocity</h5>\n<p>Offering something (a free gift, useful information) creates a sense of obligation to give something in return.</p>\n<h5>6. Familiarity and Liking</h5>\n<p>Attackers research targets on social media to personalise attacks and build rapport before making their request.</p>\n<h4>Spear Phishing vs Whaling</h4>\n<p><strong>Spear phishing</strong> targets specific individuals with personalised messages. <strong>Whaling</strong> targets high-value targets such as executives (C-suite) for larger payoffs like wire transfers or sensitive data.</p>\n<h4>Defence Strategies</h4>\n<ul>\n<li>Pause before acting on urgent requests — legitimate organisations allow time to verify</li>\n<li>Verify the identity of anyone requesting sensitive actions through a separate channel</li>\n<li>Follow established procedures even under pressure</li>\n<li>Question requests that bypass normal processes</li>\n</ul>",
+    "video_url": null,
+    "duration_minutes": 20,
+    "points": 20,
+    "order": 1,
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.051Z",
+    "updated_at": "2026-03-08T14:01:16.051Z",
+    "prerequisites": []
+  }
+},
+{
+  "model": "education.module",
+  "pk": 5,
+  "fields": {
+    "title": "Protecting Your Personal Information",
+    "slug": "protecting-your-personal-information",
+    "description": "Practical steps to protect your passwords, financial data, and personal information online.",
+    "category": 5,
+    "module_type": "general",
+    "difficulty": "beginner",
+    "content": "<h4>Your Digital Footprint</h4>\n<p>Everything you share online — on social media, shopping sites, forums — can be used by attackers to personalise phishing attacks against you. Attackers research targets before striking.</p>\n<h4>Password Security</h4>\n<ul>\n<li>Use a unique password for every account — reusing passwords means one breach exposes all your accounts</li>\n<li>Use a password manager (Bitwarden, 1Password) to generate and store strong passwords</li>\n<li>A strong password is long (12+ characters) and random — not based on personal information</li>\n<li>Enable two-factor authentication (2FA) wherever possible</li>\n</ul>\n<h4>Two-Factor Authentication (2FA)</h4>\n<p>2FA adds a second verification step beyond your password. Even if an attacker has your password, they cannot access your account without the second factor. Use an authenticator app (Google Authenticator, Authy) rather than SMS 2FA where possible.</p>\n<h4>Recognising Fake Websites</h4>\n<ul>\n<li>Check the URL carefully — is it the exact official domain?</li>\n<li>Look for HTTPS (padlock icon) — but note that phishing sites can also have HTTPS</li>\n<li>Be suspicious if redirected from a link in an email or text</li>\n<li>Bookmark official websites and use those bookmarks directly</li>\n</ul>\n<h4>What To Do If You've Been Phished</h4>\n<ol>\n<li>Change your password immediately on the affected account</li>\n<li>Change passwords on any other accounts using the same password</li>\n<li>Enable 2FA on the affected account</li>\n<li>Contact your bank immediately if financial information was shared</li>\n<li>Report the phishing attempt to the relevant organisation and authorities</li>\n<li>Scan your device for malware if you downloaded anything</li>\n</ol>",
+    "video_url": null,
+    "duration_minutes": 15,
+    "points": 15,
+    "order": 1,
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.056Z",
+    "updated_at": "2026-03-08T14:01:16.056Z",
+    "prerequisites": []
+  }
+},
+{
+  "model": "education.module",
+  "pk": 6,
+  "fields": {
+    "title": "Advanced Phishing Techniques",
+    "slug": "advanced-phishing-techniques",
+    "description": "Explore sophisticated phishing methods including clone phishing, pharming, and AI-powered attacks.",
+    "category": 1,
+    "module_type": "general",
+    "difficulty": "advanced",
+    "content": "<h4>Beyond Basic Phishing</h4>\n<p>As awareness of basic phishing has grown, attackers have evolved more sophisticated techniques that are harder to detect.</p>\n<h4>Clone Phishing</h4>\n<p>Attackers take a legitimate email you previously received (e.g. a newsletter or notification), copy it exactly, replace the links with malicious ones, and resend it claiming to be a resend of the original. Because it looks identical to a real email you received, it is very convincing.</p>\n<h4>Pharming</h4>\n<p>Instead of tricking you into clicking a fake link, pharming attacks poison DNS servers or modify your hosts file so that when you type a real URL (e.g. your bank's website), you are silently redirected to a fake site — even if you typed the correct address.</p>\n<h4>Business Email Compromise (BEC)</h4>\n<p>Attackers compromise or spoof a business email account (often a CEO or finance director) and use it to instruct employees to transfer funds or share sensitive data. BEC attacks cost businesses billions annually.</p>\n<h4>Adversary-in-the-Middle (AiTM) Phishing</h4>\n<p>A proxy sits between you and the real website, relaying your login in real time. This allows attackers to steal session cookies even when 2FA is enabled, because the authentication has already occurred.</p>\n<h4>AI-Powered Phishing</h4>\n<p>Generative AI enables attackers to produce flawless, personalised phishing messages at scale in any language, eliminating the spelling and grammar errors that previously helped identify phishing.</p>\n<h4>Defence Against Advanced Attacks</h4>\n<ul>\n<li>Use hardware security keys (FIDO2) for 2FA — they are resistant to AiTM attacks</li>\n<li>Verify all wire transfer requests via phone using a known number</li>\n<li>Use DNS-over-HTTPS to reduce pharming risk</li>\n<li>Treat all unexpected communications with scepticism regardless of how convincing they appear</li>\n</ul>",
+    "video_url": null,
+    "duration_minutes": 25,
+    "points": 25,
+    "order": 2,
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.061Z",
+    "updated_at": "2026-03-08T14:01:16.061Z",
+    "prerequisites": []
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 1,
+  "fields": {
+    "name": "Misspelled Domain",
+    "indicator_type": "url",
+    "description": "The domain name is slightly altered to look like a legitimate site.",
+    "example": "paypa1.com instead of paypal.com",
+    "severity": 5
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 2,
+  "fields": {
+    "name": "HTTP Instead of HTTPS",
+    "indicator_type": "url",
+    "description": "Legitimate sites use HTTPS. A phishing link using plain HTTP is a red flag.",
+    "example": "http://yourbank.com/login (no padlock)",
+    "severity": 4
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 3,
+  "fields": {
+    "name": "Suspicious Subdomain",
+    "indicator_type": "url",
+    "description": "Attackers use subdomains to make URLs look legitimate.",
+    "example": "paypal.com.malicious-site.com",
+    "severity": 5
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 4,
+  "fields": {
+    "name": "IP Address in URL",
+    "indicator_type": "url",
+    "description": "URLs using raw IP addresses instead of domain names are suspicious.",
+    "example": "http://192.168.1.1/login",
+    "severity": 4
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 5,
+  "fields": {
+    "name": "URL Shortener",
+    "indicator_type": "url",
+    "description": "Shortened URLs hide the real destination and are often used in phishing.",
+    "example": "bit.ly/3xYz9 leading to a fake site",
+    "severity": 3
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 6,
+  "fields": {
+    "name": "Mismatched Sender Name and Email",
+    "indicator_type": "sender",
+    "description": "The display name says one thing but the actual email address is different.",
+    "example": "Display: PayPal Support | Email: support@random-domain.ru",
+    "severity": 5
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 7,
+  "fields": {
+    "name": "Free Email Service for Business",
+    "indicator_type": "sender",
+    "description": "Legitimate companies use their own domain, not Gmail or Yahoo.",
+    "example": "amazon-support@gmail.com",
+    "severity": 4
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 8,
+  "fields": {
+    "name": "Slight Domain Variation",
+    "indicator_type": "sender",
+    "description": "The sender domain looks similar to a real company but has a small difference.",
+    "example": "support@arnazon.com instead of amazon.com",
+    "severity": 5
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 9,
+  "fields": {
+    "name": "Urgency or Threats",
+    "indicator_type": "urgency",
+    "description": "Messages that demand immediate action or threaten consequences are designed to panic you.",
+    "example": "Your account will be closed in 24 hours unless you verify now\\!",
+    "severity": 5
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 10,
+  "fields": {
+    "name": "Generic Greeting",
+    "indicator_type": "content",
+    "description": "Phishing emails often use generic greetings instead of your real name.",
+    "example": "Dear Customer, Dear User, Dear Account Holder",
+    "severity": 3
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 11,
+  "fields": {
+    "name": "Poor Grammar and Spelling",
+    "indicator_type": "content",
+    "description": "Many phishing messages contain spelling mistakes, odd phrasing, or grammatical errors.",
+    "example": "We has detect unusual activty in your acount.",
+    "severity": 3
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 12,
+  "fields": {
+    "name": "Requests for Personal Information",
+    "indicator_type": "content",
+    "description": "Legitimate companies never ask for passwords, PINs, or full card numbers via email.",
+    "example": "Please reply with your password and date of birth.",
+    "severity": 5
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 13,
+  "fields": {
+    "name": "Unexpected Prize or Reward",
+    "indicator_type": "content",
+    "description": "Messages claiming you have won something you never entered are almost always scams.",
+    "example": "Congratulations\\! You have been selected to receive a 000 Amazon gift card.",
+    "severity": 4
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 14,
+  "fields": {
+    "name": "Unexpected Attachment",
+    "indicator_type": "attachment",
+    "description": "An unexpected file attachment, especially executables or Office files, can deliver malware.",
+    "example": "invoice.exe, statement.docm, payment.zip",
+    "severity": 5
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 15,
+  "fields": {
+    "name": "Password-Protected Archive",
+    "indicator_type": "attachment",
+    "description": "Attackers use password-protected ZIPs to bypass email scanners.",
+    "example": "Please open the attached file with password: 1234",
+    "severity": 4
+  }
+},
+{
+  "model": "education.phishingindicator",
+  "pk": 16,
+  "fields": {
+    "name": "Double Extension",
+    "indicator_type": "attachment",
+    "description": "Files with double extensions trick users into thinking they are safe file types.",
+    "example": "document.pdf.exe, photo.jpg.bat",
+    "severity": 5
+  }
+},
+{
+  "model": "education.video",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "title": "Introduction to Phishing Attacks",
+    "url": "https://www.youtube.com/watch?v=Y3r2DFz9sMo",
+    "duration": "8:32",
+    "description": "A comprehensive introduction to phishing — what it is, how it works, and why it is so effective.",
+    "status": "published",
+    "sort_order": 0,
+    "created_at": "2026-03-05T06:12:33.147Z"
+  }
+},
+{
+  "model": "education.video",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "title": "The Psychology Behind Phishing",
+    "url": "https://www.youtube.com/watch?v=aQxPxQ_Ber4",
+    "duration": "12:15",
+    "description": "Understand the psychological manipulation techniques used by phishing attackers.",
+    "status": "published",
+    "sort_order": 0,
+    "created_at": "2026-03-05T06:12:33.157Z"
+  }
+},
+{
+  "model": "education.video",
+  "pk": 3,
+  "fields": {
+    "category": 2,
+    "title": "How to Spot a Phishing Email",
+    "url": "https://www.youtube.com/watch?v=XBkzBrXlle0",
+    "duration": "6:47",
+    "description": "Practical guide on identifying red flags in phishing emails — subject lines, sender addresses, links, and attachments.",
+    "status": "published",
+    "sort_order": 0,
+    "created_at": "2026-03-05T06:12:33.166Z"
+  }
+},
+{
+  "model": "education.video",
+  "pk": 4,
+  "fields": {
+    "category": 3,
+    "title": "Smishing: SMS Phishing Explained",
+    "url": "https://www.youtube.com/watch?v=5i5JIamGz5E",
+    "duration": "7:20",
+    "description": "How SMS phishing works and how to protect your mobile money accounts.",
+    "status": "published",
+    "sort_order": 0,
+    "created_at": "2026-03-05T06:12:33.175Z"
+  }
+},
+{
+  "model": "education.video",
+  "pk": 5,
+  "fields": {
+    "category": 4,
+    "title": "Social Engineering Tactics",
+    "url": "https://www.youtube.com/watch?v=lc7scxvKQOo",
+    "duration": "15:33",
+    "description": "Deep dive into social engineering — pretexting, baiting, and psychological manipulation tactics.",
+    "status": "published",
+    "sort_order": 0,
+    "created_at": "2026-03-05T06:12:33.183Z"
+  }
+},
+{
+  "model": "education.video",
+  "pk": 6,
+  "fields": {
+    "category": 5,
+    "title": "Password Security Best Practices",
+    "url": "https://www.youtube.com/watch?v=aEmXKYVmECk",
+    "duration": "9:11",
+    "description": "How to create and manage strong passwords and enable two-factor authentication.",
+    "status": "published",
+    "sort_order": 0,
+    "created_at": "2026-03-05T06:12:33.193Z"
+  }
+},
+{
+  "model": "education.video",
+  "pk": 7,
+  "fields": {
+    "category": 6,
+    "title": "What To Do After a Phishing Attack",
+    "url": "https://www.youtube.com/watch?v=3lEPiDJRIH8",
+    "duration": "11:05",
+    "description": "Step-by-step guide on how to respond when you have fallen for a phishing attack.",
+    "status": "published",
+    "sort_order": 0,
+    "created_at": "2026-03-05T06:12:33.201Z"
+  }
+},
+{
+  "model": "simulations.phishingtemplate",
+  "pk": 1,
+  "fields": {
+    "name": "Fake Bank Security Alert",
+    "template_type": "email",
+    "scenario": "banking",
+    "difficulty": "easy",
+    "sender_name": "Barclays Security Team",
+    "sender_email": "security@barclays-secure-alerts.com",
+    "subject": "URGENT: Suspicious Activity Detected on Your Account",
+    "content": "Dear Valued Customer,\n\nWe have detected unusual activity on your Barclays account and have temporarily limited access for your protection.\n\nTo restore full access, you must verify your identity within 24 hours by clicking the link below:\n\nhttp://barclays.co.uk.account-verify-now.com/secure-login\n\nFailure to verify will result in permanent account suspension.\n\nBarclays Security Team\n0800 400 100",
+    "html_content": "",
+    "sender_number": "",
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.338Z",
+    "indicators": []
+  }
+},
+{
+  "model": "simulations.phishingtemplate",
+  "pk": 2,
+  "fields": {
+    "name": "Parcel Delivery Fee Scam",
+    "template_type": "sms",
+    "scenario": "delivery",
+    "difficulty": "easy",
+    "sender_name": "",
+    "sender_email": "",
+    "subject": "",
+    "content": "Royal Mail: Your parcel (RQ847261GB) could not be delivered due to an unpaid customs fee of £2.99.\n\nReschedule delivery here: bit.ly/RM-parcel-fee\n\nThis link expires in 24hrs.",
+    "html_content": "",
+    "sender_number": "+44 7700 900123",
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.342Z",
+    "indicators": []
+  }
+},
+{
+  "model": "simulations.phishingtemplate",
+  "pk": 3,
+  "fields": {
+    "name": "IT Department Password Reset",
+    "template_type": "email",
+    "scenario": "corporate",
+    "difficulty": "medium",
+    "sender_name": "IT Helpdesk",
+    "sender_email": "helpdesk@company-it-support.net",
+    "subject": "Action Required: Reset Your Password Before Friday",
+    "content": "Hi,\n\nOur IT team is conducting a mandatory security upgrade this weekend. All staff must reset their passwords before Friday 5pm.\n\nPlease use the link below to reset your password and avoid being locked out on Monday morning:\n\nhttps://company-it-support.net/password-reset?user=employee\n\nIf you have any questions, reply to this email.\n\nIT Helpdesk\nInternal Extension: 5555",
+    "html_content": "",
+    "sender_number": "",
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.346Z",
+    "indicators": []
+  }
+},
+{
+  "model": "simulations.phishingtemplate",
+  "pk": 4,
+  "fields": {
+    "name": "Fake Prize Notification",
+    "template_type": "sms",
+    "scenario": "prize",
+    "difficulty": "easy",
+    "sender_name": "",
+    "sender_email": "",
+    "subject": "",
+    "content": "Congratulations! You have been selected to receive a £500 Amazon voucher.\n\nTo claim your prize visit: https://amazon-voucher-claim.co.uk/claim?id=UK500\n\nOffer expires tonight at midnight. Only 3 prizes remaining!",
+    "html_content": "",
+    "sender_number": "PRIZES UK",
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.350Z",
+    "indicators": []
+  }
+},
+{
+  "model": "simulations.phishingtemplate",
+  "pk": 5,
+  "fields": {
+    "name": "CEO Wire Transfer Request",
+    "template_type": "email",
+    "scenario": "corporate",
+    "difficulty": "hard",
+    "sender_name": "James Wilson (CEO)",
+    "sender_email": "j.wilson@company-corp.co",
+    "subject": "Confidential - Urgent Payment Required",
+    "content": "Hi,\n\nI'm currently in a board meeting and cannot talk by phone. I need you to process an urgent payment of £18,500 to a new supplier before close of business today.\n\nThis is time sensitive — please do not discuss this with anyone else as the deal is still confidential.\n\nTransfer to:\nAccount Name: Global Supplies Ltd\nSort Code: 20-45-53\nAccount Number: 87654321\n\nSend me confirmation once done. I'll explain everything after the meeting.\n\nThanks,\nJames Wilson\nCEO",
+    "html_content": "",
+    "sender_number": "",
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.353Z",
+    "indicators": []
+  }
+},
+{
+  "model": "simulations.phishingtemplate",
+  "pk": 6,
+  "fields": {
+    "name": "Social Media Account Verification",
+    "template_type": "email",
+    "scenario": "social_media",
+    "difficulty": "medium",
+    "sender_name": "Instagram Security",
+    "sender_email": "security@instagram-accounts-support.com",
+    "subject": "Your Instagram account has been flagged for review",
+    "content": "Hi,\n\nYour Instagram account has been reported for violating our Community Guidelines. We have temporarily restricted your account.\n\nTo appeal this decision and restore your account, please verify your identity within 48 hours:\n\nVerify My Account → https://instagram-accounts-support.com/verify\n\nIf you do not verify within 48 hours, your account will be permanently deleted.\n\nInstagram Security Team\n© Meta Platforms Inc.",
+    "html_content": "",
+    "sender_number": "",
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.357Z",
+    "indicators": []
+  }
+},
+{
+  "model": "simulations.simulation",
+  "pk": "00c71566-f583-4a20-9655-5aaccd43b939",
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "template": 2,
+    "status": "completed",
+    "user_clicked_link": false,
+    "user_submitted_data": false,
+    "user_reported": true,
+    "user_identified_correctly": true,
+    "started_at": "2026-03-08T16:06:35.523Z",
+    "completed_at": "2026-03-08T16:07:08.023Z",
+    "time_spent_seconds": 32,
+    "score": 100.0,
+    "points_earned": 10,
+    "feedback": "",
+    "indicators_identified": []
+  }
+},
+{
+  "model": "simulations.simulation",
+  "pk": "6ba36504-c9c9-4e40-9af7-37dea4eb3e47",
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "template": 2,
+    "status": "in_progress",
+    "user_clicked_link": false,
+    "user_submitted_data": false,
+    "user_reported": false,
+    "user_identified_correctly": null,
+    "started_at": "2026-03-08T16:07:26.444Z",
+    "completed_at": null,
+    "time_spent_seconds": null,
+    "score": null,
+    "points_earned": 0,
+    "feedback": "",
+    "indicators_identified": []
+  }
+},
+{
+  "model": "simulations.simulation",
+  "pk": "d5603006-a0bb-4f29-b466-650ed424d6a7",
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "template": 1,
+    "status": "completed",
+    "user_clicked_link": false,
+    "user_submitted_data": false,
+    "user_reported": true,
+    "user_identified_correctly": false,
+    "started_at": "2026-03-08T16:05:08.364Z",
+    "completed_at": "2026-03-08T16:06:12.004Z",
+    "time_spent_seconds": 63,
+    "score": 80.0,
+    "points_earned": 8,
+    "feedback": "",
+    "indicators_identified": []
+  }
+},
+{
+  "model": "simulations.simulation",
+  "pk": "ede70dec-cc6e-473c-a8ec-acc34a08d40f",
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "template": 3,
+    "status": "completed",
+    "user_clicked_link": false,
+    "user_submitted_data": false,
+    "user_reported": true,
+    "user_identified_correctly": true,
+    "started_at": "2026-03-08T14:02:45.778Z",
+    "completed_at": "2026-03-08T14:04:51.868Z",
+    "time_spent_seconds": 126,
+    "score": 100.0,
+    "points_earned": 10,
+    "feedback": "",
+    "indicators_identified": []
+  }
+},
+{
+  "model": "simulations.simulationfeedback",
+  "pk": 1,
+  "fields": {
+    "simulation": "ede70dec-cc6e-473c-a8ec-acc34a08d40f",
+    "explanation": "Good job not clicking on suspicious links! You correctly avoided submitting personal information. Excellent! Reporting phishing attempts helps protect others. You correctly identified this as a phishing attempt!",
+    "recommendations": "Always verify the sender's email address carefully.",
+    "correct_indicators": [],
+    "missed_indicators": []
+  }
+},
+{
+  "model": "simulations.simulationfeedback",
+  "pk": 2,
+  "fields": {
+    "simulation": "d5603006-a0bb-4f29-b466-650ed424d6a7",
+    "explanation": "Good job not clicking on suspicious links! You correctly avoided submitting personal information. Excellent! Reporting phishing attempts helps protect others. This was a phishing attempt. Pay attention to the red flags we highlighted.",
+    "recommendations": "Always verify the sender's email address carefully.",
+    "correct_indicators": [],
+    "missed_indicators": []
+  }
+},
+{
+  "model": "simulations.simulationfeedback",
+  "pk": 3,
+  "fields": {
+    "simulation": "00c71566-f583-4a20-9655-5aaccd43b939",
+    "explanation": "Good job not clicking on suspicious links! You correctly avoided submitting personal information. Excellent! Reporting phishing attempts helps protect others. You correctly identified this as a phishing attempt!",
+    "recommendations": "Be cautious of unexpected SMS messages asking for personal information.",
+    "correct_indicators": [],
+    "missed_indicators": []
+  }
+},
+{
+  "model": "assessments.quiz",
+  "pk": 1,
+  "fields": {
+    "title": "Phishing Awareness Pre-Assessment",
+    "description": "Test your current knowledge of phishing before starting the course.",
+    "quiz_type": "pre_assessment",
+    "module": null,
+    "time_limit_minutes": 2,
+    "passing_score": 70.0,
+    "max_attempts": 3,
+    "shuffle_questions": true,
+    "show_correct_answers": true,
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.065Z"
+  }
+},
+{
+  "model": "assessments.quiz",
+  "pk": 2,
+  "fields": {
+    "title": "Phishing Awareness Post-Assessment",
+    "description": "Test what you have learned about phishing after completing the course.",
+    "quiz_type": "post_assessment",
+    "module": null,
+    "time_limit_minutes": 2,
+    "passing_score": 70.0,
+    "max_attempts": 3,
+    "shuffle_questions": true,
+    "show_correct_answers": true,
+    "is_active": true,
+    "created_at": "2026-03-08T14:01:16.199Z"
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 1,
+  "fields": {
+    "quiz": 1,
+    "question_type": "multiple_choice",
+    "text": "What is phishing?",
+    "explanation": "Phishing is a cyber attack where criminals impersonate trusted entities to steal sensitive information such as passwords and credit card numbers.",
+    "points": 1,
+    "order": 1,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 2,
+  "fields": {
+    "quiz": 1,
+    "question_type": "multiple_choice",
+    "text": "Which of the following is a warning sign of a phishing email?",
+    "explanation": "Urgency and threats (\"your account will be suspended\") are classic social engineering tactics used in phishing to panic victims into acting without thinking.",
+    "points": 1,
+    "order": 2,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 3,
+  "fields": {
+    "quiz": 1,
+    "question_type": "multiple_choice",
+    "text": "What does \"smishing\" refer to?",
+    "explanation": "Smishing = SMS + phishing. It refers to phishing attacks delivered through text messages.",
+    "points": 1,
+    "order": 3,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 4,
+  "fields": {
+    "quiz": 1,
+    "question_type": "multiple_choice",
+    "text": "You receive an email from \"paypal-secure.notifications.com\" asking you to verify your account. What should you do?",
+    "explanation": "Always navigate to official websites by typing the URL directly into your browser rather than clicking links in emails. \"paypal-secure.notifications.com\" is not PayPal's domain.",
+    "points": 1,
+    "order": 4,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 5,
+  "fields": {
+    "quiz": 1,
+    "question_type": "multiple_choice",
+    "text": "What is two-factor authentication (2FA)?",
+    "explanation": "2FA requires a second form of verification (such as a code from an authenticator app) in addition to your password, making it much harder for attackers to access your account even if they have your password.",
+    "points": 1,
+    "order": 5,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 6,
+  "fields": {
+    "quiz": 1,
+    "question_type": "multiple_choice",
+    "text": "Which URL is most likely to be a phishing website impersonating a bank?",
+    "explanation": "The domain \"barclays.co.uk.account-verify.com\" is actually the domain \"account-verify.com\" with \"barclays.co.uk\" as a subdomain — it is not affiliated with Barclays at all.",
+    "points": 1,
+    "order": 6,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 7,
+  "fields": {
+    "quiz": 1,
+    "question_type": "multiple_choice",
+    "text": "What is spear phishing?",
+    "explanation": "Spear phishing is highly targeted. Attackers research their victims beforehand and craft personalised messages that are far more convincing than generic phishing emails.",
+    "points": 1,
+    "order": 7,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 8,
+  "fields": {
+    "quiz": 1,
+    "question_type": "multiple_choice",
+    "text": "You accidentally clicked a phishing link and entered your password. What is the FIRST thing you should do?",
+    "explanation": "Changing your password immediately is the first priority to prevent the attacker from using the stolen credentials to access your account.",
+    "points": 1,
+    "order": 8,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 9,
+  "fields": {
+    "quiz": 1,
+    "question_type": "true_false",
+    "text": "True or False: A website with HTTPS (padlock icon) is always safe and cannot be a phishing site.",
+    "explanation": "False. HTTPS only means the connection between you and the website is encrypted — it does NOT verify that the website is legitimate. Phishing sites can and do use HTTPS.",
+    "points": 1,
+    "order": 9,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 10,
+  "fields": {
+    "quiz": 1,
+    "question_type": "multiple_choice",
+    "text": "Which of the following best describes a \"Business Email Compromise\" (BEC) attack?",
+    "explanation": "BEC attacks involve compromising or spoofing a business email account (often an executive) to trick employees into making wire transfers or sharing sensitive information.",
+    "points": 1,
+    "order": 10,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 11,
+  "fields": {
+    "quiz": 2,
+    "question_type": "multiple_choice",
+    "text": "What psychological trigger does an attacker use when saying \"Your account will be deleted in 1 hour\"?",
+    "explanation": "Creating urgency and fear is a core social engineering technique that bypasses rational thinking and pushes victims to act immediately without verifying the request.",
+    "points": 1,
+    "order": 1,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 12,
+  "fields": {
+    "quiz": 2,
+    "question_type": "multiple_choice",
+    "text": "How can you verify a suspicious link in an email without clicking it?",
+    "explanation": "Hovering over a link (without clicking) reveals the actual URL destination in the browser's status bar, allowing you to check whether it goes to a legitimate domain.",
+    "points": 1,
+    "order": 2,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 13,
+  "fields": {
+    "quiz": 2,
+    "question_type": "multiple_choice",
+    "text": "Which type of 2FA is most resistant to phishing attacks?",
+    "explanation": "Hardware security keys (FIDO2/WebAuthn) are bound to the legitimate domain and cannot be used on a phishing site, making them resistant to both phishing and adversary-in-the-middle attacks.",
+    "points": 1,
+    "order": 3,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 14,
+  "fields": {
+    "quiz": 2,
+    "question_type": "multiple_choice",
+    "text": "What is \"clone phishing\"?",
+    "explanation": "Clone phishing involves copying a legitimate email you previously received, replacing the links with malicious ones, and resending it — often claiming to be a correction or resend of the original.",
+    "points": 1,
+    "order": 4,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 15,
+  "fields": {
+    "quiz": 2,
+    "question_type": "multiple_choice",
+    "text": "A delivery company texts you: \"Your parcel is on hold. Pay £2.99 to release it: bit.ly/xyz\". What do you do?",
+    "explanation": "This is a classic smishing scam. The £2.99 fee is a lure and the link leads to a fake payment page that steals card details. Always check through official channels.",
+    "points": 1,
+    "order": 5,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 16,
+  "fields": {
+    "quiz": 2,
+    "question_type": "true_false",
+    "text": "True or False: Phishing attacks only target individuals, not organisations.",
+    "explanation": "False. Phishing attacks heavily target organisations. Business Email Compromise (BEC) and spear phishing campaigns specifically target companies, often costing millions in fraudulent transfers or data breaches.",
+    "points": 1,
+    "order": 6,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 17,
+  "fields": {
+    "quiz": 2,
+    "question_type": "multiple_choice",
+    "text": "What is pharming?",
+    "explanation": "Pharming attacks corrupt DNS servers or local hosts files so that users are silently redirected to fake websites even when they type the correct address into their browser.",
+    "points": 1,
+    "order": 7,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 18,
+  "fields": {
+    "quiz": 2,
+    "question_type": "multiple_choice",
+    "text": "An email appears to come from your CEO asking you to urgently transfer £10,000 to a supplier. What should you do?",
+    "explanation": "Always verify financial requests through a completely separate channel (phone call to a known number). This is a BEC attack scenario. Replying to the email still communicates with the attacker.",
+    "points": 1,
+    "order": 8,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 19,
+  "fields": {
+    "quiz": 2,
+    "question_type": "multiple_choice",
+    "text": "Which of the following is the safest practice for managing passwords?",
+    "explanation": "A password manager generates unique, strong passwords for every account and stores them securely. This means a breach of one account does not compromise your other accounts.",
+    "points": 1,
+    "order": 9,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.question",
+  "pk": 20,
+  "fields": {
+    "quiz": 2,
+    "question_type": "multiple_choice",
+    "text": "After completing phishing awareness training, what is the MOST important behaviour change?",
+    "explanation": "The most impactful change is developing a habit of pausing before acting on unexpected requests and reporting suspicious messages — this protects both you and your organisation.",
+    "points": 1,
+    "order": 10,
+    "phishing_content": "",
+    "is_phishing": null,
+    "image": ""
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 1,
+  "fields": {
+    "question": 1,
+    "text": "A type of fishing sport",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 2,
+  "fields": {
+    "question": 1,
+    "text": "A cyber attack that tricks people into revealing sensitive information",
+    "is_correct": true,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 3,
+  "fields": {
+    "question": 1,
+    "text": "A software virus that deletes files",
+    "is_correct": false,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 4,
+  "fields": {
+    "question": 1,
+    "text": "A method of encrypting data",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 5,
+  "fields": {
+    "question": 2,
+    "text": "The email uses your full name in the greeting",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 6,
+  "fields": {
+    "question": 2,
+    "text": "The email is from a known company with a verified domain",
+    "is_correct": false,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 7,
+  "fields": {
+    "question": 2,
+    "text": "The email creates urgency saying your account will be suspended",
+    "is_correct": true,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 8,
+  "fields": {
+    "question": 2,
+    "text": "The email contains relevant information about your recent purchase",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 9,
+  "fields": {
+    "question": 3,
+    "text": "Phishing attacks carried out via email",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 10,
+  "fields": {
+    "question": 3,
+    "text": "Phishing attacks carried out via SMS text messages",
+    "is_correct": true,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 11,
+  "fields": {
+    "question": 3,
+    "text": "Phishing attacks carried out via phone calls",
+    "is_correct": false,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 12,
+  "fields": {
+    "question": 3,
+    "text": "Phishing attacks carried out via social media",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 13,
+  "fields": {
+    "question": 4,
+    "text": "Click the link immediately to protect your account",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 14,
+  "fields": {
+    "question": 4,
+    "text": "Reply to the email asking if it is genuine",
+    "is_correct": false,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 15,
+  "fields": {
+    "question": 4,
+    "text": "Do not click the link — go directly to paypal.com by typing it in your browser",
+    "is_correct": true,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 16,
+  "fields": {
+    "question": 4,
+    "text": "Forward the email to your friends as a warning",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 17,
+  "fields": {
+    "question": 5,
+    "text": "Using two different passwords for the same account",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 18,
+  "fields": {
+    "question": 5,
+    "text": "A second verification step that adds security beyond just a password",
+    "is_correct": true,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 19,
+  "fields": {
+    "question": 5,
+    "text": "Logging in from two different devices simultaneously",
+    "is_correct": false,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 20,
+  "fields": {
+    "question": 5,
+    "text": "A type of firewall that blocks phishing websites",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 21,
+  "fields": {
+    "question": 6,
+    "text": "https://www.barclays.co.uk",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 22,
+  "fields": {
+    "question": 6,
+    "text": "https://barclays.co.uk.account-verify.com",
+    "is_correct": true,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 23,
+  "fields": {
+    "question": 6,
+    "text": "https://online.barclays.co.uk",
+    "is_correct": false,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 24,
+  "fields": {
+    "question": 6,
+    "text": "https://barclays.co.uk/login",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 25,
+  "fields": {
+    "question": 7,
+    "text": "Mass phishing emails sent to millions of random people",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 26,
+  "fields": {
+    "question": 7,
+    "text": "Phishing attacks targeting high-level executives only",
+    "is_correct": false,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 27,
+  "fields": {
+    "question": 7,
+    "text": "Targeted phishing attacks personalised for specific individuals or organisations",
+    "is_correct": true,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 28,
+  "fields": {
+    "question": 7,
+    "text": "Phishing attacks that use phone calls instead of emails",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 29,
+  "fields": {
+    "question": 8,
+    "text": "Wait and see if anything bad happens",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 30,
+  "fields": {
+    "question": 8,
+    "text": "Change the password on the affected account immediately",
+    "is_correct": true,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 31,
+  "fields": {
+    "question": 8,
+    "text": "Delete your browser history",
+    "is_correct": false,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 32,
+  "fields": {
+    "question": 8,
+    "text": "Restart your computer",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 33,
+  "fields": {
+    "question": 9,
+    "text": "True",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 34,
+  "fields": {
+    "question": 9,
+    "text": "False",
+    "is_correct": true,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 35,
+  "fields": {
+    "question": 10,
+    "text": "Sending mass phishing emails to all employees of a company",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 36,
+  "fields": {
+    "question": 10,
+    "text": "Installing ransomware through a phishing email attachment",
+    "is_correct": false,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 37,
+  "fields": {
+    "question": 10,
+    "text": "Impersonating a business executive via email to authorise fraudulent transfers",
+    "is_correct": true,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 38,
+  "fields": {
+    "question": 10,
+    "text": "Creating a fake company website to collect credentials",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 39,
+  "fields": {
+    "question": 11,
+    "text": "Authority",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 40,
+  "fields": {
+    "question": 11,
+    "text": "Reciprocity",
+    "is_correct": false,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 41,
+  "fields": {
+    "question": 11,
+    "text": "Urgency and Fear",
+    "is_correct": true,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 42,
+  "fields": {
+    "question": 11,
+    "text": "Social Proof",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 43,
+  "fields": {
+    "question": 12,
+    "text": "Open it in a private browsing window",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 44,
+  "fields": {
+    "question": 12,
+    "text": "Hover over the link to see the actual destination URL in the status bar",
+    "is_correct": true,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 45,
+  "fields": {
+    "question": 12,
+    "text": "Copy and paste it into a new email",
+    "is_correct": false,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 46,
+  "fields": {
+    "question": 12,
+    "text": "Forward the email to a friend to check",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 47,
+  "fields": {
+    "question": 13,
+    "text": "SMS one-time codes",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 48,
+  "fields": {
+    "question": 13,
+    "text": "Email verification codes",
+    "is_correct": false,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 49,
+  "fields": {
+    "question": 13,
+    "text": "Hardware security keys (FIDO2)",
+    "is_correct": true,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 50,
+  "fields": {
+    "question": 13,
+    "text": "Security questions",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 51,
+  "fields": {
+    "question": 14,
+    "text": "Creating an exact copy of a legitimate website",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 52,
+  "fields": {
+    "question": 14,
+    "text": "Duplicating a real email previously received and replacing links with malicious ones",
+    "is_correct": true,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 53,
+  "fields": {
+    "question": 14,
+    "text": "Using AI to clone a person's writing style in phishing emails",
+    "is_correct": false,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 54,
+  "fields": {
+    "question": 14,
+    "text": "Sending the same phishing email multiple times",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 55,
+  "fields": {
+    "question": 15,
+    "text": "Pay the small amount — it is only £2.99",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 56,
+  "fields": {
+    "question": 15,
+    "text": "Click the link to check the tracking details",
+    "is_correct": false,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 57,
+  "fields": {
+    "question": 15,
+    "text": "Do not click the link — check the delivery company's official website directly",
+    "is_correct": true,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 58,
+  "fields": {
+    "question": 15,
+    "text": "Reply to the message asking for more details",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 59,
+  "fields": {
+    "question": 16,
+    "text": "True",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 60,
+  "fields": {
+    "question": 16,
+    "text": "False",
+    "is_correct": true,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 61,
+  "fields": {
+    "question": 17,
+    "text": "Sending phishing emails disguised as pharmacy orders",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 62,
+  "fields": {
+    "question": 17,
+    "text": "Redirecting users to fake websites even when they type the correct URL",
+    "is_correct": true,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 63,
+  "fields": {
+    "question": 17,
+    "text": "Using farming-related themes in phishing emails",
+    "is_correct": false,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 64,
+  "fields": {
+    "question": 17,
+    "text": "Collecting personal data through fake online surveys",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 65,
+  "fields": {
+    "question": 18,
+    "text": "Transfer the money immediately as it is urgent",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 66,
+  "fields": {
+    "question": 18,
+    "text": "Reply to the email asking for confirmation",
+    "is_correct": false,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 67,
+  "fields": {
+    "question": 18,
+    "text": "Call the CEO on a known phone number to verify the request independently",
+    "is_correct": true,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 68,
+  "fields": {
+    "question": 18,
+    "text": "Transfer a smaller amount first to test",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 69,
+  "fields": {
+    "question": 19,
+    "text": "Use the same strong password for all accounts so you remember it",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 70,
+  "fields": {
+    "question": 19,
+    "text": "Write passwords in a notebook kept at your desk",
+    "is_correct": false,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 71,
+  "fields": {
+    "question": 19,
+    "text": "Use a password manager to generate and store unique passwords for each account",
+    "is_correct": true,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 72,
+  "fields": {
+    "question": 19,
+    "text": "Use your name and birth year as the base for all passwords",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 73,
+  "fields": {
+    "question": 20,
+    "text": "Never use email again",
+    "is_correct": false,
+    "order": 0
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 74,
+  "fields": {
+    "question": 20,
+    "text": "Report all suspicious messages and pause before acting on unexpected requests",
+    "is_correct": true,
+    "order": 1
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 75,
+  "fields": {
+    "question": 20,
+    "text": "Only open emails from people you personally know",
+    "is_correct": false,
+    "order": 2
+  }
+},
+{
+  "model": "assessments.answer",
+  "pk": 76,
+  "fields": {
+    "question": 20,
+    "text": "Change all your passwords every day",
+    "is_correct": false,
+    "order": 3
+  }
+},
+{
+  "model": "assessments.quizattempt",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "quiz": 1,
+    "started_at": "2026-03-08T14:06:52.574Z",
+    "completed_at": null,
+    "score": null,
+    "percentage": null,
+    "passed": false,
+    "points_earned": 0,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizattempt",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "quiz": 1,
+    "started_at": "2026-03-08T14:32:24.127Z",
+    "completed_at": null,
+    "score": null,
+    "percentage": null,
+    "passed": false,
+    "points_earned": 0,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizattempt",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "quiz": 1,
+    "started_at": "2026-03-08T14:42:07.063Z",
+    "completed_at": null,
+    "score": null,
+    "percentage": null,
+    "passed": false,
+    "points_earned": 0,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizattempt",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "quiz": 1,
+    "started_at": "2026-03-08T14:48:41.900Z",
+    "completed_at": "2026-03-08T14:53:33.437Z",
+    "score": 4.0,
+    "percentage": 40.0,
+    "passed": false,
+    "points_earned": 4,
+    "time_taken_seconds": 291
+  }
+},
+{
+  "model": "assessments.quizattempt",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "quiz": 2,
+    "started_at": "2026-03-08T14:53:48.356Z",
+    "completed_at": null,
+    "score": null,
+    "percentage": null,
+    "passed": false,
+    "points_earned": 0,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizattempt",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "quiz": 2,
+    "started_at": "2026-03-08T14:54:38.204Z",
+    "completed_at": null,
+    "score": null,
+    "percentage": null,
+    "passed": false,
+    "points_earned": 0,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizattempt",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "quiz": 2,
+    "started_at": "2026-03-08T16:04:41.282Z",
+    "completed_at": null,
+    "score": null,
+    "percentage": null,
+    "passed": false,
+    "points_earned": 0,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 1,
+  "fields": {
+    "attempt": 4,
+    "question": 10,
+    "selected_answer": 35,
+    "text_response": "",
+    "is_correct": false,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 2,
+  "fields": {
+    "attempt": 4,
+    "question": 6,
+    "selected_answer": 23,
+    "text_response": "",
+    "is_correct": false,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 3,
+  "fields": {
+    "attempt": 4,
+    "question": 7,
+    "selected_answer": 28,
+    "text_response": "",
+    "is_correct": false,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 4,
+  "fields": {
+    "attempt": 4,
+    "question": 5,
+    "selected_answer": 18,
+    "text_response": "",
+    "is_correct": true,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 5,
+  "fields": {
+    "attempt": 4,
+    "question": 2,
+    "selected_answer": 6,
+    "text_response": "",
+    "is_correct": false,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 6,
+  "fields": {
+    "attempt": 4,
+    "question": 4,
+    "selected_answer": 13,
+    "text_response": "",
+    "is_correct": false,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 7,
+  "fields": {
+    "attempt": 4,
+    "question": 1,
+    "selected_answer": 2,
+    "text_response": "",
+    "is_correct": true,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 8,
+  "fields": {
+    "attempt": 4,
+    "question": 8,
+    "selected_answer": 32,
+    "text_response": "",
+    "is_correct": false,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 9,
+  "fields": {
+    "attempt": 4,
+    "question": 3,
+    "selected_answer": 10,
+    "text_response": "",
+    "is_correct": true,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 10,
+  "fields": {
+    "attempt": 4,
+    "question": 9,
+    "selected_answer": 34,
+    "text_response": "",
+    "is_correct": true,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 11,
+  "fields": {
+    "attempt": 6,
+    "question": 11,
+    "selected_answer": 41,
+    "text_response": "",
+    "is_correct": true,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 12,
+  "fields": {
+    "attempt": 6,
+    "question": 18,
+    "selected_answer": 66,
+    "text_response": "",
+    "is_correct": false,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 13,
+  "fields": {
+    "attempt": 6,
+    "question": 16,
+    "selected_answer": 60,
+    "text_response": "",
+    "is_correct": true,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.quizresponse",
+  "pk": 14,
+  "fields": {
+    "attempt": 6,
+    "question": 19,
+    "selected_answer": 71,
+    "text_response": "",
+    "is_correct": true,
+    "time_taken_seconds": null
+  }
+},
+{
+  "model": "assessments.assessmentresult",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "assessment_type": "pre_assessment",
+    "quiz_attempt": 4,
+    "email_phishing_score": 0.0,
+    "sms_phishing_score": 0.0,
+    "social_engineering_score": 0.0,
+    "general_awareness_score": 0.0,
+    "strengths": "",
+    "weaknesses": "",
+    "recommendations": "",
+    "created_at": "2026-03-08T14:53:33.474Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "activity_type": "login",
+    "description": "User logged in",
+    "metadata": {},
+    "timestamp": "2026-03-05T08:15:35.592Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "login",
+    "description": "User logged in",
+    "metadata": {},
+    "timestamp": "2026-03-05T08:20:00.522Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "activity_type": "login",
+    "description": "User logged in",
+    "metadata": {},
+    "timestamp": "2026-03-05T09:26:09.158Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "activity_type": "login",
+    "description": "User logged in",
+    "metadata": {},
+    "timestamp": "2026-03-05T10:58:38.468Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "module_start",
+    "description": "Started module: Protecting Your Personal Information",
+    "metadata": {
+      "module_id": 5
+    },
+    "timestamp": "2026-03-08T14:02:34.837Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "simulation_start",
+    "description": "Started simulation: IT Department Password Reset",
+    "metadata": {
+      "simulation_id": "ede70dec-cc6e-473c-a8ec-acc34a08d40f",
+      "template_type": "email"
+    },
+    "timestamp": "2026-03-08T14:02:45.784Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "simulation_complete",
+    "description": "Completed simulation with score: 100",
+    "metadata": {
+      "simulation_id": "ede70dec-cc6e-473c-a8ec-acc34a08d40f",
+      "score": 100,
+      "points_earned": 10
+    },
+    "timestamp": "2026-03-08T14:04:51.886Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "quiz_start",
+    "description": "Started quiz: Phishing Awareness Pre-Assessment",
+    "metadata": {
+      "quiz_id": 1,
+      "attempt_id": 1
+    },
+    "timestamp": "2026-03-08T14:06:52.577Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "activity_type": "login",
+    "description": "User logged in",
+    "metadata": {},
+    "timestamp": "2026-03-08T14:07:59.632Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "quiz_start",
+    "description": "Started quiz: Phishing Awareness Pre-Assessment",
+    "metadata": {
+      "quiz_id": 1,
+      "attempt_id": 2
+    },
+    "timestamp": "2026-03-08T14:32:24.132Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 11,
+  "fields": {
+    "user": [
+      "catel"
+    ],
+    "activity_type": "login",
+    "description": "User logged in",
+    "metadata": {},
+    "timestamp": "2026-03-08T14:34:30.438Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 12,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "login",
+    "description": "User logged in",
+    "metadata": {},
+    "timestamp": "2026-03-08T14:42:07.029Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 13,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "quiz_start",
+    "description": "Started quiz: Phishing Awareness Pre-Assessment",
+    "metadata": {
+      "quiz_id": 1,
+      "attempt_id": 3
+    },
+    "timestamp": "2026-03-08T14:42:07.065Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 14,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "quiz_start",
+    "description": "Started quiz: Phishing Awareness Pre-Assessment",
+    "metadata": {
+      "quiz_id": 1,
+      "attempt_id": 4
+    },
+    "timestamp": "2026-03-08T14:48:41.906Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 15,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "quiz_complete",
+    "description": "Completed quiz: Phishing Awareness Pre-Assessment with score: 40.0%",
+    "metadata": {
+      "quiz_id": 1,
+      "attempt_id": 4,
+      "score": 40.0,
+      "passed": false
+    },
+    "timestamp": "2026-03-08T14:53:33.483Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 16,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "quiz_start",
+    "description": "Started quiz: Phishing Awareness Post-Assessment",
+    "metadata": {
+      "quiz_id": 2,
+      "attempt_id": 5
+    },
+    "timestamp": "2026-03-08T14:53:48.359Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 17,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "quiz_start",
+    "description": "Started quiz: Phishing Awareness Post-Assessment",
+    "metadata": {
+      "quiz_id": 2,
+      "attempt_id": 6
+    },
+    "timestamp": "2026-03-08T14:54:38.208Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 18,
+  "fields": {
+    "user": [
+      "catel"
+    ],
+    "activity_type": "login",
+    "description": "User logged in",
+    "metadata": {},
+    "timestamp": "2026-03-08T15:34:54.673Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 19,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "module_complete",
+    "description": "Completed module: Protecting Your Personal Information",
+    "metadata": {
+      "module_id": 5,
+      "points": 15
+    },
+    "timestamp": "2026-03-08T16:03:41.803Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 20,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "module_start",
+    "description": "Started module: Introduction to Phishing",
+    "metadata": {
+      "module_id": 1
+    },
+    "timestamp": "2026-03-08T16:03:56.769Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 21,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "quiz_start",
+    "description": "Started quiz: Phishing Awareness Post-Assessment",
+    "metadata": {
+      "quiz_id": 2,
+      "attempt_id": 7
+    },
+    "timestamp": "2026-03-08T16:04:41.286Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 22,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "simulation_start",
+    "description": "Started simulation: Fake Bank Security Alert",
+    "metadata": {
+      "simulation_id": "d5603006-a0bb-4f29-b466-650ed424d6a7",
+      "template_type": "email"
+    },
+    "timestamp": "2026-03-08T16:05:08.376Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 23,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "simulation_complete",
+    "description": "Completed simulation with score: 80",
+    "metadata": {
+      "simulation_id": "d5603006-a0bb-4f29-b466-650ed424d6a7",
+      "score": 80,
+      "points_earned": 8
+    },
+    "timestamp": "2026-03-08T16:06:12.020Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 24,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "simulation_start",
+    "description": "Started simulation: Parcel Delivery Fee Scam",
+    "metadata": {
+      "simulation_id": "00c71566-f583-4a20-9655-5aaccd43b939",
+      "template_type": "sms"
+    },
+    "timestamp": "2026-03-08T16:06:35.527Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 25,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "simulation_complete",
+    "description": "Completed simulation with score: 100",
+    "metadata": {
+      "simulation_id": "00c71566-f583-4a20-9655-5aaccd43b939",
+      "score": 100,
+      "points_earned": 10
+    },
+    "timestamp": "2026-03-08T16:07:08.039Z"
+  }
+},
+{
+  "model": "analytics.useractivity",
+  "pk": 26,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "activity_type": "simulation_start",
+    "description": "Started simulation: Parcel Delivery Fee Scam",
+    "metadata": {
+      "simulation_id": "6ba36504-c9c9-4e40-9af7-37dea4eb3e47",
+      "template_type": "sms"
+    },
+    "timestamp": "2026-03-08T16:07:26.449Z"
+  }
+},
+{
+  "model": "analytics.learninganalytics",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "total_time_spent": null,
+    "average_session_duration": null,
+    "last_activity": null,
+    "modules_completed": 0,
+    "quizzes_completed": 0,
+    "simulations_completed": 0,
+    "average_quiz_score": 0.0,
+    "average_simulation_score": 0.0,
+    "improvement_rate": 0.0,
+    "login_count": 4,
+    "streak_days": 0,
+    "longest_streak": 0,
+    "updated_at": "2026-03-08T14:07:59.637Z"
+  }
+},
+{
+  "model": "analytics.learninganalytics",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "total_time_spent": null,
+    "average_session_duration": null,
+    "last_activity": null,
+    "modules_completed": 0,
+    "quizzes_completed": 0,
+    "simulations_completed": 0,
+    "average_quiz_score": 0.0,
+    "average_simulation_score": 0.0,
+    "improvement_rate": 0.0,
+    "login_count": 2,
+    "streak_days": 0,
+    "longest_streak": 0,
+    "updated_at": "2026-03-08T14:42:07.032Z"
+  }
+},
+{
+  "model": "analytics.learninganalytics",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "catel"
+    ],
+    "total_time_spent": null,
+    "average_session_duration": null,
+    "last_activity": null,
+    "modules_completed": 0,
+    "quizzes_completed": 0,
+    "simulations_completed": 0,
+    "average_quiz_score": 0.0,
+    "average_simulation_score": 0.0,
+    "improvement_rate": 0.0,
+    "login_count": 2,
+    "streak_days": 0,
+    "longest_streak": 0,
+    "updated_at": "2026-03-08T15:34:54.678Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "question": "What is the primary goal of a phishing attack?",
+    "scenario": null,
+    "options": [
+      "To install antivirus software",
+      "To trick people into revealing sensitive information",
+      "To improve internet speed",
+      "To test website security"
+    ],
+    "correct_answer": 1,
+    "explanation": "Phishing attacks are designed to deceive victims into revealing sensitive information such as passwords, credit card numbers, or personal data by impersonating trusted entities.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.2,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.403Z",
+    "updated_at": "2026-03-05T06:12:32.403Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "question": "Which of these is NOT a common type of phishing?",
+    "scenario": null,
+    "options": [
+      "Email phishing",
+      "Smishing (SMS phishing)",
+      "Fishing (catching fish)",
+      "Vishing (voice phishing)"
+    ],
+    "correct_answer": 2,
+    "explanation": "Fishing with a rod is not related to cybersecurity. The main types of phishing include email phishing, smishing (SMS), vishing (voice calls), and spear phishing (targeted attacks).",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.15,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.413Z",
+    "updated_at": "2026-03-05T06:12:32.413Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "question": "What does \"vishing\" mean in cybersecurity?",
+    "scenario": null,
+    "options": [
+      "Visual phishing through images",
+      "Voice phishing through phone calls",
+      "Virtual phishing through VR",
+      "Video phishing through streaming"
+    ],
+    "correct_answer": 1,
+    "explanation": "Vishing (voice + phishing) involves attackers using phone calls to impersonate legitimate organisations and trick victims into sharing personal information or transferring money.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.25,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.419Z",
+    "updated_at": "2026-03-05T06:12:32.419Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "question": "What is \"spear phishing\"?",
+    "scenario": null,
+    "options": [
+      "A mass email campaign sent to millions",
+      "A targeted attack aimed at a specific individual or organisation",
+      "Phishing using fishing equipment as a prop",
+      "A type of malware that spreads via USB drives"
+    ],
+    "correct_answer": 1,
+    "explanation": "Spear phishing is a highly targeted form of phishing where attackers research specific individuals or organisations to craft convincing, personalised messages.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.4,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.433Z",
+    "updated_at": "2026-03-05T06:12:32.433Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "question": "What is \"whaling\" in the context of phishing?",
+    "scenario": null,
+    "options": [
+      "Phishing attacks targeting marine animals",
+      "Highly targeted phishing aimed at senior executives or high-value targets",
+      "Mass phishing campaigns sent to millions",
+      "A type of ransomware attack"
+    ],
+    "correct_answer": 1,
+    "explanation": "Whaling targets high-value individuals (the \"big fish\") such as CEOs, CFOs, and other executives. These attacks are highly personalised and use sophisticated social engineering.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.45,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.443Z",
+    "updated_at": "2026-03-05T06:12:32.443Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 6,
+  "fields": {
+    "category": 1,
+    "question": "Which psychological principle do phishing attackers most commonly exploit?",
+    "scenario": null,
+    "options": [
+      "Logic and rational thinking",
+      "Urgency and fear",
+      "Patience and reflection",
+      "Mathematical precision"
+    ],
+    "correct_answer": 1,
+    "explanation": "Phishing attacks exploit urgency and fear by creating time pressure (e.g., \"Your account will be closed in 24 hours!\") to prevent victims from thinking critically or verifying the message.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.45,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.453Z",
+    "updated_at": "2026-03-05T06:12:32.453Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 7,
+  "fields": {
+    "category": 1,
+    "question": "What is \"pharming\" and how does it differ from phishing?",
+    "scenario": null,
+    "options": [
+      "They are the same thing",
+      "Pharming redirects users to fake websites through DNS manipulation, without requiring the victim to click a malicious link",
+      "Pharming only targets farmers",
+      "Pharming uses physical mail instead of email"
+    ],
+    "correct_answer": 1,
+    "explanation": "Pharming compromises DNS settings to automatically redirect users to fake websites even when they type the correct URL. It is more dangerous because the victim does not need to click a malicious link.",
+    "difficulty": "advanced",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.65,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.466Z",
+    "updated_at": "2026-03-05T06:12:32.466Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 8,
+  "fields": {
+    "category": 1,
+    "question": "What does \"smishing\" stand for?",
+    "scenario": null,
+    "options": [
+      "Social media phishing",
+      "SMS phishing",
+      "Smart phishing",
+      "Software phishing"
+    ],
+    "correct_answer": 1,
+    "explanation": "Smishing is phishing conducted through SMS (text messages). Attackers send fake messages pretending to be from banks, delivery companies, or government agencies.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.2,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.477Z",
+    "updated_at": "2026-03-05T06:12:32.477Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 9,
+  "fields": {
+    "category": 1,
+    "question": "What is a \"clone phishing\" attack?",
+    "scenario": null,
+    "options": [
+      "Creating duplicate websites that look identical to legitimate ones",
+      "Replicating a legitimate email that was previously delivered, replacing attachments or links with malicious ones",
+      "Cloning a user's identity completely",
+      "Making multiple copies of phishing emails"
+    ],
+    "correct_answer": 1,
+    "explanation": "Clone phishing creates an almost identical copy of a legitimate, previously delivered email. The attacker replaces legitimate attachments or links with malicious ones and resends it, often claiming to be a resend.",
+    "difficulty": "advanced",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.6,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.484Z",
+    "updated_at": "2026-03-05T06:12:32.484Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 10,
+  "fields": {
+    "category": 1,
+    "question": "How can you verify if a suspicious email from your bank is genuine?",
+    "scenario": null,
+    "options": [
+      "Click the link in the email to check",
+      "Reply to the email asking for confirmation",
+      "Call your bank using the official number on their website or your card",
+      "Forward the email to your friends to check"
+    ],
+    "correct_answer": 2,
+    "explanation": "Always verify by contacting the organisation directly using contact details you already know (official website, back of your card). Never use contact information provided in a suspicious email.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.2,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.496Z",
+    "updated_at": "2026-03-05T06:12:32.496Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 11,
+  "fields": {
+    "category": 1,
+    "question": "What makes phishing attacks particularly dangerous in mobile banking contexts in Zambia?",
+    "scenario": null,
+    "options": [
+      "Mobile phones are less secure than computers",
+      "High mobile money usage (Airtel Money, MTN MoMo, Zamtel Kwacha) and limited cybersecurity awareness create ideal conditions for attackers",
+      "Zambian banks have weak security systems",
+      "Mobile data is cheaper than internet"
+    ],
+    "correct_answer": 1,
+    "explanation": "The widespread adoption of mobile money services combined with limited cybersecurity education creates significant vulnerability. Attackers exploit the trust users place in mobile financial services.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.5,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.509Z",
+    "updated_at": "2026-03-05T06:12:32.509Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 12,
+  "fields": {
+    "category": 1,
+    "question": "What is the \"419 scam\" and how is it related to phishing?",
+    "scenario": null,
+    "options": [
+      "A Nigerian law number",
+      "An advance-fee fraud (often via email) where victims are promised large sums of money in exchange for a small upfront payment",
+      "A type of computer virus",
+      "A Zambian mobile money code"
+    ],
+    "correct_answer": 1,
+    "explanation": "The \"419 scam\" (named after Section 419 of Nigerian law) is an advance-fee fraud. It is a form of phishing that uses email to promise large rewards in exchange for upfront fees, which are then stolen.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.4,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.517Z",
+    "updated_at": "2026-03-05T06:12:32.517Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 13,
+  "fields": {
+    "category": 1,
+    "question": "Which of these best describes a \"business email compromise\" (BEC) attack?",
+    "scenario": null,
+    "options": [
+      "Hacking a business email server",
+      "Impersonating a business executive or vendor to manipulate employees into transferring funds or sensitive data",
+      "Sending bulk spam from business email accounts",
+      "Installing malware through business email attachments only"
+    ],
+    "correct_answer": 1,
+    "explanation": "BEC attacks involve impersonating trusted business entities (executives, vendors, partners) to convince employees to make wire transfers, change payment details, or share sensitive information.",
+    "difficulty": "advanced",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.65,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.527Z",
+    "updated_at": "2026-03-05T06:12:32.527Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 14,
+  "fields": {
+    "category": 1,
+    "question": "What is multi-factor authentication (MFA) and how does it help against phishing?",
+    "scenario": null,
+    "options": [
+      "Using multiple passwords",
+      "A security system requiring two or more verification methods, limiting attacker access even if credentials are stolen",
+      "Installing multiple antivirus programs",
+      "Checking emails on multiple devices"
+    ],
+    "correct_answer": 1,
+    "explanation": "MFA requires something you know (password), something you have (phone/token), or something you are (biometric). Even if phishing steals your password, attackers still cannot access your account without the second factor.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.5,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.536Z",
+    "updated_at": "2026-03-05T06:12:32.536Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 15,
+  "fields": {
+    "category": 1,
+    "question": "What is a \"watering hole attack\" in the context of phishing?",
+    "scenario": null,
+    "options": [
+      "Attacking water infrastructure",
+      "Compromising a website frequently visited by a target group to deliver malware when members visit",
+      "Flooding email servers with phishing messages",
+      "Targeting fishing communities with fake fishing gear ads"
+    ],
+    "correct_answer": 1,
+    "explanation": "A watering hole attack compromises websites that the target group frequently visits. When victims visit the compromised site, malware is delivered. It exploits trust in familiar websites.",
+    "difficulty": "advanced",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.7,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.548Z",
+    "updated_at": "2026-03-05T06:12:32.548Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 16,
+  "fields": {
+    "category": 1,
+    "question": "What percentage of cyber attacks are estimated to begin with phishing?",
+    "scenario": null,
+    "options": [
+      "Around 10%",
+      "Around 30%",
+      "Over 90%",
+      "Around 50%"
+    ],
+    "correct_answer": 2,
+    "explanation": "Research consistently shows that over 90% of cyber attacks begin with a phishing email. This makes phishing awareness the single most important cybersecurity skill for individuals and organisations.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.25,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.558Z",
+    "updated_at": "2026-03-05T06:12:32.558Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 17,
+  "fields": {
+    "category": 2,
+    "question": "What should you look for in the sender's email address to identify a phishing email?",
+    "scenario": null,
+    "options": [
+      "The sender's name matches a company you know",
+      "The actual email domain differs from the legitimate company's domain (e.g., support@paypa1.com instead of support@paypal.com)",
+      "The email was sent during business hours",
+      "The email has a professional signature"
+    ],
+    "correct_answer": 1,
+    "explanation": "Always check the actual email address, not just the display name. Phishers use lookalike domains (paypa1.com, arnazon.com) or completely different domains while displaying a legitimate company name.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.2,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.572Z",
+    "updated_at": "2026-03-05T06:12:32.572Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 18,
+  "fields": {
+    "category": 2,
+    "question": "You receive an email from \"support@zra-zambia.org\" claiming your tax refund is ready. The legitimate ZRA website is zra.org.zm. What is suspicious?",
+    "scenario": null,
+    "options": [
+      "The email claims there is a tax refund",
+      "The domain \"zra-zambia.org\" does not match the legitimate ZRA domain \"zra.org.zm\"",
+      "The email is about taxes",
+      "Nothing is suspicious"
+    ],
+    "correct_answer": 1,
+    "explanation": "Government and official domains in Zambia typically use .gov.zm or specific country domains. \"zra-zambia.org\" is a suspicious domain that attempts to mimic the legitimate ZRA but is almost certainly fraudulent.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.25,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.581Z",
+    "updated_at": "2026-03-05T06:12:32.581Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 19,
+  "fields": {
+    "category": 2,
+    "question": "Which of these subject lines is MOST likely to be a phishing attempt?",
+    "scenario": null,
+    "options": [
+      "Monthly newsletter from your bank",
+      "URGENT: Your account has been compromised - Verify immediately or lose access!",
+      "Your statement for October 2024 is ready",
+      "Thank you for your recent transaction"
+    ],
+    "correct_answer": 1,
+    "explanation": "Extreme urgency combined with threats (\"lose access\") is a hallmark of phishing. Legitimate organisations do not create panic through email subject lines. This is designed to bypass rational thinking.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.2,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.594Z",
+    "updated_at": "2026-03-05T06:12:32.594Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 20,
+  "fields": {
+    "category": 2,
+    "question": "What is an \"email header\" and why is it useful in detecting phishing?",
+    "scenario": null,
+    "options": [
+      "The visible subject line of an email",
+      "Technical metadata attached to every email showing routing information, originating servers, and authentication status - revealing if an email is spoofed",
+      "The company logo at the top of an email",
+      "The first paragraph of the email body"
+    ],
+    "correct_answer": 1,
+    "explanation": "Email headers contain technical routing information including originating IP addresses and authentication results (SPF, DKIM, DMARC). IT professionals use headers to identify spoofed or malicious emails.",
+    "difficulty": "advanced",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.65,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.606Z",
+    "updated_at": "2026-03-05T06:12:32.606Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 21,
+  "fields": {
+    "category": 2,
+    "question": "What is \"domain spoofing\" in phishing emails?",
+    "scenario": null,
+    "options": [
+      "Creating a fake email account with a free service",
+      "Forging the sender's email address to appear as if it comes from a trusted domain",
+      "Buying a domain name similar to a legitimate one",
+      "Spoofing only applies to websites, not emails"
+    ],
+    "correct_answer": 1,
+    "explanation": "Domain spoofing manipulates the \"From\" header in an email to display a legitimate domain name while the actual sending address is different. This is combated by DMARC, SPF, and DKIM email authentication.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.5,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.618Z",
+    "updated_at": "2026-03-05T06:12:32.618Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 22,
+  "fields": {
+    "category": 2,
+    "question": "You receive an email with a link. Before clicking, you hover over the link and see \"http://www.secure-zanaco.malicious.ru/login\". What is the most suspicious element?",
+    "scenario": null,
+    "options": [
+      "The use of \"http\" instead of \"https\"",
+      "The domain is \"malicious.ru\" (a Russian domain) - the \"zanaco\" part is just a subdomain to deceive you",
+      "The word \"secure\" in the URL",
+      "The word \"login\" at the end"
+    ],
+    "correct_answer": 1,
+    "explanation": "In a URL, the actual domain is the part just before the first forward slash (e.g., \"malicious.ru\"). Everything before it (secure-zanaco) is a subdomain. Attackers add legitimate-sounding subdomains to deceive victims.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.55,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.628Z",
+    "updated_at": "2026-03-05T06:12:32.628Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 23,
+  "fields": {
+    "category": 2,
+    "question": "What does DMARC stand for and what does it help prevent?",
+    "scenario": null,
+    "options": [
+      "Digital Mail Access and Recovery Control",
+      "Domain-based Message Authentication, Reporting and Conformance - it prevents email spoofing by validating sender authenticity",
+      "Direct Mail Attack and Response Center",
+      "Data Management and Reporting Committee"
+    ],
+    "correct_answer": 1,
+    "explanation": "DMARC is an email authentication protocol that helps prevent domain spoofing. When properly configured, it tells receiving email servers what to do with messages that fail authentication checks.",
+    "difficulty": "advanced",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.7,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.635Z",
+    "updated_at": "2026-03-05T06:12:32.635Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 24,
+  "fields": {
+    "category": 2,
+    "question": "An email from \"noreply@stanbic-bank-zambia.support\" asks you to verify your account. What should you do?",
+    "scenario": null,
+    "options": [
+      "Click the verification link immediately",
+      "Check the actual Stanbic website (stanbic.com/zm) directly and contact them through official channels",
+      "Reply to the email to confirm your identity",
+      "Forward it to all your contacts to warn them"
+    ],
+    "correct_answer": 1,
+    "explanation": "The domain \"stanbic-bank-zambia.support\" is not the legitimate Stanbic domain. Never click links in suspicious emails. Always navigate directly to the official website and use official contact numbers.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.25,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.644Z",
+    "updated_at": "2026-03-05T06:12:32.644Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 25,
+  "fields": {
+    "category": 2,
+    "question": "What is a \"malicious attachment\" in phishing emails and what file types are commonly used?",
+    "scenario": null,
+    "options": [
+      "Any large file over 10MB",
+      "Files designed to execute malware when opened, commonly .exe, .doc/.docx with macros, .pdf, .zip, and .js files",
+      "Only .exe files contain viruses",
+      "PDF files cannot be malicious"
+    ],
+    "correct_answer": 1,
+    "explanation": "Malicious attachments execute malware when opened. Common types include: Office documents with macros enabled, PDFs with embedded scripts, ZIP files containing executables, and JavaScript files. Never open unexpected attachments.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.45,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.652Z",
+    "updated_at": "2026-03-05T06:12:32.652Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 26,
+  "fields": {
+    "category": 2,
+    "question": "What should you do if you accidentally clicked a link in a phishing email?",
+    "scenario": null,
+    "options": [
+      "Nothing — just close the browser tab",
+      "Immediately disconnect from internet, run antivirus scan, change passwords on any accounts accessed, and report to IT/bank",
+      "Click the unsubscribe button in the email",
+      "Wait to see if anything bad happens"
+    ],
+    "correct_answer": 1,
+    "explanation": "Immediate action is critical: disconnect to stop potential data exfiltration, scan for malware, change passwords (especially banking), enable MFA, and notify relevant parties including your IT department or bank.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.3,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.662Z",
+    "updated_at": "2026-03-05T06:12:32.662Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 27,
+  "fields": {
+    "category": 2,
+    "question": "What is \"typosquatting\" and how is it used in phishing?",
+    "scenario": null,
+    "options": [
+      "Squatting on physical property using typos in legal documents",
+      "Registering domain names with common misspellings of legitimate sites (e.g., gooogle.com, amazn.com) to capture mistyped URLs",
+      "A technique to slow down typing speed",
+      "Creating fake keyboard layouts"
+    ],
+    "correct_answer": 1,
+    "explanation": "Typosquatting registers domains with common misspellings or character substitutions of legitimate websites. When users accidentally mistype a URL, they land on a phishing site designed to look like the real one.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.5,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.675Z",
+    "updated_at": "2026-03-05T06:12:32.675Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 28,
+  "fields": {
+    "category": 2,
+    "question": "What is \"email harvesting\" and why should you be cautious about where you post your email address?",
+    "scenario": null,
+    "options": [
+      "Collecting agricultural data via email",
+      "Automatically collecting email addresses from websites, forums, and public sources to build lists for phishing campaigns",
+      "Harvesting spam from your inbox",
+      "A technique to organise email folders"
+    ],
+    "correct_answer": 1,
+    "explanation": "Email harvesting bots scan websites, social media, and public forums to collect email addresses. The more visible your email, the more likely it is to end up on phishing lists. Use contact forms instead of displaying emails publicly.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.45,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.682Z",
+    "updated_at": "2026-03-05T06:12:32.682Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 29,
+  "fields": {
+    "category": 3,
+    "question": "You receive an SMS: \"Your MTN MoMo account has been limited. Click bit.ly/mtn-verify to restore access immediately.\" What should you do?",
+    "scenario": null,
+    "options": [
+      "Click the link to restore access",
+      "Do NOT click the link; contact MTN directly using their official number (100 for MTN Zambia)",
+      "Forward the SMS to MTN customer care",
+      "Reply STOP to the message"
+    ],
+    "correct_answer": 1,
+    "explanation": "This is a classic smishing (SMS phishing) attack. Shortened URLs (bit.ly) hide the real destination. Always contact MTN directly using the official number on their website, never through links in SMS messages.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.2,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.697Z",
+    "updated_at": "2026-03-05T06:12:32.697Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 30,
+  "fields": {
+    "category": 3,
+    "question": "What makes shortened URLs in SMS messages dangerous?",
+    "scenario": null,
+    "options": [
+      "They are always malicious",
+      "They hide the true destination — you cannot tell where you will be taken until you click, making it impossible to verify legitimacy beforehand",
+      "They expire after 24 hours",
+      "They use more mobile data"
+    ],
+    "correct_answer": 1,
+    "explanation": "URL shorteners (bit.ly, tinyurl, etc.) mask the real URL. You have no way to know if the destination is legitimate or malicious without clicking. Use URL expansion tools like checkshorturl.com to preview the destination.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.25,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.705Z",
+    "updated_at": "2026-03-05T06:12:32.705Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 31,
+  "fields": {
+    "category": 3,
+    "question": "You receive an SMS claiming to be from the Zambia Revenue Authority (ZRA) saying you have a tax refund. It asks you to provide your NRC number and bank details via a link. What is this?",
+    "scenario": null,
+    "options": [
+      "A legitimate government service",
+      "A smishing attack — ZRA does not request personal details via SMS links and does not initiate refunds this way",
+      "An automated banking service",
+      "A mobile money verification process"
+    ],
+    "correct_answer": 1,
+    "explanation": "Government agencies like ZRA never request personal details (NRC, bank info) through SMS links. This is a smishing attack designed to steal your identity and financial information. Report to ZRA and ZM-CIRT.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.25,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.714Z",
+    "updated_at": "2026-03-05T06:12:32.714Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 32,
+  "fields": {
+    "category": 3,
+    "question": "What is \"SIM swapping\" and how is it used in conjunction with phishing?",
+    "scenario": null,
+    "options": [
+      "Physically swapping SIM cards between phones",
+      "Convincing a mobile operator to transfer a victim's phone number to an attacker-controlled SIM, allowing them to intercept OTPs and bypass MFA",
+      "Using multiple SIM cards for better signal",
+      "A promotional offer from mobile companies"
+    ],
+    "correct_answer": 1,
+    "explanation": "SIM swapping (also called SIM hijacking) is when attackers impersonate victims to mobile operators to transfer the phone number. This allows them to receive OTPs and bypass 2FA, giving access to banking and email accounts.",
+    "difficulty": "advanced",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.7,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.724Z",
+    "updated_at": "2026-03-05T06:12:32.724Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 33,
+  "fields": {
+    "category": 3,
+    "question": "You receive an SMS: \"Congratulations! You have won K10,000 in the Zamtel Lucky Draw. Reply with your full name, NRC and Kwacha account number to claim.\" What should you do?",
+    "scenario": null,
+    "options": [
+      "Reply with your details immediately to claim the prize",
+      "Delete the message — this is a scam. Legitimate prize draws never request sensitive personal data via SMS",
+      "Forward it to your family so they can enter too",
+      "Call the number provided to verify"
+    ],
+    "correct_answer": 1,
+    "explanation": "This is a prize scam (a form of smishing). Legitimate prize draws: (1) you must enter first, (2) never ask for NRC via SMS, (3) never ask for bank details via text. This is designed to steal your identity and money.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.15,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.734Z",
+    "updated_at": "2026-03-05T06:12:32.734Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 34,
+  "fields": {
+    "category": 3,
+    "question": "What is \"one-time password (OTP) phishing\" and why is it increasingly common in Zambia?",
+    "scenario": null,
+    "options": [
+      "Stealing physical passwords written on paper",
+      "Tricking victims into sharing OTPs (sent for mobile money or banking authentication) through fake urgency or fake support calls, giving attackers access to accounts",
+      "A password that can only be used on one device",
+      "Sharing passwords with family members"
+    ],
+    "correct_answer": 1,
+    "explanation": "OTP phishing is critical in Zambia due to mobile money adoption. Attackers pose as bank/MNO support, create fake urgency (\"Your account is being hacked, share your OTP to stop it\"), then use the OTP to access and drain accounts.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.5,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.746Z",
+    "updated_at": "2026-03-05T06:12:32.746Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 35,
+  "fields": {
+    "category": 3,
+    "question": "How can you verify if an SMS claiming to be from your bank is legitimate?",
+    "scenario": null,
+    "options": [
+      "Check if it mentions your account balance",
+      "Call the bank's official number (on your card or their website), NOT any number in the SMS, to verify the message",
+      "Check if the grammar is correct",
+      "See if your friends received the same SMS"
+    ],
+    "correct_answer": 1,
+    "explanation": "Always verify by calling your bank's official number (printed on your debit/credit card or official website). Never call numbers provided in the suspicious SMS. Banks have dedicated fraud lines for exactly this purpose.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.2,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.755Z",
+    "updated_at": "2026-03-05T06:12:32.755Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 36,
+  "fields": {
+    "category": 3,
+    "question": "What is a \"smishing kit\" and why do they make SMS phishing more dangerous?",
+    "scenario": null,
+    "options": [
+      "A physical kit for testing SMS signals",
+      "Pre-built tools available on dark web marketplaces that make it easy for attackers with minimal technical skills to launch professional-looking SMS phishing campaigns",
+      "A customer service kit for mobile companies",
+      "A legitimate SMS marketing tool"
+    ],
+    "correct_answer": 1,
+    "explanation": "Smishing kits have lowered the technical barrier for SMS phishing. These ready-made packages include fake website templates, SMS sending infrastructure, and victim data collection. Anyone can now launch convincing campaigns.",
+    "difficulty": "advanced",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.65,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.767Z",
+    "updated_at": "2026-03-05T06:12:32.767Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 37,
+  "fields": {
+    "category": 3,
+    "question": "What should you do if you receive a suspicious SMS while your phone is on a public Wi-Fi network?",
+    "scenario": null,
+    "options": [
+      "Click any links in the SMS immediately",
+      "Disconnect from public Wi-Fi before investigating — public networks are often monitored by attackers",
+      "Reply to the SMS to unsubscribe",
+      "Nothing special — public Wi-Fi is safe"
+    ],
+    "correct_answer": 1,
+    "explanation": "Public Wi-Fi networks can be monitored by attackers using man-in-the-middle attacks. If you are on public Wi-Fi and receive suspicious messages, disconnect first. Avoid accessing sensitive accounts on public Wi-Fi altogether.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.45,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.779Z",
+    "updated_at": "2026-03-05T06:12:32.779Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 38,
+  "fields": {
+    "category": 4,
+    "question": "What is \"pretexting\" in social engineering?",
+    "scenario": null,
+    "options": [
+      "Sending text messages before the main attack",
+      "Creating a fabricated scenario (pretext) to manipulate victims into revealing information or taking actions they otherwise would not",
+      "Pre-screening text messages for viruses",
+      "A legal term for fraudulent contracts"
+    ],
+    "correct_answer": 1,
+    "explanation": "Pretexting involves creating a believable false scenario. Examples: pretending to be IT support needing your password, an auditor requiring financial records, or a new employee needing system access.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.45,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.797Z",
+    "updated_at": "2026-03-05T06:12:32.797Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 39,
+  "fields": {
+    "category": 4,
+    "question": "Which of these is an example of \"baiting\" in social engineering?",
+    "scenario": null,
+    "options": [
+      "Sending threatening emails",
+      "Leaving a USB drive labelled \"Salary Information 2024\" in a public place hoping someone will plug it in and unknowingly install malware",
+      "Posting fishing content online",
+      "Offering free food to get people to fill out a form"
+    ],
+    "correct_answer": 1,
+    "explanation": "Baiting exploits human curiosity or greed. A USB drive labelled with something enticing is a classic bait. When plugged in, it automatically installs malware. Never plug in unknown USB drives.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.45,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.814Z",
+    "updated_at": "2026-03-05T06:12:32.814Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 40,
+  "fields": {
+    "category": 4,
+    "question": "What is \"quid pro quo\" as a social engineering technique?",
+    "scenario": null,
+    "options": [
+      "A legal Latin phrase with no cyber relevance",
+      "Offering something valuable (like free IT support) in exchange for information or access, then using that access maliciously",
+      "A type of malware",
+      "A legitimate business practice"
+    ],
+    "correct_answer": 1,
+    "explanation": "\"Quid pro quo\" (something for something) in social engineering involves offering a service or benefit in exchange for information. Example: \"I'm from IT — I can fix your computer if you give me your login credentials.\"",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.5,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.823Z",
+    "updated_at": "2026-03-05T06:12:32.823Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 41,
+  "fields": {
+    "category": 4,
+    "question": "What is \"tailgating\" or \"piggybacking\" in physical security?",
+    "scenario": null,
+    "options": [
+      "Following someone's car too closely",
+      "Gaining physical access to a restricted area by following an authorised person through a secure door without authentication",
+      "Mounting a pig on your back",
+      "A type of shoulder surfing attack"
+    ],
+    "correct_answer": 1,
+    "explanation": "Tailgating involves physically following an authorised person through a secure door before it closes. It bypasses electronic access controls. Employees should never hold doors open for people they do not know.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.3,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.833Z",
+    "updated_at": "2026-03-05T06:12:32.833Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 42,
+  "fields": {
+    "category": 4,
+    "question": "A caller claims to be from your company's IT department and says your account was compromised. They ask for your password to \"secure your account\". What should you do?",
+    "scenario": null,
+    "options": [
+      "Provide the password quickly to secure your account",
+      "Refuse — IT departments never need your password. Call the IT helpdesk back using the official internal number to verify",
+      "Ask them to send a confirmation email first",
+      "Give them only part of your password"
+    ],
+    "correct_answer": 1,
+    "explanation": "Legitimate IT departments never need your password. They have administrative access to reset accounts without it. This is a classic vishing/social engineering attack. Always verify by calling back on a known number.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.2,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.843Z",
+    "updated_at": "2026-03-05T06:12:32.843Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 43,
+  "fields": {
+    "category": 4,
+    "question": "What is the principle of \"authority\" in social engineering and how is it exploited?",
+    "scenario": null,
+    "options": [
+      "Hackers need government authority to attack",
+      "Attackers impersonate authority figures (managers, police, tax authorities, IT managers) because people are psychologically conditioned to obey authority",
+      "Authority figures cannot be phished",
+      "Only employees in positions of authority are targeted"
+    ],
+    "correct_answer": 1,
+    "explanation": "The authority principle exploits our tendency to comply with requests from perceived authority figures. Attackers impersonate CEOs, government officials, police, or IT managers to make requests seem mandatory and bypass critical thinking.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.45,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.850Z",
+    "updated_at": "2026-03-05T06:12:32.850Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 44,
+  "fields": {
+    "category": 4,
+    "question": "What is \"shoulder surfing\" and in what contexts is it most dangerous?",
+    "scenario": null,
+    "options": [
+      "Surfing the internet while sitting on someone's shoulders",
+      "Observing someone's screen or keyboard to steal PINs, passwords, or sensitive information, most dangerous at ATMs, on public transport, and in coffee shops",
+      "A type of email phishing",
+      "Network surveillance from a remote location"
+    ],
+    "correct_answer": 1,
+    "explanation": "Shoulder surfing is observing someone enter sensitive information. High-risk locations: ATMs (stealing PINs), public transport (viewing work emails), coffee shops (capturing login credentials). Always use privacy screens and shield keypads.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.25,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.862Z",
+    "updated_at": "2026-03-05T06:12:32.862Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 45,
+  "fields": {
+    "category": 4,
+    "question": "What does \"social proof\" mean in social engineering attacks?",
+    "scenario": null,
+    "options": [
+      "Providing proof of your social media accounts",
+      "Exploiting the tendency to follow others' actions — fake claims like \"1,000 people already updated their details\" to make the attack seem normal and safe",
+      "A legal document proving social status",
+      "Proof that a social network is legitimate"
+    ],
+    "correct_answer": 1,
+    "explanation": "Social proof exploits our tendency to look to others' actions when unsure. In phishing: \"Other users have already confirmed their details.\" This makes the deception seem routine and normalises compliance.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.5,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.869Z",
+    "updated_at": "2026-03-05T06:12:32.869Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 46,
+  "fields": {
+    "category": 5,
+    "question": "What is a strong password? Which of these examples is strongest?",
+    "scenario": null,
+    "options": [
+      "Password123",
+      "P@ssw0rd",
+      "K9#mPq!2$Xv&3nL",
+      "MyBirthday1990"
+    ],
+    "correct_answer": 2,
+    "explanation": "Strong passwords combine: length (12+ characters), uppercase, lowercase, numbers, and special characters, and avoid dictionary words or personal information. \"K9#mPq!2$Xv&3nL\" meets all criteria.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.2,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.881Z",
+    "updated_at": "2026-03-05T06:12:32.881Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 47,
+  "fields": {
+    "category": 5,
+    "question": "What is \"credential stuffing\" and why is using unique passwords for each account important?",
+    "scenario": null,
+    "options": [
+      "Filling forms with random credentials",
+      "Attackers using stolen username/password combinations from one breach to automatically try logging into other services — unique passwords prevent this",
+      "Storing all passwords in one document",
+      "A technique for remembering multiple passwords"
+    ],
+    "correct_answer": 1,
+    "explanation": "Credential stuffing uses leaked credentials from one breach to attack other services. If you reuse passwords and one site is breached, all your accounts become vulnerable. A password manager helps maintain unique passwords.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.45,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.891Z",
+    "updated_at": "2026-03-05T06:12:32.891Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 48,
+  "fields": {
+    "category": 5,
+    "question": "What personal information should you NEVER share in response to an unsolicited contact?",
+    "scenario": null,
+    "options": [
+      "Your favourite colour",
+      "NRC number, bank account details, PINs, OTPs, passwords, or full date of birth in response to any unsolicited call, email, or SMS",
+      "Your hometown",
+      "Your first name"
+    ],
+    "correct_answer": 1,
+    "explanation": "In Zambia, your NRC number is a critical identifier used for banking and government services. Combined with other personal details, it enables identity theft. Legitimate services initiate contact through known channels, not unsolicited messages.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.2,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.900Z",
+    "updated_at": "2026-03-05T06:12:32.900Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 49,
+  "fields": {
+    "category": 5,
+    "question": "What is a \"data breach\" and how does it increase your phishing risk?",
+    "scenario": null,
+    "options": [
+      "A physical break-in at a data centre",
+      "Unauthorised access and exposure of personal data, which provides attackers with accurate personal details to craft convincing targeted phishing attacks",
+      "A break in your internet connection",
+      "Losing your phone containing personal data"
+    ],
+    "correct_answer": 1,
+    "explanation": "Data breaches expose your email, name, phone number, and sometimes passwords. Attackers use this information to create highly personalised phishing attacks (spear phishing) that reference your real details to seem legitimate.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.5,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.913Z",
+    "updated_at": "2026-03-05T06:12:32.914Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 50,
+  "fields": {
+    "category": 5,
+    "question": "What is a \"password manager\" and why is it recommended for security?",
+    "scenario": null,
+    "options": [
+      "A person who manages your passwords for you",
+      "Encrypted software that generates, stores, and autofills strong unique passwords for each site — eliminating the need to remember them",
+      "Writing passwords in a secure notebook",
+      "A browser feature that saves passwords"
+    ],
+    "correct_answer": 1,
+    "explanation": "Password managers generate and store unique, complex passwords for every site. You only need to remember one master password. They also autofill forms, making them faster than typing and immune to keyloggers on trusted devices.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.4,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.929Z",
+    "updated_at": "2026-03-05T06:12:32.929Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 51,
+  "fields": {
+    "category": 5,
+    "question": "What does HTTPS in a web address indicate and does it guarantee a site is safe?",
+    "scenario": null,
+    "options": [
+      "The site is completely safe and cannot be phishing",
+      "HTTPS means the connection is encrypted, but it does NOT mean the site itself is legitimate — phishing sites frequently use HTTPS",
+      "The site belongs to a government",
+      "The site has been verified by Google"
+    ],
+    "correct_answer": 1,
+    "explanation": "HTTPS encrypts data in transit but only means data between your browser and the server is encrypted — not that the site itself is trustworthy. Phishing sites routinely obtain SSL certificates to display the padlock icon. Always verify the domain.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.55,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.936Z",
+    "updated_at": "2026-03-05T06:12:32.936Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 52,
+  "fields": {
+    "category": 5,
+    "question": "What is \"two-factor authentication\" (2FA) and which type is most secure?",
+    "scenario": null,
+    "options": [
+      "Using two different passwords",
+      "An additional verification step after password login; hardware security keys (FIDO2/WebAuthn) are most secure, followed by authenticator apps, then SMS codes",
+      "Logging in from two devices simultaneously",
+      "Two-step email verification"
+    ],
+    "correct_answer": 1,
+    "explanation": "MFA adds a second verification layer. Security hierarchy (most to least secure): hardware keys > authenticator apps (Google Authenticator, Authy) > SMS codes. SMS can be intercepted via SIM swapping, while hardware keys resist phishing completely.",
+    "difficulty": "advanced",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.6,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.946Z",
+    "updated_at": "2026-03-05T06:12:32.946Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 53,
+  "fields": {
+    "category": 5,
+    "question": "What should you do with old bank statements, utility bills, and documents containing personal information?",
+    "scenario": null,
+    "options": [
+      "Throw them in the recycling bin",
+      "Shred them using a cross-cut shredder before disposal — physical documents can be used for identity theft via \"dumpster diving\"",
+      "Keep them indefinitely",
+      "Burn them"
+    ],
+    "correct_answer": 1,
+    "explanation": "Physical documents with personal/financial information should be shredded. \"Dumpster diving\" (searching through discarded materials) is a real technique used for identity theft and social engineering. Cross-cut shredding makes reconstruction impossible.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.25,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.954Z",
+    "updated_at": "2026-03-05T06:12:32.954Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 54,
+  "fields": {
+    "category": 6,
+    "question": "What is ZM-CIRT and what is its role in Zambia's cybersecurity?",
+    "scenario": null,
+    "options": [
+      "A private cybersecurity company in Zambia",
+      "Zambia's Computer Incident Response Team — the national body responsible for coordinating responses to cybersecurity incidents and receiving phishing reports",
+      "A mobile network operator",
+      "A law enforcement unit"
+    ],
+    "correct_answer": 1,
+    "explanation": "ZM-CIRT (Zambia Computer Incident Response Team) operates under ZICTA and is responsible for monitoring cyber threats, coordinating incident responses, and providing cybersecurity advice. Report incidents to incident@zm-cirt.zm.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.25,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.968Z",
+    "updated_at": "2026-03-05T06:12:32.968Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 55,
+  "fields": {
+    "category": 6,
+    "question": "What should you do FIRST if you believe you have fallen victim to a phishing attack?",
+    "scenario": null,
+    "options": [
+      "Post about it on social media",
+      "Immediately change all passwords (starting with email and banking), contact your bank to freeze accounts if financial data was compromised, and document everything",
+      "Wait 24 hours to see if anything happens",
+      "Delete all your emails"
+    ],
+    "correct_answer": 1,
+    "explanation": "Speed is critical. First: change passwords (email first, as it can reset others). If financial data was shared, call your bank immediately to freeze accounts. Document everything (screenshots, timestamps) for reporting.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.2,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:32.984Z",
+    "updated_at": "2026-03-05T06:12:32.984Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 56,
+  "fields": {
+    "category": 6,
+    "question": "To whom should you report a phishing email that impersonates Zanaco Bank in Zambia?",
+    "scenario": null,
+    "options": [
+      "Only to the police",
+      "To Zanaco's fraud department directly, and also to ZICTA/ZM-CIRT (incident@zm-cirt.zm)",
+      "To Google or Microsoft only",
+      "To your friends on WhatsApp"
+    ],
+    "correct_answer": 1,
+    "explanation": "Report to multiple channels: (1) The impersonated organisation's fraud department, (2) ZM-CIRT for national tracking, (3) ZICTA if the phishing constitutes a cybercrime under the Zambia Cyber Security and Cyber Crimes Act.",
+    "difficulty": "beginner",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.25,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:33.003Z",
+    "updated_at": "2026-03-05T06:12:33.003Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 57,
+  "fields": {
+    "category": 6,
+    "question": "What evidence should you preserve when reporting a phishing incident?",
+    "scenario": null,
+    "options": [
+      "Delete all evidence to protect your privacy",
+      "Preserve the original email (with headers), screenshots of suspicious websites, SMS messages, transaction records, and communication logs — do not delete originals",
+      "Only keep financial transaction records",
+      "You do not need evidence to report"
+    ],
+    "correct_answer": 1,
+    "explanation": "Evidence preservation is critical for investigation and prosecution. Keep: original emails (do not forward — forward loses headers), screenshots with timestamps, SMS screenshots, bank statements. This evidence is essential for authorities.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.4,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:33.016Z",
+    "updated_at": "2026-03-05T06:12:33.016Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 58,
+  "fields": {
+    "category": 6,
+    "question": "Under which Zambian law can phishing attackers be prosecuted?",
+    "scenario": null,
+    "options": [
+      "The Banking and Financial Services Act",
+      "The Cyber Security and Cyber Crimes Act No. 2 of 2021, which criminalises phishing and related computer fraud offences",
+      "The Electronic Communications Act only",
+      "There is no law against phishing in Zambia"
+    ],
+    "correct_answer": 1,
+    "explanation": "Zambia's Cyber Security and Cyber Crimes Act No. 2 of 2021 specifically addresses cybercrime including phishing, computer fraud, and identity theft. Offenders face significant prison sentences and fines.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.5,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:33.025Z",
+    "updated_at": "2026-03-05T06:12:33.025Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 59,
+  "fields": {
+    "category": 6,
+    "question": "What is the role of ZICTA in cybersecurity in Zambia?",
+    "scenario": null,
+    "options": [
+      "ZICTA is a mobile network operator",
+      "Zambia Information and Communications Technology Authority — the regulatory body that oversees ICT including cybersecurity regulations and enforcement",
+      "ZICTA provides free internet access",
+      "ZICTA is only responsible for radio broadcasting"
+    ],
+    "correct_answer": 1,
+    "explanation": "ZICTA is Zambia's ICT regulator, responsible for cybersecurity oversight, internet governance, and enforcement of cybercrime laws. They work with ZM-CIRT on national cybersecurity incidents.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.45,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:33.038Z",
+    "updated_at": "2026-03-05T06:12:33.038Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 60,
+  "fields": {
+    "category": 6,
+    "question": "How should you safely forward a suspicious email to report it without infecting others?",
+    "scenario": null,
+    "options": [
+      "Forward it normally with \"FWD:\" in the subject line",
+      "Forward as an attachment (not inline) so the malicious links/code are contained, or use email reporting buttons if available",
+      "Copy and paste the text into a new email",
+      "Print and scan it then send the image"
+    ],
+    "correct_answer": 1,
+    "explanation": "Forwarding as an attachment preserves the original headers for analysis and prevents accidentally clicking links. Many email clients and anti-phishing services (like reportphishing@apwg.org) prefer attachments for forensic analysis.",
+    "difficulty": "advanced",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.6,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:33.046Z",
+    "updated_at": "2026-03-05T06:12:33.046Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 61,
+  "fields": {
+    "category": 6,
+    "question": "What is the APWG and how can Zambians use it to fight phishing?",
+    "scenario": null,
+    "options": [
+      "A Zambian government agency",
+      "Anti-Phishing Working Group — an international coalition where anyone can report phishing by forwarding emails to reportphishing@apwg.org",
+      "A private security firm",
+      "A social media reporting platform"
+    ],
+    "correct_answer": 1,
+    "explanation": "APWG is a global coalition of industry, government, and law enforcement fighting phishing. Anyone worldwide can forward phishing emails to reportphishing@apwg.org. This contributes to global threat intelligence that helps shut down phishing sites.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.5,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:33.054Z",
+    "updated_at": "2026-03-05T06:12:33.054Z"
+  }
+},
+{
+  "model": "quiz.adaptivequestion",
+  "pk": 62,
+  "fields": {
+    "category": 6,
+    "question": "What should an organisation do AFTER recovering from a phishing incident?",
+    "scenario": null,
+    "options": [
+      "Keep it secret to avoid reputational damage",
+      "Conduct a post-incident review, update security measures, provide additional training, notify affected parties as legally required, and share lessons learned without blame",
+      "Blame and discipline the employee who fell for it",
+      "Only change the victim's password"
+    ],
+    "correct_answer": 1,
+    "explanation": "Post-incident activities are crucial for improvement: review what happened (without blame), update controls, provide targeted training, notify affected individuals, comply with legal reporting requirements, and document lessons to prevent recurrence.",
+    "difficulty": "intermediate",
+    "discrimination_index": 1.0,
+    "difficulty_parameter": 0.45,
+    "is_active": true,
+    "created_by": null,
+    "created_at": "2026-03-05T06:12:33.062Z",
+    "updated_at": "2026-03-05T06:12:33.062Z"
+  }
+},
+{
+  "model": "quiz.adaptivequizattempt",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "category": 1,
+    "quiz_type": "adaptive",
+    "total_questions": 10,
+    "correct_answers": 0,
+    "score_percentage": null,
+    "estimated_level": null,
+    "time_taken_seconds": null,
+    "difficulty_progression": [],
+    "status": "in_progress",
+    "started_at": "2026-03-05T09:27:22.187Z",
+    "completed_at": null
+  }
+},
+{
+  "model": "quiz.adaptivequizattempt",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "category": 1,
+    "quiz_type": "adaptive",
+    "total_questions": 10,
+    "correct_answers": 0,
+    "score_percentage": null,
+    "estimated_level": null,
+    "time_taken_seconds": null,
+    "difficulty_progression": [],
+    "status": "in_progress",
+    "started_at": "2026-03-05T10:53:06.618Z",
+    "completed_at": null
+  }
+},
+{
+  "model": "quiz.adaptivequizattempt",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "category": 1,
+    "quiz_type": "adaptive",
+    "total_questions": 10,
+    "correct_answers": 0,
+    "score_percentage": null,
+    "estimated_level": null,
+    "time_taken_seconds": null,
+    "difficulty_progression": [],
+    "status": "in_progress",
+    "started_at": "2026-03-08T13:47:07.543Z",
+    "completed_at": null
+  }
+},
+{
+  "model": "quiz.adaptivequizattempt",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "hosea"
+    ],
+    "category": 1,
+    "quiz_type": "pre_test",
+    "total_questions": 15,
+    "correct_answers": 0,
+    "score_percentage": null,
+    "estimated_level": null,
+    "time_taken_seconds": null,
+    "difficulty_progression": [],
+    "status": "in_progress",
+    "started_at": "2026-03-08T14:59:49.970Z",
+    "completed_at": null
+  }
+},
+{
+  "model": "quiz.adaptivequizanswer",
+  "pk": 1,
+  "fields": {
+    "attempt": 2,
+    "question": 10,
+    "selected_answer": 2,
+    "is_correct": true,
+    "time_taken_seconds": 1,
+    "question_order": 1
+  }
+},
+{
+  "model": "quiz.adaptivequizanswer",
+  "pk": 2,
+  "fields": {
+    "attempt": 2,
+    "question": 8,
+    "selected_answer": 1,
+    "is_correct": true,
+    "time_taken_seconds": 10,
+    "question_order": 2
+  }
+},
+{
+  "model": "quiz.adaptivequizanswer",
+  "pk": 3,
+  "fields": {
+    "attempt": 2,
+    "question": 3,
+    "selected_answer": 2,
+    "is_correct": false,
+    "time_taken_seconds": 2,
+    "question_order": 3
+  }
+},
+{
+  "model": "quiz.adaptivequizanswer",
+  "pk": 4,
+  "fields": {
+    "attempt": 2,
+    "question": 16,
+    "selected_answer": 2,
+    "is_correct": true,
+    "time_taken_seconds": 6,
+    "question_order": 4
+  }
+},
+{
+  "model": "quiz.adaptivequizanswer",
+  "pk": 5,
+  "fields": {
+    "attempt": 2,
+    "question": 2,
+    "selected_answer": 2,
+    "is_correct": true,
+    "time_taken_seconds": 67,
+    "question_order": 5
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 1,
+  "fields": {
+    "name": "First Steps",
+    "description": "Completed your first lesson on the platform.",
+    "icon": "AcademicCapIcon",
+    "requirement": "Complete 1 lesson",
+    "category": "learning",
+    "criteria": {
+      "type": "lessons_completed",
+      "count": 1
+    },
+    "sort_order": 1
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 2,
+  "fields": {
+    "name": "Eager Learner",
+    "description": "Completed 5 lessons across the platform.",
+    "icon": "BookOpenIcon",
+    "requirement": "Complete 5 lessons",
+    "category": "learning",
+    "criteria": {
+      "type": "lessons_completed",
+      "count": 5
+    },
+    "sort_order": 2
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 3,
+  "fields": {
+    "name": "Knowledge Seeker",
+    "description": "Completed 10 lessons across the platform.",
+    "icon": "StarIcon",
+    "requirement": "Complete 10 lessons",
+    "category": "learning",
+    "criteria": {
+      "type": "lessons_completed",
+      "count": 10
+    },
+    "sort_order": 3
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 4,
+  "fields": {
+    "name": "Quiz Starter",
+    "description": "Completed your first quiz.",
+    "icon": "CheckCircleIcon",
+    "requirement": "Complete 1 quiz",
+    "category": "quiz",
+    "criteria": {
+      "type": "quiz_attempts",
+      "count": 1
+    },
+    "sort_order": 4
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 5,
+  "fields": {
+    "name": "Quiz Champion",
+    "description": "Completed 5 quizzes.",
+    "icon": "TrophyIcon",
+    "requirement": "Complete 5 quizzes",
+    "category": "quiz",
+    "criteria": {
+      "type": "quiz_attempts",
+      "count": 5
+    },
+    "sort_order": 5
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 6,
+  "fields": {
+    "name": "Email Detective",
+    "description": "Scored 80% or higher on an Email Phishing Detection quiz.",
+    "icon": "EnvelopeIcon",
+    "requirement": "Score 80%+ on Email Phishing quiz",
+    "category": "mastery",
+    "criteria": {
+      "type": "quiz_score",
+      "category_slug": "email-phishing",
+      "min_score": 80
+    },
+    "sort_order": 6
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 7,
+  "fields": {
+    "name": "SMS Shield",
+    "description": "Scored 80% or higher on the SMS & Mobile Phishing quiz.",
+    "icon": "DevicePhoneMobileIcon",
+    "requirement": "Score 80%+ on SMS Phishing quiz",
+    "category": "mastery",
+    "criteria": {
+      "type": "quiz_score",
+      "category_slug": "sms-mobile-phishing",
+      "min_score": 80
+    },
+    "sort_order": 7
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 8,
+  "fields": {
+    "name": "Social Defender",
+    "description": "Scored 80% or higher on the Social Engineering Defense quiz.",
+    "icon": "ShieldCheckIcon",
+    "requirement": "Score 80%+ on Social Engineering quiz",
+    "category": "mastery",
+    "criteria": {
+      "type": "quiz_score",
+      "category_slug": "social-engineering",
+      "min_score": 80
+    },
+    "sort_order": 8
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 9,
+  "fields": {
+    "name": "Perfect Score",
+    "description": "Achieved 100% on any quiz.",
+    "icon": "SparklesIcon",
+    "requirement": "Score 100% on any quiz",
+    "category": "mastery",
+    "criteria": {
+      "type": "perfect_score"
+    },
+    "sort_order": 9
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 10,
+  "fields": {
+    "name": "Video Learner",
+    "description": "Watched all available educational videos.",
+    "icon": "PlayCircleIcon",
+    "requirement": "Watch all published videos",
+    "category": "engagement",
+    "criteria": {
+      "type": "all_videos_watched"
+    },
+    "sort_order": 10
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 11,
+  "fields": {
+    "name": "Platform Master",
+    "description": "Completed 10+ lessons and maintained a 70%+ quiz average.",
+    "icon": "CrownIcon",
+    "requirement": "Complete 10 lessons and 70%+ quiz average",
+    "category": "mastery",
+    "criteria": {
+      "type": "platform_complete"
+    },
+    "sort_order": 11
+  }
+},
+{
+  "model": "badges.badge",
+  "pk": 12,
+  "fields": {
+    "name": "High Achiever",
+    "description": "Maintained an average quiz score of 85% or above.",
+    "icon": "ChartBarIcon",
+    "requirement": "Maintain 85%+ average across all quizzes",
+    "category": "quiz",
+    "criteria": {
+      "type": "all_quizzes_avg",
+      "min_avg": 85
+    },
+    "sort_order": 12
+  }
+}
+]

@@ -1,0 +1,173 @@
+{% extends "admin_panel/base_admin.html" %}
+{% block title %}My Profile{% endblock %}
+{% block page_title %}My Profile{% endblock %}
+{% block page_subtitle %}Update your account details and profile picture{% endblock %}
+
+{% block content %}
+<div class="row g-4 justify-content-center">
+
+  <!-- ── Avatar card ── -->
+  <div class="col-lg-4">
+    <div class="card border-0 shadow-sm text-center">
+      <div class="card-body py-4">
+
+        <!-- Avatar display -->
+        <div class="position-relative d-inline-block mb-3">
+          {% if admin_user.profile_picture %}
+            <img src="{{ admin_user.profile_picture.url }}" id="avatarPreview"
+                 class="rounded-circle object-fit-cover border border-3 border-primary shadow"
+                 style="width:110px;height:110px;" alt="Profile picture">
+          {% else %}
+            <div id="avatarInitial"
+                 class="rounded-circle bg-primary d-flex align-items-center justify-content-center text-white fw-bold mx-auto shadow"
+                 style="width:110px;height:110px;font-size:2.5rem;">
+              {{ admin_user.username|first|upper }}
+            </div>
+            <img id="avatarPreview" src="" class="rounded-circle object-fit-cover border border-3 border-primary shadow d-none"
+                 style="width:110px;height:110px;" alt="Profile picture">
+          {% endif %}
+          <!-- Camera overlay -->
+          <label for="pictureInput"
+                 class="position-absolute bottom-0 end-0 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                 style="width:32px;height:32px;cursor:pointer;" title="Change photo">
+            <i class="bi bi-camera-fill" style="font-size:0.85rem;"></i>
+          </label>
+        </div>
+
+        <h5 class="fw-bold mb-0">{{ admin_user.get_full_name|default:admin_user.username }}</h5>
+        <div class="text-muted small mb-2">{{ admin_user.email }}</div>
+
+        <div class="d-flex justify-content-center gap-2 flex-wrap mb-3">
+          {% if admin_user.is_superuser %}
+            <span class="badge bg-danger">Superuser</span>
+          {% else %}
+            <span class="badge bg-warning text-dark">Staff</span>
+          {% endif %}
+          <span class="badge bg-secondary">Joined {{ admin_user.date_joined|date:"M Y" }}</span>
+        </div>
+
+        <div class="text-muted small">
+          <i class="bi bi-clock me-1"></i>Last login: {{ admin_user.last_login|date:"d M Y H:i"|default:"Never" }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Edit form ── -->
+  <div class="col-lg-8">
+    <form method="post" action="{% url 'admin_panel:admin_profile' %}" enctype="multipart/form-data" id="profileForm">
+      {% csrf_token %}
+      <!-- Hidden file input (triggered by camera icon) -->
+      <input type="file" name="profile_picture" id="pictureInput" accept="image/*" class="d-none">
+
+      <!-- Personal info -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white border-bottom py-3">
+          <h6 class="fw-bold mb-0"><i class="bi bi-person me-2 text-primary"></i>Personal Information</h6>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">First Name</label>
+              <input type="text" name="first_name" class="form-control"
+                     value="{{ admin_user.first_name }}" placeholder="First name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Last Name</label>
+              <input type="text" name="last_name" class="form-control"
+                     value="{{ admin_user.last_name }}" placeholder="Last name">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Username</label>
+              <input type="text" class="form-control bg-light" value="{{ admin_user.username }}" disabled>
+              <div class="form-text">Username cannot be changed.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Email</label>
+              <input type="email" name="email" class="form-control"
+                     value="{{ admin_user.email }}" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Phone Number</label>
+              <input type="text" name="phone_number" class="form-control"
+                     value="{{ admin_user.phone_number|default:'' }}" placeholder="+44 7700 900000">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Change password -->
+      <div class="card border-0 shadow-sm mb-4">
+        <div class="card-header bg-white border-bottom py-3">
+          <h6 class="fw-bold mb-0"><i class="bi bi-lock me-2 text-warning"></i>Change Password
+            <small class="text-muted fw-normal">(leave blank to keep current)</small>
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">New Password</label>
+              <div class="input-group">
+                <input type="password" name="new_password" id="pw1" class="form-control"
+                       placeholder="Min 8 characters">
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePw('pw1',this)">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold small">Confirm New Password</label>
+              <div class="input-group">
+                <input type="password" name="new_password2" id="pw2" class="form-control"
+                       placeholder="Repeat password">
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePw('pw2',this)">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex gap-2 justify-content-end">
+        <a href="{% url 'admin_panel:dashboard' %}" class="btn btn-outline-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary px-4">
+          <i class="bi bi-check-lg me-1"></i> Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Preview image before upload
+document.getElementById('pictureInput').addEventListener('change', function() {
+  const file = this.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const preview = document.getElementById('avatarPreview');
+    const initial = document.getElementById('avatarInitial');
+    preview.src = e.target.result;
+    preview.classList.remove('d-none');
+    if (initial) initial.classList.add('d-none');
+  };
+  reader.readAsDataURL(file);
+});
+
+function togglePw(id, btn) {
+  const f = document.getElementById(id);
+  const i = btn.querySelector('i');
+  if (f.type === 'password') {
+    f.type = 'text';
+    i.classList.replace('bi-eye', 'bi-eye-slash');
+  } else {
+    f.type = 'password';
+    i.classList.replace('bi-eye-slash', 'bi-eye');
+  }
+}
+</script>
+{% endblock %}

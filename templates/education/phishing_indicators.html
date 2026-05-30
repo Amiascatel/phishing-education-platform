@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% block title %}Phishing Indicators - PhishGuard{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+  <div class="mb-4">
+    <h2 class="fw-bold mb-1">Phishing Indicators</h2>
+    <p class="text-muted mb-0">Learn to recognise the warning signs of phishing attacks</p>
+  </div>
+
+  {% if grouped_indicators %}
+
+    <!-- Type tabs -->
+    <ul class="nav nav-pills mb-4 flex-wrap gap-1" id="indicatorTabs">
+      <li class="nav-item">
+        <button class="nav-link active" data-type="all" onclick="filterType('all', this)">
+          All <span class="badge bg-secondary ms-1">{{ indicators|length }}</span>
+        </button>
+      </li>
+      {% for type_key, items in grouped_indicators.items %}
+      <li class="nav-item">
+        <button class="nav-link" data-type="{{ type_key }}" onclick="filterType('{{ type_key }}', this)">
+          {% if type_key == 'url' %}<i class="bi bi-link-45deg me-1"></i>URL
+          {% elif type_key == 'sender' %}<i class="bi bi-envelope-exclamation me-1"></i>Sender
+          {% elif type_key == 'content' %}<i class="bi bi-file-text me-1"></i>Content
+          {% elif type_key == 'attachment' %}<i class="bi bi-paperclip me-1"></i>Attachment
+          {% elif type_key == 'urgency' %}<i class="bi bi-exclamation-triangle me-1"></i>Urgency
+          {% else %}{{ type_key|title }}
+          {% endif %}
+          <span class="badge bg-secondary ms-1">{{ items|length }}</span>
+        </button>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Indicator cards -->
+    {% for type_key, items in grouped_indicators.items %}
+    <div class="indicator-group mb-5" data-type="{{ type_key }}">
+      <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+        {% if type_key == 'url' %}
+          <span class="badge bg-primary">URL Indicators</span>
+        {% elif type_key == 'sender' %}
+          <span class="badge bg-info">Sender Indicators</span>
+        {% elif type_key == 'content' %}
+          <span class="badge bg-warning text-dark">Content Indicators</span>
+        {% elif type_key == 'attachment' %}
+          <span class="badge bg-secondary">Attachment Indicators</span>
+        {% elif type_key == 'urgency' %}
+          <span class="badge bg-danger">Urgency Indicators</span>
+        {% else %}
+          <span class="badge bg-dark">{{ type_key|title }}</span>
+        {% endif %}
+      </h5>
+
+      <div class="row g-3">
+        {% for indicator in items %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <!-- Severity bar -->
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="fw-bold mb-0">{{ indicator.name }}</h6>
+                <span class="badge
+                  {% if indicator.severity >= 4 %}bg-danger
+                  {% elif indicator.severity >= 3 %}bg-warning text-dark
+                  {% else %}bg-success{% endif %}
+                  small">
+                  {% if indicator.severity >= 4 %}High Risk
+                  {% elif indicator.severity >= 3 %}Medium
+                  {% else %}Low{% endif %}
+                </span>
+              </div>
+
+              <p class="small text-muted mb-3">{{ indicator.description }}</p>
+
+              {% if indicator.example %}
+              <div class="bg-light rounded p-2">
+                <small class="text-muted fw-semibold d-block mb-1">
+                  <i class="bi bi-lightbulb me-1 text-warning"></i>Example
+                </small>
+                <small class="text-dark font-monospace">{{ indicator.example }}</small>
+              </div>
+              {% endif %}
+            </div>
+            <!-- Severity progress -->
+            <div class="card-footer bg-transparent border-0 pt-0">
+              <div class="d-flex align-items-center gap-2">
+                <small class="text-muted">Severity</small>
+                <div class="progress flex-grow-1" style="height:5px;">
+                  <div class="progress-bar
+                    {% if indicator.severity >= 4 %}bg-danger
+                    {% elif indicator.severity >= 3 %}bg-warning
+                    {% else %}bg-success{% endif %}"
+                    style="width:{{ indicator.severity }}0%"></div>
+                </div>
+                <small class="text-muted">{{ indicator.severity }}/5</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+
+  {% else %}
+    <div class="text-center py-5">
+      <i class="bi bi-shield-exclamation fs-1 text-muted d-block mb-3"></i>
+      <h5 class="text-muted">Not Available Yet</h5>
+      <p class="text-muted small">Phishing indicators will appear here once the admin adds them.</p>
+      <a href="{% url 'education:module_list' %}" class="btn btn-primary">
+        Browse Learning Modules
+      </a>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function filterType(type, btn) {
+  // Update active pill
+  document.querySelectorAll('#indicatorTabs .nav-link').forEach(function(b) {
+    b.classList.remove('active');
+  });
+  btn.classList.add('active');
+
+  // Show/hide groups
+  document.querySelectorAll('.indicator-group').forEach(function(group) {
+    if (type === 'all' || group.dataset.type === type) {
+      group.style.display = '';
+    } else {
+      group.style.display = 'none';
+    }
+  });
+}
+</script>
+{% endblock %}

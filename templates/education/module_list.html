@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load education_tags %}
+{% block title %}Learning Modules - PhishGuard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">Learning Modules</h1>
+    <div>
+        <select class="form-select form-select-sm d-inline-block w-auto me-2" onchange="filterByType(this.value)">
+            <option value="">All Types</option>
+            {% for value, label in module_types %}
+            <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+        <select class="form-select form-select-sm d-inline-block w-auto" onchange="filterByDifficulty(this.value)">
+            <option value="">All Levels</option>
+            {% for value, label in difficulty_levels %}
+            <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    {% for module in modules %}
+    <div class="col-md-4 mb-4">
+        <div class="card module-card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="badge bg-{% if module.difficulty == 'beginner' %}success{% elif module.difficulty == 'intermediate' %}warning{% else %}danger{% endif %}">
+                        {{ module.get_difficulty_display }}
+                    </span>
+                    <span class="badge bg-secondary">{{ module.points }} pts</span>
+                </div>
+                <h5 class="card-title">{{ module.title }}</h5>
+                <p class="card-text text-muted">{{ module.description|truncatewords:20 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                        <i class="bi bi-clock"></i> {{ module.duration_minutes }} min
+                    </small>
+                    {% if module.id in user_progress %}
+                        {% if user_progress|get_item:module.id.completed %}
+                        <span class="badge bg-success"><i class="bi bi-check"></i> Completed</span>
+                        {% else %}
+                        <span class="badge bg-warning">In Progress</span>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-footer bg-transparent">
+                <a href="{% url 'education:module_detail' module.slug %}" class="btn btn-primary btn-sm w-100">
+                    {% if module.id in user_progress %}Continue{% else %}Start{% endif %} Module
+                </a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i> No modules available yet. Check back soon!
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% block extra_js %}
+<script>
+function filterByType(type) {
+    const url = new URL(window.location);
+    if (type) {
+        url.searchParams.set('type', type);
+    } else {
+        url.searchParams.delete('type');
+    }
+    window.location = url;
+}
+
+function filterByDifficulty(difficulty) {
+    const url = new URL(window.location);
+    if (difficulty) {
+        url.searchParams.set('difficulty', difficulty);
+    } else {
+        url.searchParams.delete('difficulty');
+    }
+    window.location = url;
+}
+</script>
+{% endblock %}
+{% endblock %}

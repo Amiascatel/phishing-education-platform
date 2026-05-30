@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block title %}Email Simulation - PhishGuard{% endblock %}
+{% block content %}
+<div class="container py-4" style="max-width:860px;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h4 class="fw-bold mb-0">Email Phishing Simulation</h4>
+      <small class="text-muted">Analyse this email and decide if it is phishing</small>
+    </div>
+    <span class="badge bg-warning text-dark">{{ template.difficulty|title }}</span>
+  </div>
+
+  <!-- Fake email viewer -->
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white border-bottom">
+      <div class="row g-1 small">
+        <div class="col-12"><strong>From:</strong> {{ template.sender_name }} &lt;{{ template.sender_email }}&gt;</div>
+        <div class="col-12"><strong>Subject:</strong> {{ template.subject }}</div>
+      </div>
+    </div>
+    <div class="card-body p-4" style="min-height:200px; white-space:pre-wrap; font-family:inherit;">
+      {{ template.body }}
+    </div>
+  </div>
+
+  <!-- Response form -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-body">
+      <h6 class="fw-bold mb-3">Your Analysis</h6>
+      <form id="simForm">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Is this email phishing?</label>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="identified_as_phishing" id="yes" value="true">
+              <label class="form-check-label text-danger" for="yes"><i class="bi bi-exclamation-triangle me-1"></i>Yes, it's phishing</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="identified_as_phishing" id="no" value="false">
+              <label class="form-check-label text-success" for="no"><i class="bi bi-check-circle me-1"></i>Looks legitimate</label>
+            </div>
+          </div>
+        </div>
+
+        {% if indicators %}
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Which red flags did you spot? (select all that apply)</label>
+          <div class="row g-2">
+            {% for indicator in indicators %}
+            <div class="col-md-6">
+              <div class="form-check border rounded p-2">
+                <input class="form-check-input" type="checkbox" name="indicators" value="{{ indicator.id }}" id="ind{{ indicator.id }}">
+                <label class="form-check-label small" for="ind{{ indicator.id }}">
+                  <strong>{{ indicator.name }}</strong><br>
+                  <span class="text-muted">{{ indicator.description|truncatechars:60 }}</span>
+                </label>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="reported" name="reported">
+            <label class="form-check-label" for="reported"><i class="bi bi-flag me-1"></i>I would report this email</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="clicked" name="clicked_link">
+            <label class="form-check-label" for="clicked"><i class="bi bi-link me-1"></i>I would click a link in this email</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="submitted" name="submitted_data">
+            <label class="form-check-label" for="submitted"><i class="bi bi-person-fill-exclamation me-1"></i>I would submit personal info</label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary px-4">
+          <i class="bi bi-send me-1"></i> Submit Analysis
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+document.getElementById('simForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const fd = new FormData(this);
+  const indicators = fd.getAll('indicators').map(Number);
+  const identified = fd.get('identified_as_phishing');
+  if (!identified) { alert('Please choose whether this email is phishing or not.'); return; }
+  const payload = {
+    identified_as_phishing: identified === 'true',
+    clicked_link: fd.get('clicked_link') === 'on',
+    submitted_data: fd.get('submitted_data') === 'on',
+    reported: fd.get('reported') === 'on',
+    indicators: indicators,
+  };
+  fetch('/simulations/{{ simulation.id }}/submit/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'X-CSRFToken': fd.get('csrfmiddlewaretoken')},
+    body: JSON.stringify(payload),
+  })
+  .then(r => r.json())
+  .then(data => { if (data.redirect_url) window.location.href = data.redirect_url; })
+  .catch(err => console.error(err));
+});
+</script>
+{% endblock %}

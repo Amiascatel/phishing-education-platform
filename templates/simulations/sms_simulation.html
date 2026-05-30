@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block title %}SMS Simulation - PhishGuard{% endblock %}
+{% block content %}
+<div class="container py-4" style="max-width:600px;">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h4 class="fw-bold mb-0">SMS Phishing Simulation</h4>
+      <small class="text-muted">Analyse this text message and decide if it is phishing</small>
+    </div>
+    <span class="badge bg-warning text-dark">{{ template.difficulty|title }}</span>
+  </div>
+
+  <!-- Fake SMS viewer -->
+  <div class="card border-0 shadow mb-4" style="max-width:380px;margin:0 auto;">
+    <div class="card-header bg-dark text-white text-center py-2">
+      <small>Messages — {{ template.sender_name }}</small>
+    </div>
+    <div class="card-body bg-light p-4">
+      <div class="bg-white border rounded-3 p-3 shadow-sm" style="max-width:80%;margin-left:auto;">
+        <p class="mb-1" style="white-space:pre-wrap;">{{ template.body }}</p>
+        <small class="text-muted d-block text-end">{{ template.sender_name }}</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Response form -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-body">
+      <h6 class="fw-bold mb-3">Your Analysis</h6>
+      <form id="smsForm">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Is this SMS phishing?</label>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="identified_as_phishing" id="smsYes" value="true">
+              <label class="form-check-label text-danger" for="smsYes">Yes, it's smishing</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="identified_as_phishing" id="smsNo" value="false">
+              <label class="form-check-label text-success" for="smsNo">Looks legitimate</label>
+            </div>
+          </div>
+        </div>
+
+        {% if indicators %}
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Red flags spotted:</label>
+          {% for indicator in indicators %}
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="indicators" value="{{ indicator.id }}" id="sind{{ indicator.id }}">
+            <label class="form-check-label small" for="sind{{ indicator.id }}">{{ indicator.name }}</label>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="smsReported" name="reported">
+            <label class="form-check-label" for="smsReported">I would report this message</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="smsClicked" name="clicked_link">
+            <label class="form-check-label" for="smsClicked">I would click the link</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="smsSubmitted" name="submitted_data">
+            <label class="form-check-label" for="smsSubmitted">I would submit personal info</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary px-4"><i class="bi bi-send me-1"></i> Submit Analysis</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+document.getElementById('smsForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const fd = new FormData(this);
+  const identified = fd.get('identified_as_phishing');
+  if (!identified) { alert('Please select an option.'); return; }
+  const payload = {
+    identified_as_phishing: identified === 'true',
+    clicked_link: fd.get('clicked_link') === 'on',
+    submitted_data: fd.get('submitted_data') === 'on',
+    reported: fd.get('reported') === 'on',
+    indicators: fd.getAll('indicators').map(Number),
+  };
+  fetch('/simulations/{{ simulation.id }}/submit/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'X-CSRFToken': fd.get('csrfmiddlewaretoken')},
+    body: JSON.stringify(payload),
+  })
+  .then(r => r.json())
+  .then(data => { if (data.redirect_url) window.location.href = data.redirect_url; })
+  .catch(err => console.error(err));
+});
+</script>
+{% endblock %}

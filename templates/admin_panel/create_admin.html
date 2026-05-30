@@ -1,0 +1,218 @@
+{% extends 'admin_panel/base_admin.html' %}
+{% block title %}Admin Users{% endblock %}
+{% block page_title %}Admin Users{% endblock %}
+{% block page_subtitle %}Create and manage administrator accounts{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+
+  <!-- ── Create form (superuser only) ── -->
+  <div class="col-lg-5">
+    {% if request.user.is_superuser %}
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white border-bottom py-3">
+        <h6 class="fw-bold mb-0"><i class="bi bi-person-plus me-2 text-primary"></i>Create New Admin User</h6>
+      </div>
+      <div class="card-body">
+        <form method="post" action="{% url 'admin_panel:create_admin' %}" novalidate>
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-6">
+              <label class="form-label fw-semibold small">First Name</label>
+              <input type="text" name="first_name" class="form-control" placeholder="First name">
+            </div>
+            <div class="col-6">
+              <label class="form-label fw-semibold small">Last Name</label>
+              <input type="text" name="last_name" class="form-control" placeholder="Last name">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Username <span class="text-danger">*</span></label>
+              <input type="text" name="username" class="form-control" placeholder="e.g. admin_jane" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Email</label>
+              <input type="email" name="email" class="form-control" placeholder="admin@example.com">
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Password <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <input type="password" name="password" id="pwField" class="form-control" placeholder="Min 8 characters" required>
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePw('pwField', this)">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold small">Confirm Password <span class="text-danger">*</span></label>
+              <div class="input-group">
+                <input type="password" name="password2" id="pw2Field" class="form-control" placeholder="Repeat password" required>
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePw('pw2Field', this)">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" name="is_superuser" id="isSuperuser">
+                <label class="form-check-label small" for="isSuperuser">
+                  Superuser <span class="text-muted">(full system access)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-person-plus me-1"></i> Create Admin User
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    {% else %}
+    <div class="card border-0 shadow-sm">
+      <div class="card-body text-center py-5 text-muted">
+        <i class="bi bi-lock fs-2 d-block mb-2 text-secondary"></i>
+        <p class="fw-semibold mb-1">View Only</p>
+        <small>Only a superadmin can create or modify admin accounts.</small>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Roles info card -->
+    <div class="card border-0 shadow-sm mt-3">
+      <div class="card-body p-3">
+        <p class="small fw-semibold mb-2"><i class="bi bi-info-circle text-info me-1"></i>Role Differences</p>
+        <div class="d-flex gap-2 mb-2">
+          <span class="badge bg-warning text-dark">Staff</span>
+          <small class="text-muted">Access to PhishGuard Admin Panel only</small>
+        </div>
+        <div class="d-flex gap-2">
+          <span class="badge bg-danger">Superuser</span>
+          <small class="text-muted">Full access, can manage admin accounts</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Existing admin users ── -->
+  <div class="col-lg-7">
+    <div class="card border-0 shadow-sm">
+      <div class="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
+        <h6 class="fw-bold mb-0"><i class="bi bi-shield-lock me-2 text-danger"></i>Existing Admin Users</h6>
+        <span class="badge bg-secondary">{{ admin_users|length }}</span>
+      </div>
+      <div class="card-body p-0">
+        {% if admin_users %}
+        <div class="table-responsive">
+          <table class="table table-hover mb-0 align-middle">
+            <thead class="table-light">
+              <tr>
+                <th class="ps-3">User</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Joined</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for u in admin_users %}
+              <tr>
+                <td class="ps-3">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                         style="width:34px;height:34px;font-size:0.85rem;flex-shrink:0;">
+                      {{ u.username|first|upper }}
+                    </div>
+                    <div>
+                      <div class="fw-semibold small">{{ u.username }}</div>
+                      {% if u.get_full_name %}
+                      <div class="text-muted" style="font-size:0.75rem;">{{ u.get_full_name }}</div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </td>
+                <td class="small text-muted">{{ u.email|default:"—" }}</td>
+                <td>
+                  {% if u.is_superuser %}
+                    <span class="badge bg-danger">Superuser</span>
+                  {% else %}
+                    <span class="badge bg-warning text-dark">Staff</span>
+                  {% endif %}
+                </td>
+                <td class="small text-muted">{{ u.date_joined|date:"d M Y" }}</td>
+                <td class="text-end pe-3">
+                  {% if u == request.user %}
+                    <span class="text-muted small fst-italic">You</span>
+                  {% elif request.user.is_superuser %}
+                    <a href="{% url 'admin_panel:edit_admin' u.id %}" class="btn btn-sm btn-outline-primary me-1">
+                      <i class="bi bi-pencil"></i>
+                    </a>
+                    <button class="btn btn-sm btn-outline-danger"
+                            onclick="confirmDelete('{{ u.username }}', '{% url 'admin_panel:delete_admin' u.id %}')">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  {% else %}
+                    <span class="text-muted small">—</span>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5 text-muted">
+          <i class="bi bi-people fs-2 d-block mb-2"></i>
+          No admin users found.
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header border-0 pb-0">
+        <h6 class="modal-title fw-bold text-danger"><i class="bi bi-exclamation-triangle me-1"></i>Delete Admin</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body pt-2">
+        <p class="small mb-0">Delete admin user <strong id="deleteUsername"></strong>? This cannot be undone.</p>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form id="deleteForm" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function confirmDelete(username, url) {
+  document.getElementById('deleteUsername').textContent = username;
+  document.getElementById('deleteForm').action = url;
+  new bootstrap.Modal(document.getElementById('deleteModal')).show();
+}
+
+function togglePw(fieldId, btn) {
+  var field = document.getElementById(fieldId);
+  var icon = btn.querySelector('i');
+  if (field.type === 'password') {
+    field.type = 'text';
+    icon.classList.replace('bi-eye', 'bi-eye-slash');
+  } else {
+    field.type = 'password';
+    icon.classList.replace('bi-eye-slash', 'bi-eye');
+  }
+}
+</script>
+{% endblock %}

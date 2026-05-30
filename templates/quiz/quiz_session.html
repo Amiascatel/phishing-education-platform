@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+{% block title %}{{ category.name }} Quiz{% endblock %}
+
+{% block content %}
+<div class="container py-4" id="quiz-app">
+  <!-- Progress Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <span class="badge bg-primary me-2">{{ quiz_type|title }}</span>
+      <span class="fw-semibold">{{ category.name }}</span>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <span class="text-muted" id="timer"><i class="bi bi-clock me-1"></i><span id="timer-display">00:00</span></span>
+      <span class="text-muted" id="progress-label">Question <span id="current-q">1</span> of {{ total_questions }}</span>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress mb-4" style="height: 8px;">
+    <div class="progress-bar bg-primary" id="progress-bar" role="progressbar" style="width: 0%"></div>
+  </div>
+
+  <!-- Quiz Card -->
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0" id="question-card">
+        <div class="card-body p-4">
+          <!-- Difficulty badge -->
+          <div class="mb-2" id="difficulty-badge"></div>
+
+          <!-- Scenario (optional) -->
+          <div class="alert alert-light border mb-3 d-none" id="scenario-box">
+            <strong><i class="bi bi-envelope me-1"></i> Scenario</strong>
+            <p class="mb-0 mt-1" id="scenario-text"></p>
+          </div>
+
+          <!-- Question text -->
+          <h5 class="fw-semibold mb-4" id="question-text">Loading question...</h5>
+
+          <!-- Answer options -->
+          <div id="options-container" class="d-grid gap-2"></div>
+
+          <!-- Feedback -->
+          <div class="mt-3 d-none" id="feedback-box">
+            <div class="alert mb-0" id="feedback-alert">
+              <strong id="feedback-result"></strong>
+              <p class="mb-0 mt-1 small" id="feedback-explanation"></p>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
+          <small class="text-muted" id="score-display">Score: 0/0</small>
+          <button class="btn btn-primary d-none" id="next-btn" onclick="nextQuestion()">
+            Next <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+          <button class="btn btn-success d-none" id="finish-btn" onclick="finishQuiz()">
+            Finish Quiz <i class="bi bi-check-circle ms-1"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = {{ questions_json|safe }};
+const ATTEMPT_ID = {{ attempt.id }};
+const ANSWER_URL = "{% url 'quiz:api_submit_answer' %}";
+const COMPLETE_URL = "{% url 'quiz:api_complete_quiz' %}";
+const RESULT_URL_BASE = "/quiz/attempt/";
+const CSRF = "{{ csrf_token }}";
+
+let currentIndex = 0;
+let correctCount = 0;
+let startTime = Date.now();
+let questionStart = Date.now();
+let answered = false;
+
+// Timer
+setInterval(() => {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const m = String(Math.floor(elapsed / 60)).padStart(2, '0');
+  const s = String(elapsed % 60).padStart(2, '0');
+  document.getElementById('timer-display').textContent = `${m}:${s}`;
+}, 1000);
+
+function loadQuestion() {
+  if (currentIndex >= QUESTIONS.length) { showFinish(); return; }
+  answered = false;
+  const q = QUESTIONS[currentIndex];
+  questionStart = Date.now();
+
+  document.getElementById('current-q').textContent = currentIndex + 1;
+  document.getElementById('progress-bar').style.width = `${((currentIndex) / QUESTIONS.length) * 100}%`;
+  document.getElementById('score-display').textContent = `Score: ${correctCount}/${currentIndex}`;
+
+  const diffColors = {beginner: 'success', intermediate: 'warning', advanced: 'danger'};
+  document.getElementById('difficulty-badge').innerHTML =
+    `<span class="badge bg-${diffColors[q.difficulty] || 'secondary'}">${q.difficulty.charAt(0).toUpperCase() + q.difficulty.slice(1)}</span>`;
+
+  const scenarioBox = document.getElementById('scenario-box');
+  if (q.scenario) {
+    scenarioBox.classList.remove('d-none');
+    document.getElementById('scenario-text').textContent = q.scenario;
+  } else {
+    scenarioBox.classList.add('d-none');
+  }
+
+  document.getElementById('question-text').textContent = q.question;
+  document.getElementById('feedback-box').classList.add('d-none');
+  document.getElementById('next-btn').classList.add('d-none');
+  document.getElementById('finish-btn').classList.add('d-none');
+
+  const container = document.getElementById('options-container');
+  container.innerHTML = '';
+  q.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-outline-secondary text-start';
+    btn.innerHTML = `<span class="fw-semibold me-2">${String.fromCharCode(65+idx)}.</span>${opt}`;
+    btn.onclick = () => submitAnswer(idx, btn);
+    container.appendChild(btn);
+  });
+}
+
+async function submitAnswer(selectedIdx, btn) {
+  if (answered) return;
+  answered = true;
+  const q = QUESTIONS[currentIndex];
+  const timeSeconds = Math.floor((Date.now() - questionStart) / 1000);
+
+  // Disable all buttons
+  document.querySelectorAll('#options-container button').forEach(b => b.disabled = true);
+
+  try {
+    const res = await fetch(ANSWER_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'X-CSRFToken': CSRF},
+      body: JSON.stringify({
+        attempt_id: ATTEMPT_ID,
+        question_id: q.id,
+        selected_answer: selectedIdx,
+        time_seconds: timeSeconds,
+        question_order: currentIndex + 1,
+      })
+    });
+    const data = await res.json();
+
+    // Highlight correct/wrong
+    document.querySelectorAll('#options-container button').forEach((b, idx) => {
+      if (idx === data.correct_answer) b.classList.replace('btn-outline-secondary', 'btn-success');
+      else if (idx === selectedIdx && !data.is_correct) b.classList.replace('btn-outline-secondary', 'btn-danger');
+    });
+
+    if (data.is_correct) correctCount++;
+
+    // Show feedback
+    const feedbackBox = document.getElementById('feedback-box');
+    const alert = document.getElementById('feedback-alert');
+    feedbackBox.classList.remove('d-none');
+    alert.className = `alert alert-${data.is_correct ? 'success' : 'danger'} mb-0`;
+    document.getElementById('feedback-result').textContent = data.is_correct ? '✓ Correct!' : '✗ Incorrect';
+    document.getElementById('feedback-explanation').textContent = data.explanation || '';
+
+    document.getElementById('score-display').textContent = `Score: ${correctCount}/${currentIndex + 1}`;
+
+    if (currentIndex + 1 < QUESTIONS.length) {
+      document.getElementById('next-btn').classList.remove('d-none');
+    } else {
+      document.getElementById('finish-btn').classList.remove('d-none');
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+function nextQuestion() {
+  currentIndex++;
+  loadQuestion();
+}
+
+async function finishQuiz() {
+  document.getElementById('finish-btn').disabled = true;
+  document.getElementById('finish-btn').textContent = 'Calculating results...';
+  const totalSeconds = Math.floor((Date.now() - startTime) / 1000);
+
+  try {
+    const res = await fetch(COMPLETE_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'X-CSRFToken': CSRF},
+      body: JSON.stringify({attempt_id: ATTEMPT_ID, time_seconds: totalSeconds})
+    });
+    const data = await res.json();
+    window.location.href = `${RESULT_URL_BASE}${data.attempt_id}/result/`;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+function showFinish() {
+  document.getElementById('finish-btn').classList.remove('d-none');
+}
+
+// Init
+loadQuestion();
+</script>
+{% endblock %}

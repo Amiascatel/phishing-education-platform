@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}Quiz Result{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <!-- Result Header -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow text-center">
+        <div class="card-body p-5">
+          {% if attempt.score_percentage >= 80 %}
+          <div class="display-1 mb-3">🎉</div>
+          <h2 class="fw-bold text-success">Excellent Work!</h2>
+          {% elif attempt.score_percentage >= 60 %}
+          <div class="display-1 mb-3">👍</div>
+          <h2 class="fw-bold text-warning">Good Job!</h2>
+          {% else %}
+          <div class="display-1 mb-3">📚</div>
+          <h2 class="fw-bold text-danger">Keep Practising!</h2>
+          {% endif %}
+
+          <h4 class="text-muted mb-4">
+            {{ attempt.category.name }} — {{ attempt.get_quiz_type_display }}
+          </h4>
+
+          <!-- Score Circle -->
+          <div class="d-flex justify-content-center mb-4">
+            <div class="rounded-circle d-flex align-items-center justify-content-center
+              {% if attempt.score_percentage >= 80 %}bg-success{% elif attempt.score_percentage >= 60 %}bg-warning{% else %}bg-danger{% endif %}"
+              style="width:140px;height:140px;">
+              <div class="text-white">
+                <div class="display-5 fw-bold">{{ attempt.score_percentage|floatformat:0 }}%</div>
+                <div class="small">{{ attempt.correct_answers }}/{{ attempt.total_questions }}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="row g-3 mb-4">
+            <div class="col-4">
+              <div class="border rounded p-3">
+                <div class="fw-bold fs-5">{{ attempt.correct_answers }}</div>
+                <small class="text-muted">Correct</small>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="border rounded p-3">
+                <div class="fw-bold fs-5">{{ attempt.total_questions }}</div>
+                <small class="text-muted">Total</small>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="border rounded p-3">
+                <div class="fw-bold fs-5">
+                  {% if attempt.time_taken_seconds %}
+                    {% with mins=attempt.time_taken_seconds|divisibleby:60 %}{{ attempt.time_taken_seconds|floatformat:0 }}s{% endwith %}
+                  {% else %}—{% endif %}
+                </div>
+                <small class="text-muted">Time</small>
+              </div>
+            </div>
+          </div>
+
+          {% if profile %}
+          <div class="alert alert-info text-start">
+            <strong>Knowledge Level Updated:</strong>
+            Your estimated level for <em>{{ attempt.category.name }}</em> is now
+            <span class="badge bg-{% if profile.estimated_level == 'advanced' %}success{% elif profile.estimated_level == 'intermediate' %}warning text-dark{% else %}secondary{% endif %}">
+              {{ profile.estimated_level|title }}
+            </span>
+            (proficiency score: {{ profile.proficiency_score|floatformat:2 }})
+          </div>
+          {% endif %}
+
+          <!-- New Badges -->
+          {% if recent_badges %}
+          <div class="mb-4">
+            <h6 class="fw-semibold mb-2">🏅 Recently Earned Badges</h6>
+            <div class="d-flex flex-wrap gap-2 justify-content-center">
+              {% for ub in recent_badges %}
+              <span class="badge bg-warning text-dark px-3 py-2 fs-6">
+                {{ ub.badge.name }}
+              </span>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+
+          <div class="d-flex gap-2 justify-content-center">
+            <a href="{% url 'quiz:start_quiz' attempt.category.slug %}?type={{ attempt.quiz_type }}" class="btn btn-primary">
+              <i class="bi bi-arrow-repeat me-1"></i> Try Again
+            </a>
+            <a href="{% url 'quiz:category_list' %}" class="btn btn-outline-secondary">
+              All Categories
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Answer Review -->
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h5 class="fw-bold mb-3">Answer Review</h5>
+      {% for ans in answers %}
+      <div class="card mb-3 border-{% if ans.is_correct %}success{% else %}danger{% endif %} border-start border-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between mb-2">
+            <span class="fw-semibold">Question {{ forloop.counter }}</span>
+            <span class="badge bg-{% if ans.is_correct %}success{% else %}danger{% endif %}">
+              {% if ans.is_correct %}✓ Correct{% else %}✗ Incorrect{% endif %}
+            </span>
+          </div>
+          <p class="mb-2">{{ ans.question.question }}</p>
+          <div class="d-grid gap-1">
+            {% for option in ans.question.options %}
+            <div class="p-2 rounded small
+              {% if forloop.counter0 == ans.question.correct_answer %}bg-success bg-opacity-15 border border-success{% elif forloop.counter0 == ans.selected_answer and not ans.is_correct %}bg-danger bg-opacity-15 border border-danger{% else %}bg-light{% endif %}">
+              <span class="fw-bold me-1">{{ forloop.counter0|add:65|chr }}.</span> {{ option }}
+              {% if forloop.counter0 == ans.question.correct_answer %}
+              <span class="text-success fw-bold ms-1">✓ Correct Answer</span>
+              {% elif forloop.counter0 == ans.selected_answer and not ans.is_correct %}
+              <span class="text-danger fw-bold ms-1">✗ Your Answer</span>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+          {% if ans.question.explanation %}
+          <div class="mt-2 p-2 bg-info bg-opacity-10 rounded small">
+            <strong>Explanation:</strong> {{ ans.question.explanation }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

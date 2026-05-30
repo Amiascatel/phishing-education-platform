@@ -1,0 +1,201 @@
+{% extends "admin_panel/base_admin.html" %}
+{% block title %}ML Models{% endblock %}
+{% block page_title %}AI / ML Management{% endblock %}
+{% block page_subtitle %}Train and manage machine learning models{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+
+  <!-- ── Left column ── -->
+  <div class="col-lg-4">
+
+    <!-- Chatbot Status Card -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-white border-0 pt-3">
+        <h6 class="fw-bold mb-0"><i class="bi bi-chat-dots me-2 text-primary"></i>Chatbot Model</h6>
+      </div>
+      <div class="card-body">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          {% if chatbot_status.trained %}
+          <span class="badge bg-success fs-6 px-3 py-2"><i class="bi bi-check-circle me-1"></i>Trained</span>
+          {% else %}
+          <span class="badge bg-danger fs-6 px-3 py-2"><i class="bi bi-x-circle me-1"></i>Not Trained</span>
+          {% endif %}
+          <div>
+            <div class="fw-bold">{{ chatbot_status.qa_count }} Q&amp;A Pairs</div>
+            <small class="text-muted">TF-IDF + Cosine Similarity</small>
+          </div>
+        </div>
+        {% if approved_unfed > 0 %}
+        <div class="alert alert-warning py-2 small mb-3">
+          <i class="bi bi-exclamation-triangle me-1"></i>
+          <strong>{{ approved_unfed }}</strong> approved Q&amp;A pair(s) waiting to be fed into the model.
+        </div>
+        {% endif %}
+        <form method="post" action="{% url 'admin_panel:feed_to_model' %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary w-100"
+                  {% if approved_unfed == 0 %}disabled{% endif %}>
+            <i class="bi bi-lightning-charge me-1"></i>
+            Feed &amp; Retrain Chatbot ({{ approved_unfed }} new)
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Difficulty Predictor Card -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-white border-0 pt-3">
+        <h6 class="fw-bold mb-0"><i class="bi bi-bar-chart-line me-2 text-warning"></i>Difficulty Predictor</h6>
+      </div>
+      <div class="card-body">
+        <p class="small text-muted mb-3">
+          Gradient Boosting model that predicts the appropriate difficulty level for each student
+          based on their proficiency score and recent quiz accuracy.
+        </p>
+        <form method="post" action="{% url 'admin_panel:retrain_difficulty_model' %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-warning w-100">
+            <i class="bi bi-arrow-repeat me-1"></i> Retrain Difficulty Model
+          </button>
+        </form>
+        <small class="text-muted d-block mt-2 text-center">Uses all completed quiz attempts + seed data</small>
+      </div>
+    </div>
+
+    <!-- Other models info -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-white border-0 pt-3">
+        <h6 class="fw-bold mb-0"><i class="bi bi-diagram-3 me-2 text-info"></i>Other Models</h6>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+          <div>
+            <div class="fw-semibold small">Knowledge Estimator</div>
+            <small class="text-muted">Bayesian IRT proficiency scoring</small>
+          </div>
+          <span class="badge bg-success">Active</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+          <div>
+            <div class="fw-semibold small">Collaborative Filter</div>
+            <small class="text-muted">KNN study recommendations</small>
+          </div>
+          <span class="badge bg-success">Active</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+          <div>
+            <div class="fw-semibold small">Adaptive Quiz Engine</div>
+            <small class="text-muted">IRT-based question selection</small>
+          </div>
+          <span class="badge bg-success">Active</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ── Right column ── -->
+  <div class="col-lg-8">
+
+    <!-- Add Q&A Pair form -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-white border-0 pt-3">
+        <h6 class="fw-bold mb-0"><i class="bi bi-plus-circle me-2 text-success"></i>Add Chatbot Q&amp;A Pair</h6>
+      </div>
+      <div class="card-body">
+        <form method="post" action="{% url 'admin_panel:submit_chatbot_qa' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Question <small class="text-muted fw-normal">(what students ask)</small></label>
+            <input type="text" name="question" class="form-control" required
+                   placeholder="e.g. What is phishing?">
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Answer</label>
+            <textarea name="answer" class="form-control" rows="3" required
+                      placeholder="The answer the chatbot should give…"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Category</label>
+            <select name="category" class="form-select">
+              <option value="general">General</option>
+              <option value="phishing">Phishing</option>
+              <option value="email_security">Email Security</option>
+              <option value="social_engineering">Social Engineering</option>
+              <option value="url_analysis">URL Analysis</option>
+              <option value="prevention">Prevention</option>
+              <option value="incident_response">Incident Response</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success">
+            <i class="bi bi-send me-1"></i> Submit &amp; Queue for Training
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Pending Submissions -->
+    {% if pending_submissions %}
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-white border-0 pt-3 d-flex justify-content-between align-items-center">
+        <h6 class="fw-bold mb-0"><i class="bi bi-clock-history me-2 text-warning"></i>Pending Submissions</h6>
+        <span class="badge bg-warning text-dark">{{ pending_submissions|length }}</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 small">
+          <thead class="table-light">
+            <tr><th>Question</th><th>Submitted by</th><th>When</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            {% for sub in pending_submissions %}
+            <tr>
+              <td>{{ sub.content_data.question|default:"—"|truncatechars:60 }}</td>
+              <td>{{ sub.submitted_by.username }}</td>
+              <td class="text-muted">{{ sub.created_at|date:"M d, Y" }}</td>
+              <td><span class="badge bg-warning text-dark">Pending</span></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Sample Q&A Pairs -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-white border-0 pt-3">
+        <h6 class="fw-bold mb-0"><i class="bi bi-card-list me-2 text-secondary"></i>Sample Chatbot Knowledge (first 10)</h6>
+      </div>
+      <div class="card-body p-0">
+        {% if sample_qa %}
+        <div class="accordion accordion-flush" id="qaAccordion">
+          {% for pair in sample_qa %}
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed py-2 small" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#qa-{{ forloop.counter }}">
+                <i class="bi bi-question-circle text-primary me-2"></i>
+                {{ pair.question|truncatechars:80 }}
+              </button>
+            </h2>
+            <div id="qa-{{ forloop.counter }}" class="accordion-collapse collapse">
+              <div class="accordion-body py-2 small text-muted">
+                <i class="bi bi-chat-left-text me-1"></i> {{ pair.answer }}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-5 text-muted">
+          <i class="bi bi-robot fs-1 d-block mb-2"></i>
+          Chatbot not yet trained. Run the seed command or add Q&amp;A pairs above.
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

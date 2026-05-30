@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Resources - PhishGuard{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">Learning Resources</h2>
+      <p class="text-muted mb-0">External guides, checklists and references</p>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="card border-0 shadow-sm mb-4">
+    <div class="card-body py-3">
+      <form method="get" class="d-flex gap-2 align-items-center flex-wrap">
+        <select name="type" class="form-select form-select-sm w-auto">
+          <option value="">All Types</option>
+          {% for val, label in resource_types %}
+          <option value="{{ val }}" {% if request.GET.type == val %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-sm btn-primary">Filter</button>
+        <a href="{% url 'education:resources' %}" class="btn btn-sm btn-outline-secondary">Reset</a>
+      </form>
+    </div>
+  </div>
+
+  <div class="row g-3">
+    {% for resource in resources %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <div class="card-body">
+          <div class="d-flex align-items-start gap-2 mb-2">
+            <span class="badge bg-primary">{{ resource.resource_type|upper }}</span>
+          </div>
+          <h6 class="fw-bold">{{ resource.title }}</h6>
+          {% if resource.description %}
+          <p class="small text-muted mb-3">{{ resource.description|truncatechars:120 }}</p>
+          {% endif %}
+          {% if resource.url %}
+          <a href="{{ resource.url }}" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary">
+            <i class="bi bi-box-arrow-up-right me-1"></i> Open Resource
+          </a>
+          {% endif %}
+        </div>
+        <div class="card-footer bg-transparent border-0">
+          <small class="text-muted">Added {{ resource.created_at|date:"M d, Y" }}</small>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+      <i class="bi bi-folder2-open fs-1 text-muted d-block mb-2"></i>
+      <p class="text-muted">No resources available yet.</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
