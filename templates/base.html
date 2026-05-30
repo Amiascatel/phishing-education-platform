@@ -153,6 +153,10 @@
             z-index: 1050;
             max-width: 400px;
         }
+        /* Hide hamburger on desktop — sidebar is always visible there */
+        @media (min-width: 768px) {
+            #sidebarToggle { display: none !important; }
+        }
     </style>
     {% block extra_css %}{% endblock %}
 </head>

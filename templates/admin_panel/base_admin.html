@@ -162,6 +162,10 @@
       flex-shrink: 0;
       border-radius: 6px;
     }
+    /* Hide hamburger on desktop — sidebar is always visible there */
+    @media (min-width: 992px) {
+      #sidebarToggle { display: none !important; }
+    }
   </style>
   {% block extra_css %}{% endblock %}
 </head>
