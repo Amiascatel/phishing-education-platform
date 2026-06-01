@@ -282,31 +282,23 @@
 {% endblock %}
 
 {% block extra_js %}
-<script>
-// Populate hidden per-post content into a JS map for the edit modal
-const postContentMap = {
-  {% for post in posts %}
-  {{ post.id }}: {{ post.content|escapejs|json_script:post.id|default:'""' }},
-  {% endfor %}
-};
-
-function openEditPost(btn) {
-  const d = btn.dataset;
-  document.getElementById('ep-title').value    = d.title;
-  document.getElementById('ep-category').value = d.category;
-  document.getElementById('ep-status').value   = d.status;
-  document.getElementById('ep-featured').checked = d.featured === 'true';
-  document.getElementById('ep-excerpt').value  = d.excerpt;
-  // Load full content from hidden textareas
-  const contentEl = document.getElementById('post-content-' + d.id);
-  document.getElementById('ep-content').value  = contentEl ? contentEl.value : '';
-  document.getElementById('editPostForm').action = `/manage/blog/post/${d.id}/edit/`;
-  new bootstrap.Modal(document.getElementById('editPostModal')).show();
-}
-</script>
-
-{# Hidden textareas storing each post's full content #}
+{# Hidden textareas — store each post's full content safely outside JS #}
 {% for post in posts %}
 <textarea id="post-content-{{ post.id }}" class="d-none">{{ post.content }}</textarea>
 {% endfor %}
+
+<script>
+function openEditPost(btn) {
+  const d = btn.dataset;
+  document.getElementById('ep-title').value       = d.title;
+  document.getElementById('ep-category').value    = d.category;
+  document.getElementById('ep-status').value      = d.status;
+  document.getElementById('ep-featured').checked  = d.featured === 'true';
+  document.getElementById('ep-excerpt').value     = d.excerpt;
+  const contentEl = document.getElementById('post-content-' + d.id);
+  document.getElementById('ep-content').value     = contentEl ? contentEl.value : '';
+  document.getElementById('editPostForm').action  = '/manage/blog/post/' + d.id + '/edit/';
+  new bootstrap.Modal(document.getElementById('editPostModal')).show();
+}
+</script>
 {% endblock %}
