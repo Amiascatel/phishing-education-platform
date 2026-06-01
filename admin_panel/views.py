@@ -621,15 +621,14 @@ def edit_indicator(request, indicator_id):
 
 @staff_required
 def blog_management(request):
-    import json as _json
     from blog.models import Post, Category as BlogCategory
     posts = Post.objects.select_related('author', 'category').order_by('-created_at')
     blog_categories = BlogCategory.objects.all()
-    # Build a safe JSON map of post id → {content, excerpt} for the edit modal
-    posts_content = _json.dumps({
+    # Pass as a plain dict — let Django's json_script filter serialize it safely
+    posts_content = {
         str(p.id): {'content': p.content, 'excerpt': p.excerpt}
         for p in posts
-    })
+    }
     return render(request, 'admin_panel/blog_management.html', {
         'posts': posts,
         'blog_categories': blog_categories,
