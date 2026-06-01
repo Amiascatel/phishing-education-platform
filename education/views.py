@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.cache import cache
 from django.utils import timezone
 from django.db.models import Count
 
@@ -51,32 +52,36 @@ def dashboard(request):
 @login_required
 def module_list(request):
     """List all available modules."""
-    categories = Category.objects.prefetch_related('modules').all()
-    modules = Module.objects.filter(is_active=True).select_related('category')
+    module_type = request.GET.get('type', '')
+    difficulty  = request.GET.get('difficulty', '')
 
-    # Filter by type if specified
-    module_type = request.GET.get('type')
-    if module_type:
-        modules = modules.filter(module_type=module_type)
+    # Cache shared catalogue data (same for all users, only changes when admin edits)
+    cat_key = f'edu:module_list:{module_type}:{difficulty}'
+    cached  = cache.get(cat_key)
+    if cached:
+        categories, modules = cached
+    else:
+        categories = list(Category.objects.prefetch_related('modules').all())
+        modules_qs = Module.objects.filter(is_active=True).select_related('category')
+        if module_type:
+            modules_qs = modules_qs.filter(module_type=module_type)
+        if difficulty:
+            modules_qs = modules_qs.filter(difficulty=difficulty)
+        modules = list(modules_qs)
+        cache.set(cat_key, (categories, modules), 60 * 10)  # 10 minutes
 
-    # Filter by difficulty
-    difficulty = request.GET.get('difficulty')
-    if difficulty:
-        modules = modules.filter(difficulty=difficulty)
-
-    # Get user progress for each module
+    # User progress is personal — never cache
     user_progress = {
         p.module_id: p for p in UserProgress.objects.filter(user=request.user)
     }
 
-    context = {
+    return render(request, 'education/module_list.html', {
         'categories': categories,
         'modules': modules,
         'user_progress': user_progress,
         'module_types': Module.MODULE_TYPE_CHOICES,
         'difficulty_levels': Module.DIFFICULTY_CHOICES,
-    }
-    return render(request, 'education/module_list.html', context)
+    })
 
 
 @login_required
