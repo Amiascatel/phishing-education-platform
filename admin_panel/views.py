@@ -741,39 +741,50 @@ def create_admin_user(request):
             messages.error(request, 'Only superusers can create admin accounts.')
             return redirect('admin_panel:create_admin')
 
-        username = request.POST.get('username', '').strip()
-        email = request.POST.get('email', '').strip()
-        first_name = request.POST.get('first_name', '').strip()
-        last_name = request.POST.get('last_name', '').strip()
-        password = request.POST.get('password', '')
-        password2 = request.POST.get('password2', '')
+        username    = request.POST.get('username', '').strip()
+        email       = request.POST.get('email', '').strip()
+        first_name  = request.POST.get('first_name', '').strip()
+        last_name   = request.POST.get('last_name', '').strip()
+        password    = request.POST.get('password', '')
+        password2   = request.POST.get('password2', '')
         is_superuser = request.POST.get('is_superuser') == 'on'
 
         errors = []
         if not username:
             errors.append('Username is required.')
         elif User.objects.filter(username=username).exists():
-            errors.append('Username already taken.')
+            errors.append(f'Username "{username}" is already taken.')
+        if not email:
+            errors.append('Email address is required.')
+        elif User.objects.filter(email=email).exists():
+            errors.append('An account with that email already exists.')
         if not password:
             errors.append('Password is required.')
         elif len(password) < 8:
             errors.append('Password must be at least 8 characters.')
         elif password != password2:
             errors.append('Passwords do not match.')
-        if email and User.objects.filter(email=email).exists():
-            errors.append('Email already in use.')
 
         if errors:
             for err in errors:
                 messages.error(request, err)
         else:
-            User.objects.create_user(
-                username=username, email=email, password=password,
-                first_name=first_name, last_name=last_name,
-                is_staff=True, is_superuser=is_superuser,
-            )
-            messages.success(request, f'Admin user "{username}" created successfully.')
-            return redirect('admin_panel:create_admin')
+            try:
+                from analytics.models import LearningAnalytics
+                new_user = User.objects.create_user(
+                    username=username,
+                    email=email,
+                    password=password,
+                    first_name=first_name,
+                    last_name=last_name,
+                    is_staff=True,
+                    is_superuser=is_superuser,
+                )
+                LearningAnalytics.objects.get_or_create(user=new_user)
+                messages.success(request, f'Admin user "{username}" created successfully.')
+                return redirect('admin_panel:create_admin')
+            except Exception as e:
+                messages.error(request, f'Could not create user: {e}')
 
     return render(request, 'admin_panel/create_admin.html', {
         'admin_users': admin_users,
