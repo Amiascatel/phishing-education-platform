@@ -148,32 +148,6 @@ def submit_feedback(request):
 
 
 @login_required
-def leaderboard(request):
-    """View platform leaderboard."""
-    # Top users by points
-    top_by_points = User.objects.order_by('-total_points')[:20]
-
-    # Top users by completed modules
-    top_by_modules = User.objects.order_by('-completed_modules')[:20]
-
-    # Top users by simulation scores
-    top_by_simulations = User.objects.filter(
-        email_phishing_score__gt=0
-    ).order_by('-email_phishing_score')[:20]
-
-    # User's rank
-    user_rank = User.objects.filter(total_points__gt=request.user.total_points).count() + 1
-
-    context = {
-        'top_by_points': top_by_points,
-        'top_by_modules': top_by_modules,
-        'top_by_simulations': top_by_simulations,
-        'user_rank': user_rank,
-    }
-    return render(request, 'analytics/leaderboard.html', context)
-
-
-@login_required
 def skill_breakdown(request):
     """Detailed breakdown of user's skills."""
     user = request.user

@@ -9,6 +9,5 @@ urlpatterns = [
     path('activity/', views.activity_feed, name='activity_feed'),
     path('dismiss-recommendation/<int:recommendation_id>/', views.dismiss_recommendation, name='dismiss_recommendation'),
     path('feedback/', views.submit_feedback, name='submit_feedback'),
-    path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('skills/', views.skill_breakdown, name='skill_breakdown'),
 ]
