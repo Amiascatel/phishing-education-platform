@@ -1,48 +1,280 @@
 {% extends 'base.html' %}
-{% block title %}Login - PhishGuard{% endblock %}
+{% block title %}Sign In — PhishGuard{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* Override base container to allow full-width layout */
+  body > .container { max-width: 100%; padding: 0; }
+
+  .auth-wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* ── Left panel ── */
+  .auth-brand {
+    flex: 0 0 42%;
+    background: linear-gradient(145deg, #1e3a8a 0%, #2563eb 60%, #0ea5e9 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 52px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .auth-brand::before {
+    content: '';
+    position: absolute;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    top: -80px; right: -100px;
+  }
+  .auth-brand::after {
+    content: '';
+    position: absolute;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    bottom: -60px; left: -60px;
+  }
+  .auth-brand .brand-icon {
+    font-size: 3.2rem;
+    margin-bottom: 18px;
+    opacity: 0.95;
+  }
+  .auth-brand h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .auth-brand .tagline {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 40px;
+  }
+  .auth-brand .feature-list {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .auth-brand .feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+  .auth-brand .feature-list li i {
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Right panel ── */
+  .auth-form-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+    padding: 40px 24px;
+  }
+  .auth-form-box {
+    width: 100%;
+    max-width: 420px;
+  }
+  .auth-form-box .form-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .auth-form-box .form-header h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+  }
+  .auth-form-box .form-header p {
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  /* Input groups with icon */
+  .input-icon-wrap {
+    position: relative;
+  }
+  .input-icon-wrap .input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 1rem;
+    pointer-events: none;
+  }
+  .input-icon-wrap .form-control {
+    padding-left: 42px;
+    border-radius: 10px;
+    border: 1.5px solid #e2e8f0;
+    height: 48px;
+    font-size: 0.92rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fff;
+  }
+  .input-icon-wrap .form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+    background: #fff;
+  }
+  .toggle-pw {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 1rem;
+  }
+  .toggle-pw:hover { color: #2563eb; }
+
+  .btn-auth {
+    height: 48px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border: none;
+    letter-spacing: 0.01em;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .btn-auth:hover { opacity: 0.92; transform: translateY(-1px); }
+
+  .divider { display: flex; align-items: center; gap: 12px; color: #cbd5e1; font-size: 0.8rem; margin: 20px 0; }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+
+  .auth-link { color: #2563eb; font-weight: 600; text-decoration: none; }
+  .auth-link:hover { text-decoration: underline; }
+
+  /* Mobile: stack panels */
+  @media (max-width: 767px) {
+    .auth-wrap { flex-direction: column; }
+    .auth-brand {
+      flex: none;
+      padding: 36px 28px;
+      align-items: center;
+      text-align: center;
+    }
+    .auth-brand .feature-list { display: none; }
+    .auth-brand h1 { font-size: 1.5rem; }
+    .auth-form-panel { padding: 32px 20px; background: #fff; }
+  }
+</style>
+{% endblock %}
 
 {% block auth_content %}
-<div class="row justify-content-center mt-5">
-    <div class="col-md-5">
-        <div class="card shadow">
-            <div class="card-body p-5">
-                <div class="text-center mb-4">
-                    <i class="bi bi-shield-check text-primary" style="font-size: 3rem;"></i>
-                    <h2 class="mt-2">Welcome Back</h2>
-                    <p class="text-muted">Sign in to continue your learning</p>
-                </div>
+<div class="auth-wrap">
 
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label">Username</label>
-                        {{ form.username }}
-                        {% if form.username.errors %}
-                        <div class="text-danger small">{{ form.username.errors.0 }}</div>
-                        {% endif %}
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Password</label>
-                        {{ form.password }}
-                        {% if form.password.errors %}
-                        <div class="text-danger small">{{ form.password.errors.0 }}</div>
-                        {% endif %}
-                    </div>
-                    {% if form.non_field_errors %}
-                    <div class="alert alert-danger">
-                        {{ form.non_field_errors.0 }}
-                    </div>
-                    {% endif %}
-                    <button type="submit" class="btn btn-primary w-100 py-2">
-                        <i class="bi bi-box-arrow-in-right"></i> Sign In
-                    </button>
-                </form>
+  <!-- Left: Branding -->
+  <div class="auth-brand">
+    <div class="brand-icon"><i class="bi bi-shield-fill-check"></i></div>
+    <h1>PhishGuard</h1>
+    <p class="tagline">Your phishing awareness training platform</p>
+    <ul class="feature-list">
+      <li><i class="bi bi-mortarboard-fill"></i> Interactive learning modules</li>
+      <li><i class="bi bi-lightning-charge-fill"></i> Real-world simulations</li>
+      <li><i class="bi bi-graph-up-arrow"></i> Track your progress</li>
+      <li><i class="bi bi-award-fill"></i> Earn badges &amp; points</li>
+    </ul>
+  </div>
 
-                <div class="text-center mt-4">
-                    <p class="mb-0">Don't have an account? <a href="{% url 'accounts:register' %}">Register here</a></p>
-                </div>
-            </div>
+  <!-- Right: Form -->
+  <div class="auth-form-panel">
+    <div class="auth-form-box">
+
+      <div class="form-header">
+        <h2>Welcome back</h2>
+        <p>Sign in to continue your learning journey</p>
+      </div>
+
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} py-2 mb-3" role="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+
+        <!-- Username -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold small text-secondary">Username</label>
+          <div class="input-icon-wrap">
+            <i class="bi bi-person input-icon"></i>
+            {{ form.username }}
+          </div>
+          {% if form.username.errors %}
+          <div class="text-danger small mt-1">{{ form.username.errors.0 }}</div>
+          {% endif %}
         </div>
+
+        <!-- Password -->
+        <div class="mb-1">
+          <label class="form-label fw-semibold small text-secondary">Password</label>
+          <div class="input-icon-wrap">
+            <i class="bi bi-lock input-icon"></i>
+            {{ form.password }}
+            <button type="button" class="toggle-pw" onclick="togglePw('id_password', this)">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+          {% if form.password.errors %}
+          <div class="text-danger small mt-1">{{ form.password.errors.0 }}</div>
+          {% endif %}
+        </div>
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger py-2 mt-3">{{ form.non_field_errors.0 }}</div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-auth btn-primary w-100 mt-4">
+          <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+        </button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <p class="text-center small text-secondary mb-0">
+        Don't have an account?
+        <a href="{% url 'accounts:register' %}" class="auth-link">Create one free</a>
+      </p>
+
     </div>
+  </div>
 </div>
+
+<script>
+function togglePw(fieldId, btn) {
+  var input = document.getElementById(fieldId);
+  var icon  = btn.querySelector('i');
+  if (input.type === 'password') {
+    input.type = 'text';
+    icon.className = 'bi bi-eye-slash';
+  } else {
+    input.type = 'password';
+    icon.className = 'bi bi-eye';
+  }
+}
+</script>
 {% endblock %}
